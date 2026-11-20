@@ -14,8 +14,11 @@ ROOT = Path(__file__).resolve().parents[1]
 REGISTRY = ROOT / "scripts" / "sources.json"
 OUTPUT = ROOT / "data" / "latest.json"
 BLS_DATA = ROOT / "data" / "bls_metro_2025.json"
+CHINA_DATA = ROOT / "data" / "china_nbs_2025.json"
 UA = "SalaryMapResearchBot/1.0 (+https://github.com; contact repository maintainers)"
 REQUIRED = {"country", "city", "role", "currency", "salary_monthly", "cost_monthly", "contract_hours_weekly", "overtime_hours_weekly", "commute_hours_weekly", "intensity"}
+OPTIONAL = {"iso3", "admin1", "geo_level", "occupation_code", "occupation_taxonomy", "source_note"}
+TEXT_FIELDS = {"country", "city", "role", "currency", "iso3", "admin1", "geo_level", "occupation_code", "occupation_taxonomy", "source_note"}
 
 def can_fetch(url: str) -> bool:
     parts = urlparse(url)
@@ -54,9 +57,9 @@ def fetch(source: dict) -> list[dict]:
     mapping = source.get("columns", {})
     out = []
     for raw in rows:
-        row = {target: raw.get(mapping.get(target, target), "").strip() for target in REQUIRED}
+        row = {target: (raw.get(mapping.get(target, target), "") or "").strip() for target in REQUIRED | OPTIONAL}
         if not row["role"] or not row["currency"]: continue
-        for key in REQUIRED - {"country", "city", "role", "currency"}:
+        for key in (REQUIRED | OPTIONAL) - TEXT_FIELDS:
             row[key] = float(row[key]) if row[key] else None
         if row["salary_monthly"] is None: continue
         if row["intensity"] is not None and not 1 <= row["intensity"] <= 5: raise ValueError("intensity must be 1..5")
@@ -68,7 +71,10 @@ def fetch(source: dict) -> list[dict]:
 
 def main():
     sources = json.loads(REGISTRY.read_text(encoding="utf-8"))
-    rows = json.loads(BLS_DATA.read_text(encoding="utf-8")) if BLS_DATA.exists() else []
+    rows = []
+    for snapshot in (BLS_DATA, CHINA_DATA):
+        if snapshot.exists():
+            rows.extend(json.loads(snapshot.read_text(encoding="utf-8")))
     for source in sources:
         rows.extend(fetch(source))
     if not rows and OUTPUT.exists():

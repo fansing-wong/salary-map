@@ -19,12 +19,17 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install 'openpyxl>=3.1,<4'
-      - run: python scripts/update_bls.py
+      - name: Refresh U.S. BLS data
+        run: |
+          python scripts/update_bls.py || echo "::warning::BLS refresh failed; keeping the last successful snapshot"
       - run: python scripts/update_data.py
-      - run: python scripts/update_macro.py
+      - name: Refresh FX and purchasing power
+        run: |
+          python scripts/update_macro.py || echo "::warning::Macro refresh failed; keeping the last successful snapshot"
       - name: Commit updates when changed
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add data/latest.json data/macro.json data/bls_metro_2025.json
+          git add data/latest.json data/macro.json data/china_nbs_2025.json
+          if [ -f data/bls_metro_2025.json ]; then git add data/bls_metro_2025.json; fi
           git diff --cached --quiet || (git commit -m "Refresh salary data" && git push)

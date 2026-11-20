@@ -1,19 +1,25 @@
 [
   {
     "country": "Example",
+    "iso3": "XXX",
+    "admin1": "Example State / Province",
     "city": "Example City",
+    "geo_level": "country | admin1 | metro | city",
     "role": "Example role",
+    "occupation_code": "",
+    "occupation_taxonomy": "",
     "currency": "XXX",
     "salary_monthly": 0,
-    "cost_monthly": 0,
-    "contract_hours_weekly": 40,
-    "overtime_hours_weekly": 0,
-    "commute_hours_weekly": 0,
-    "intensity": 3,
+    "cost_monthly": null,
+    "contract_hours_weekly": null,
+    "overtime_hours_weekly": null,
+    "commute_hours_weekly": null,
+    "intensity": null,
     "source_url": "https://example.org/data.csv",
     "source_name": "Publisher",
     "reference_period": "YYYY",
     "retrieved_at": "ISO-8601 UTC",
-    "data_type": "official_statistic | job_posting | user_estimate"
+    "data_type": "official_statistic | job_posting | user_estimate",
+    "source_note": ""
   }
 ]

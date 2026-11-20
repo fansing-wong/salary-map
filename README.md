@@ -9,21 +9,27 @@
 ## 指标
 
 - **有效周工时** = 合同周工时 + 每周加班 + 每周通勤时间。通勤时间按个人时间成本计入，不代表法律意义的工作时间。
-- **实际时薪** = 月薪 × 12 ÷ (有效周工时 × 52)。这是税前估算，不计奖金、税、社保、带薪假期或汇率。
+- **实际时薪** = 月薪 × 12 ÷ (有效周工时 × 52)。这是税前估算，不计奖金、税、社保或带薪假期；缺少合同工时、加班或通勤数据时留空。
 - **购买力余额** = 月薪 − 单人每月基本生活成本估算。负值表示薪水不足以覆盖输入的预算。
-- **推荐分**是排序参考：工资结余占比、同币种机会中的有效时薪表现、劳动强度惩罚。不同币种不能直接比较，应用不做汇率或购买力平价换算。
+- **推荐分**是排序参考：工资结余占比、有效时薪表现和劳动强度惩罚。跨币种机会使用 ECB 名义汇率及世界银行国家级价格水平近似值；结果不能替代当地预算。
 - **劳动强度**为 1–5 主观评分，建议按体力负担、工作节奏、压力和排班综合填写。
 
 ## 数据
 
 内置记录是**模拟演示数据**，不代表任何官方统计、城市平均薪资或生活成本。请以实际 offer 和可核验的当地数据替换。用户自定义数据只存放在浏览器本地，不会传到服务器。
 
-可用作后续正式数据接入起点的官方来源：
+当前的地域对照支持“同职业比地域”和“同地域比职业”，并可沿国家/地区、省州或大区、城市筛选；选择“我的本国”后，可切换查看本国与海外。具体覆盖取决于已载入数据源，未发布到城市层级的统计不会下推到城市。
+
+已纳入官方数据底座和接入计划的来源：
 
 - [新加坡人力部 MOM 职业工资](https://stats.mom.gov.sg/statistics/income/occupational-wages/)
 - [美国劳工统计局 BLS OEWS 职业工资表](https://www.bls.gov/oes/tables.htm)
 - [加拿大 Statistics Canada 年度职业工资表](https://www150.statcan.gc.ca/n1/en/catalogue/1410041701)
 - [英国 ONS 工资与工时统计](https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours)
+- [中国国家统计局城镇工资（2025）](https://www.stats.gov.cn/english/PressRelease/202605/t20260518_1963740.html)
+- [日本厚生劳动省工资统计](https://www.mhlw.go.jp/www2/info/toukei/english/surveys.htm)
+- [韩国雇佣劳动部工资与工时](https://stathtml.moel.go.kr/statHtml/statHtml.do?conn_path=I2&language=en&orgId=118&tblId=DT_118N_LCE0001)
+- [澳大利亚 ABS 工资与工时](https://www.abs.gov.au/statistics/labour/earnings-and-working-conditions/employee-earnings-and-hours-australia/may-2025)
 
 各国统计口径、税前/税后定义、职业分类和年份不同，整合前应保留原始来源、统计年份、样本口径及币种，避免把平均值、中位数和招聘报价混为一谈。
 
@@ -45,7 +51,7 @@ MIT，见 [LICENSE](LICENSE)。
 
 社交平台数据应仅通过获准的官方 API 或获得授权的导出数据接入，并单独标注为招聘帖子样本；不能代表岗位平均薪资。LinkedIn 的帖子读取权限有审批限制，见 [LinkedIn API permissions](https://learn.microsoft.com/en-us/linkedin/shared/authentication/getting-access)。未经授权抓取账号内容会因平台规则和技术限制而不稳定。抓取公开站点也要尊重站点规则；`robots.txt` 是抓取偏好机制，不等于许可或法律意见，见 [Google robots.txt guidance](https://developers.google.com/search/docs/crawling-indexing/robots/intro)。
 
-后续版本规划见 [产品路线图](docs/PRODUCT_ROADMAP.md)。
+后续版本规划见 [产品路线图](docs/PRODUCT_ROADMAP.md)、[国家数据覆盖计划](docs/COUNTRY_COVERAGE.md) 和 [出海工作/居留路径](docs/MOBILITY_PATHWAYS.md) 和 [职业转型情景](docs/CAREER_SCENARIOS.md)。
 
 ## 跨币种购买力
 

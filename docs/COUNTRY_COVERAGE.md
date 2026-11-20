@@ -1,0 +1,38 @@
+# 国家与地域数据覆盖计划
+
+工资、工时、职业分类与地理层级按来源分别保存。界面采用“国家 → 省/州/大区 → 城市/都会区”的可选层级；来源没有发布的层级保持空值，不把国家统计摊派为城市工资。
+
+| 国家/地区 | 官方工资基线 | 职业粒度 | 地理粒度 | 下一步接入方式 |
+|---|---|---|---|---|
+| 中国 | 国家统计局城镇单位工资；当前已入库 2025 年规模以上企业工资 | 当前为 5 个宽岗位组；年薪换算月薪，均值 | 当前全国；城市职业数据需逐省/市来源 | 固定源快照 + 页面解析/下载校验；探索各地统计年鉴 |
+| 日本 | 厚生劳动省工资结构基本调查、Hello Work 求职招聘工资 | 调查可细至职业类别 | 都道府县、地域块；Hello Work 职业工资按地域块 | 优先采用可下载的官方 Excel；保留固定工资与招聘工资口径差异 |
+| 韩国 | 雇佣劳动部雇佣形态别劳动实态调查 / KOSIS | 职业大类、小时工资和工时 | 公开表按表而异，当前不承诺城市职业交叉粒度 | 先接官方表格/API，再扩展地区维度 |
+| 澳大利亚 | ABS Employee Earnings and Hours (EEH) | ANZSCO 职业组；TableBuilder 可提供更细交叉表 | 公布表覆盖州/领地与职业分别或有限交叉；更细需 TableBuilder | 下载 ABS 数据立方体；公开表优先，微观数据服务不做自动采集 |
+| 加拿大 | Statistics Canada 与政府 Job Bank 工资 | NOC 职业及小时工资/区间 | 省、地区及经济区；具体表格覆盖不一致 | 先接政府公开表/下载接口，记录 NOC 版本和工资区间定义 |
+| 美国 | BLS OEWS | SOC 职业 | 全国、州、都会区 | 现有 BLS 适配器 |
+| 新加坡 | MOM Occupational Wages | 职业类别 | 全国为主 | MOM 官方下载数据 |
+| 英国 | ONS ASHE | SOC 职业 | UK、国家构成国及可用地区 | ONS 官方数据表 |
+
+## 跨国比较规则
+
+- 先按来源职业分类映射到项目的跨国大类，再允许展开原始职业代码；无法对齐时显示“不可直接对比”。
+- 保存 `country_iso3`、`admin1`、`city`、`geo_level`、`occupation_code`、`occupation_taxonomy`、`reference_period`、`statistic`、`gross_net` 和来源 URL。
+- 年薪除以 12 得到的仅为“年薪折算月薪”；不声称它是调查直接发布的月薪。
+- 实际时薪只有在合同工时、常态加班和通勤时间均有输入时计算。官方表未给出个人通勤时长时，个人可自行填入预算情景。
+- 国家级 PPP 仅作粗略筛选。城市住房与交通差异以个人预算或可信城市数据补充。
+- 汇率/购买力只作为换算维度，不代替签证可行性、税务、社保、语言或行业执照评估。
+
+## 官方入口
+
+- [中国国家统计局：2025 年城镇单位平均工资](https://www.stats.gov.cn/english/PressRelease/202605/t20260518_1963740.html)
+- [日本厚生劳动省：劳动工资统计清单](https://www.mhlw.go.jp/www2/info/toukei/english/surveys.htm)
+- [日本厚生劳动省：Hello Work 地区/职业招聘与工资](https://www.mhlw.go.jp/roudou-navi/data/01/)
+- [韩国雇佣劳动部：工资与工时统计表](https://stathtml.moel.go.kr/statHtml/statHtml.do?conn_path=I2&language=en&orgId=118&tblId=DT_118N_LCE0001)
+- [澳大利亚 ABS：EEH 2025 数据立方体](https://www.abs.gov.au/statistics/labour/earnings-and-working-conditions/employee-earnings-and-hours-australia/may-2025)
+- [加拿大 Statistics Canada：职业年度工资](https://www150.statcan.gc.ca/n1/en/catalogue/1410041701)
+- [加拿大政府 Job Bank：工资搜索](https://www.jobbank.gc.ca/trend-analysis/search-wages)
+- [美国 BLS OEWS](https://www.bls.gov/oes/tables.htm)
+- [新加坡 MOM 职业工资](https://stats.mom.gov.sg/statistics/income/occupational-wages/)
+- [英国 ONS 工资和工时](https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours)
+
+数据整理日期：2026-11-20。政府统计发布会修订；每次刷新须保留下载日期和参考期。

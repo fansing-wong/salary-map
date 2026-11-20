@@ -46,7 +46,7 @@ def main():
         try: annual=float(str(raw).replace(",",""))
         except (TypeError,ValueError): continue
         if annual<=0 or not area: continue
-        output.append({"country":"美国","iso3":"USA","city":area,"role":SOC[code],"occupation_code":code,"currency":"USD","salary_monthly":round(annual/12,2),"cost_monthly":None,"contract_hours_weekly":40,"overtime_hours_weekly":0,"commute_hours_weekly":0,"intensity":None,"source_url":URL,"source_name":"U.S. Bureau of Labor Statistics (BLS) OEWS","reference_period":"May 2025","retrieved_at":now,"data_type":"official_statistic","statistic":"median_annual_wage","gross_net":"gross","source_note":"40h/week base assumption; BLS table does not provide city living cost, commute, overtime or job intensity."})
+        output.append({"country":"美国","iso3":"USA","city":area,"admin1":None,"geo_level":"metro","role":SOC[code],"occupation_code":code,"occupation_taxonomy":"SOC 2018","currency":"USD","salary_monthly":round(annual/12,2),"cost_monthly":None,"contract_hours_weekly":40,"overtime_hours_weekly":0,"commute_hours_weekly":0,"intensity":None,"source_url":URL,"source_name":"U.S. Bureau of Labor Statistics (BLS) OEWS","reference_period":"May 2025","retrieved_at":now,"data_type":"official_statistic","statistic":"median_annual_wage","gross_net":"gross","source_note":"年薪按年薪/12换算月薪；实际时薪仅为40小时标准周、无加班/通勤的基线估算。BLS表不提供城市生活成本、通勤、加班或岗位强度。"})
     workbook.close()
     if not output: raise RuntimeError("BLS import produced zero records; refusing to replace published data")
     path=ROOT/"data"/"bls_metro_2025.json"

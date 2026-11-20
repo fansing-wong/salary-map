@@ -8,7 +8,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "data" / "macro.json"
 UA = "SalaryMapResearchBot/1.0 (+https://github.com/fansing-wong/salary-map)"
-COUNTRIES = {"SGP": "SGD", "USA": "USD", "GBR": "GBP", "CAN": "CAD"}
+COUNTRIES = {"SGP": "SGD", "USA": "USD", "GBR": "GBP", "CAN": "CAD", "CHN": "CNY", "JPN": "JPY", "KOR": "KRW", "AUS": "AUD"}
 WB_URL = "https://api.worldbank.org/v2/country/{}/indicator/PA.NUS.PRVT.PLI?format=json&per_page=100"
 ECB_URL = "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml"
 
