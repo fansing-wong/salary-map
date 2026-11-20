@@ -1,0 +1,19 @@
+[
+  {
+    "country": "Example",
+    "city": "Example City",
+    "role": "Example role",
+    "currency": "XXX",
+    "salary_monthly": 0,
+    "cost_monthly": 0,
+    "contract_hours_weekly": 40,
+    "overtime_hours_weekly": 0,
+    "commute_hours_weekly": 0,
+    "intensity": 3,
+    "source_url": "https://example.org/data.csv",
+    "source_name": "Publisher",
+    "reference_period": "YYYY",
+    "retrieved_at": "ISO-8601 UTC",
+    "data_type": "official_statistic | job_posting | user_estimate"
+  }
+]

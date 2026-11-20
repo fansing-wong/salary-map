@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="比较不同国家和城市的岗位薪资、实际时薪、购买力和工作强度，辅助跨地域择业。">
+<title>薪酬地图｜跨地域工作选择</title><link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top"><a class="brand" href="#">薪酬<span>地图</span></a><nav><a href="#compare">岗位比较</a><a href="#method">计算方法</a><a href="https://github.com/">GitHub</a></nav></header>
+<main>
+<section class="hero"><div class="eyebrow">CAREER DECISION TOOL · BETA</div><h1>薪水之外，<em>每小时真正留下多少？</em></h1><p>把岗位薪资、加班与通勤、劳动强度和当地生活成本放在一起比较。所有金额可以按你的 offer 调整。</p></section>
+<section class="controlbar"><label>岗位<select id="role"><option value="all">全部岗位</option></select></label><label>国家 / 地区<select id="country"><option value="all">全部地区</option></select></label><button id="reset">恢复演示数据</button></section>
+<section class="cards" id="summary"></section>
+<section id="compare" class="panel"><div class="section-head"><div><div class="eyebrow">OPPORTUNITY SHORTLIST</div><h2>工作机会比较</h2></div><div class="legend"><span>数据可编辑</span><button class="primary" id="add">＋ 添加机会</button></div></div>
+<div class="tablewrap"><table><thead><tr><th>地点 / 岗位</th><th>月薪<br><small>税前，本地币</small></th><th>生活成本<br><small>月估算，本地币</small></th><th>有效工时<br><small>含通勤 / 加班</small></th><th>实际时薪<br><small>税前 / 本币</small></th><th>购买力<br><small>扣生活成本后</small></th><th>强度</th><th>推荐分</th></tr></thead><tbody id="rows"></tbody></table></div>
+<div id="empty" class="empty" hidden>没有符合条件的机会。调整筛选条件或添加岗位。</div></section>
+<section class="insight-grid"><article class="panel"><div class="eyebrow">BEST BALANCE</div><h2>综合建议</h2><div id="advice"></div></article><article class="panel"><div class="eyebrow">PURCHASING POWER</div><h2>薪水购买力怎么读？</h2><p>比较“月薪减去基本生活成本”后剩余的可支配金额，再折算为当地币购买力指数。分数是此页面的透明启发式排序，不是投资或移民建议。</p><div class="barline"><span>购买力</span><div><i></i></div><b>40%</b></div><div class="barline"><span>实际时薪</span><div><i></i></div><b>35%</b></div><div class="barline"><span>工作强度</span><div><i></i></div><b>25%</b></div></article></section>
+<section id="method" class="method"><div class="eyebrow">透明方法</div><h2>指标、假设与边界</h2><div class="methods"><div><b>有效工时</b><p>每周合同工时 + 常态加班 + 通勤时间。通勤时间是个人时间成本，不是劳动法意义上的工时。</p></div><div><b>实际时薪</b><p>月薪 × 12 ÷（有效周工时 × 52）。当前不计税、社保、奖金、带薪假期及汇率变化。</p></div><div><b>购买力余额</b><p>税前月薪 − 月基本生活成本。生活成本为单人月度预算估算，可编辑；未使用购买力平价换算。</p></div><div><b>劳动强度</b><p>1（低）至 5（高）的主观综合等级，反映体力、节奏、压力和排班。强度越高，建议分数中的惩罚越大。</p></div></div><p class="caveat">重要：内置记录是用于展示计算流程的模拟样例，不代表官方平均工资、市场报价或城市生活成本。请用官方数据和个人实际 offer 替换，并检查税后到手收入与住房成本。</p><div class="sources"><b>可接入的官方数据源</b><a href="https://stats.mom.gov.sg/statistics/income/occupational-wages/">新加坡 MOM 职业工资统计</a><a href="https://www.bls.gov/oes/tables.htm">美国 BLS OEWS 职业工资</a><a href="https://www150.statcan.gc.ca/n1/en/catalogue/1410041701">加拿大 Statistics Canada 职业工资</a><a href="https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours">英国 ONS ASHE 工资与工时</a></div></section>
+<footer>薪酬地图 · 开源择业决策原型 · 不构成职业、税务或移民建议 <span id="dataStatus">当前展示：本地演示数据</span></footer>
+</main><dialog id="editor"><form method="dialog" id="form"><h2 id="formTitle">添加机会</h2><div class="formgrid"><label>城市<input name="city" required placeholder="新加坡"></label><label>国家 / 地区<input name="country" required placeholder="新加坡"></label><label>岗位<input name="role" required placeholder="软件工程师"></label><label>货币<input name="currency" required value="SGD"></label><label>税前月薪<input name="salary" type="number" min="0" required></label><label>月生活成本<input name="cost" type="number" min="0" required></label><label>合同周工时<input name="hours" type="number" value="40" required></label><label>每周加班<input name="overtime" type="number" value="0" required></label><label>每周通勤<input name="commute" type="number" value="5" required></label><label>劳动强度 1–5<input name="intensity" type="number" min="1" max="5" value="3" required></label></div><menu><button value="cancel">取消</button><button class="primary" id="saveEntry" value="default">保存</button></menu></form></dialog><script src="app.js"></script>
+</body></html>
+
+
