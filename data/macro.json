@@ -1,0 +1,37 @@
+{
+  "retrieved_at": "2026-11-20T14:55:25.725710+00:00",
+  "fx_date": "2026-11-19",
+  "fx_source": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml",
+  "fx_to_usd": {
+    "SGD": 0.7753950338600452,
+    "USD": 1.0,
+    "CAD": 0.699281124753483,
+    "GBP": 1.3151314293918472,
+    "EUR": 1.0992
+  },
+  "price_level_base": "USA=100",
+  "price_level_indicator": "PA.NUS.PRVT.PLI",
+  "price_levels": {
+    "SGP": {
+      "value": 78.3062137943179,
+      "year": "2025",
+      "source_url": "https://api.worldbank.org/v2/country/SGP/indicator/PA.NUS.PRVT.PLI"
+    },
+    "USA": {
+      "value": 100,
+      "year": "2025",
+      "source_url": "https://api.worldbank.org/v2/country/USA/indicator/PA.NUS.PRVT.PLI"
+    },
+    "GBR": {
+      "value": 92.3703825814303,
+      "year": "2025",
+      "source_url": "https://api.worldbank.org/v2/country/GBR/indicator/PA.NUS.PRVT.PLI"
+    },
+    "CAN": {
+      "value": 90.1564908160483,
+      "year": "2025",
+      "source_url": "https://api.worldbank.org/v2/country/CAN/indicator/PA.NUS.PRVT.PLI"
+    }
+  },
+  "price_level_source": "https://data.worldbank.org/indicator/PA.NUS.PRVT.PLI"
+}
