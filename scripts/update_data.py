@@ -13,6 +13,7 @@ from urllib.request import Request, urlopen
 ROOT = Path(__file__).resolve().parents[1]
 REGISTRY = ROOT / "scripts" / "sources.json"
 OUTPUT = ROOT / "data" / "latest.json"
+BLS_DATA = ROOT / "data" / "bls_metro_2025.json"
 UA = "SalaryMapResearchBot/1.0 (+https://github.com; contact repository maintainers)"
 REQUIRED = {"country", "city", "role", "currency", "salary_monthly", "cost_monthly", "contract_hours_weekly", "overtime_hours_weekly", "commute_hours_weekly", "intensity"}
 
@@ -56,8 +57,9 @@ def fetch(source: dict) -> list[dict]:
         row = {target: raw.get(mapping.get(target, target), "").strip() for target in REQUIRED}
         if not row["role"] or not row["currency"]: continue
         for key in REQUIRED - {"country", "city", "role", "currency"}:
-            row[key] = float(row[key] or 0)
-        if not 1 <= row["intensity"] <= 5: raise ValueError("intensity must be 1..5")
+            row[key] = float(row[key]) if row[key] else None
+        if row["salary_monthly"] is None: continue
+        if row["intensity"] is not None and not 1 <= row["intensity"] <= 5: raise ValueError("intensity must be 1..5")
         row.update({"source_url": url, "source_name": source["name"], "reference_period": source["reference_period"], "retrieved_at": datetime.now(timezone.utc).isoformat(), "data_type": source.get("data_type", "official_statistic"), "statistic": source.get("statistic", "median"), "gross_net": source.get("gross_net", "gross")})
         out.append(row)
     cache[url]["rows"] = out
@@ -66,9 +68,12 @@ def fetch(source: dict) -> list[dict]:
 
 def main():
     sources = json.loads(REGISTRY.read_text(encoding="utf-8"))
-    rows = []
+    rows = json.loads(BLS_DATA.read_text(encoding="utf-8")) if BLS_DATA.exists() else []
     for source in sources:
         rows.extend(fetch(source))
+    if not rows and OUTPUT.exists():
+        print("No sources returned rows; keeping previous published salary data")
+        return
     OUTPUT.write_text(json.dumps(rows, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"Wrote {len(rows)} rows to {OUTPUT}")
 

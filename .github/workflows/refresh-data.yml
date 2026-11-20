@@ -1,5 +1,9 @@
 name: Refresh public salary data
 on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'data/**'
   workflow_dispatch:
   schedule:
     - cron: '17 4 * * 1'
@@ -14,11 +18,13 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - run: pip install 'openpyxl>=3.1,<4'
+      - run: python scripts/update_bls.py
       - run: python scripts/update_data.py
       - run: python scripts/update_macro.py
       - name: Commit updates when changed
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add data/latest.json data/macro.json
+          git add data/latest.json data/macro.json data/bls_metro_2025.json
           git diff --cached --quiet || (git commit -m "Refresh salary data" && git push)
