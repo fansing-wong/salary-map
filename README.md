@@ -44,3 +44,5 @@ MIT，见 [LICENSE](LICENSE)。
 采集器会检查 robots.txt、发送带说明的 User-Agent、使用条件请求并限制请求频率。来源应提供规范 CSV，字段映射和口径需在来源注册表中声明。当前脚手架不是通用网页解析器，也不会抓取需登录内容。
 
 社交平台数据应仅通过获准的官方 API 或获得授权的导出数据接入，并单独标注为招聘帖子样本；不能代表岗位平均薪资。LinkedIn 的帖子读取权限有审批限制，见 [LinkedIn API permissions](https://learn.microsoft.com/en-us/linkedin/shared/authentication/getting-access)。未经授权抓取账号内容会因平台规则和技术限制而不稳定。抓取公开站点也要尊重站点规则；`robots.txt` 是抓取偏好机制，不等于许可或法律意见，见 [Google robots.txt guidance](https://developers.google.com/search/docs/crawling-indexing/robots/intro)。
+
+后续版本规划见 [产品路线图](docs/PRODUCT_ROADMAP.md)。
