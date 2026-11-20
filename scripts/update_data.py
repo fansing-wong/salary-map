@@ -58,7 +58,7 @@ def fetch(source: dict) -> list[dict]:
         for key in REQUIRED - {"country", "city", "role", "currency"}:
             row[key] = float(row[key] or 0)
         if not 1 <= row["intensity"] <= 5: raise ValueError("intensity must be 1..5")
-        row.update({"source_url": url, "source_name": source["name"], "reference_period": source["reference_period"], "retrieved_at": datetime.now(timezone.utc).isoformat(), "data_type": source.get("data_type", "official_statistic")})
+        row.update({"source_url": url, "source_name": source["name"], "reference_period": source["reference_period"], "retrieved_at": datetime.now(timezone.utc).isoformat(), "data_type": source.get("data_type", "official_statistic"), "statistic": source.get("statistic", "median"), "gross_net": source.get("gross_net", "gross")})
         out.append(row)
     cache[url]["rows"] = out
     cache_file.write_text(json.dumps(cache, ensure_ascii=False, indent=2), encoding="utf-8")

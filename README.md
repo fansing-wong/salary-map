@@ -46,3 +46,10 @@ MIT，见 [LICENSE](LICENSE)。
 社交平台数据应仅通过获准的官方 API 或获得授权的导出数据接入，并单独标注为招聘帖子样本；不能代表岗位平均薪资。LinkedIn 的帖子读取权限有审批限制，见 [LinkedIn API permissions](https://learn.microsoft.com/en-us/linkedin/shared/authentication/getting-access)。未经授权抓取账号内容会因平台规则和技术限制而不稳定。抓取公开站点也要尊重站点规则；`robots.txt` 是抓取偏好机制，不等于许可或法律意见，见 [Google robots.txt guidance](https://developers.google.com/search/docs/crawling-indexing/robots/intro)。
 
 后续版本规划见 [产品路线图](docs/PRODUCT_ROADMAP.md)。
+
+## 跨币种购买力
+
+页面可选择展示币种，名义金额由欧洲央行每日欧元参考汇率交叉换算，并标出汇率日期。PPP 近似使用世界银行家庭消费价格水平指数（美国=100）将名义美元换算为国际元估算；这是国家级家庭消费价格代理，不是城市租金或个人消费篮子。宏观数据由 `scripts/update_macro.py` 更新到 `data/macro.json`。首次刷新前或缺失地区不会显示跨区 PPP 值；不以 0 或模拟数填补。
+
+用户机会可填写统计口径、税前/税后、参考期、来源名称及链接。演示记录始终标为模拟样例。世界银行指出 PPP 适用于家庭最终消费等宏观总量比较，不能直接代替具体工资或个人支出测量；请把 PPP 作为预算情景参考，而非税后购买力承诺。
+
