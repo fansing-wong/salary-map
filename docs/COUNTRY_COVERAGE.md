@@ -36,3 +36,7 @@
 - [英国 ONS 工资和工时](https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours)
 
 数据整理日期：2026-11-20。政府统计发布会修订；每次刷新须保留下载日期和参考期。
+
+## 仪表盘覆盖矩阵
+
+首页矩阵从 `data/latest.json` 动态汇总带 `iso3`、来源 URL 且标记为 `official_statistic` 的记录；来源计划和目标地域粒度列在 `coverage.js`。本机录入与演示值不计入覆盖率。若来源被 robots.txt 限制，会与“已有记录”状态分开显示；没有官方记录的国家标为待接入，不以演示数据填充。
