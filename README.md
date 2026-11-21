@@ -19,7 +19,7 @@
 
 内置记录是**模拟演示数据**，不代表任何官方统计、城市平均薪资或生活成本。请以实际 offer 和可核验的当地数据替换。用户自定义数据只存放在浏览器本地，不会传到服务器。
 
-当前官方工资快照包括中国、加拿大和澳大利亚；覆盖范围以首页矩阵为准。国家、职业分类、地理层级和参考期并未统一。跨国对照只能作初筛，同名职业不保证统计口径相同，国家级平均数也不是城市报价。
+当前官方工资快照包括中国、加拿大和澳大利亚；覆盖范围以首页矩阵为准。中国部分已加入国家统计局全国与宏观区域工资、江苏/重庆/广州/深圳地方单位平均工资、江苏行业工资、重庆岗位大类，以及深圳企业薪酬调查职业工资分位数。上海、北京等地居民住户收入与消费仅作为城市生活背景单独展示。中国宏观区域不是省市；国家、职业分类、地理层级、统计总体和参考期仍未统一，跨国对照只能作初筛，同名职业不保证统计口径相同。
 
 当前的地域对照支持“同职业比地域”和“同地域比职业”，并可沿国家/地区、省州或大区、城市筛选；选择“我的本国”后，可切换查看本国与海外。具体覆盖取决于已载入数据源，未发布到城市层级的统计不会下推到城市。
 
@@ -31,7 +31,13 @@
 - [美国劳工统计局 BLS OEWS 职业工资表](https://www.bls.gov/oes/tables.htm)
 - [加拿大 Statistics Canada 月度职业工资表](https://www150.statcan.gc.ca/n1/en/catalogue/1410042601)
 - [英国 ONS 工资与工时统计](https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours)
-- [中国国家统计局城镇工资（2025）](https://www.stats.gov.cn/english/PressRelease/202605/t20260518_1963740.html)
+- [中国国家统计局：2025 年城镇单位平均工资](https://www.stats.gov.cn/sj/zxfb/202605/t20260515_1963707.html)
+- [深圳市人力资源和社会保障局：2025 年工资价位及行业人工成本信息（调查期 2024）](https://www.sz.gov.cn/attachment/1/1703/1703629/12735140.pdf)
+- [江苏省统计局：2025 年城镇单位平均工资](https://tj.jiangsu.gov.cn/art/2026/6/24/art_87595_11794085.html)
+- [重庆市统计局：2025 年城镇单位平均工资](https://tjj.cq.gov.cn/zwgk_233/fdzdgknr/tjxx/sjzl_55471/tjgb_55472/202606/t20260618_15762815.html)
+- [广州市统计局：2025 年城镇单位平均工资](https://tjj.gz.gov.cn/stats_newtjyw/tjsj/tjgb/qtgb/content/post_10894378.html)
+- [深圳市统计局：2025 年城镇单位平均工资](https://www.sz.gov.cn/cn/xxgk/zfxxgj/tjsj/tjgb/content/mpost_12907800.html)
+- [国家统计局：2025 年居民收入和消费支出](https://www.stats.gov.cn/sj/zxfb/202601/t20260119_1962321.html)
 - [日本厚生劳动省工资统计](https://www.mhlw.go.jp/www2/info/toukei/english/surveys.htm)
 - [韩国雇佣劳动部工资与工时](https://stathtml.moel.go.kr/statHtml/statHtml.do?conn_path=I2&language=en&orgId=118&tblId=DT_118N_LCE0001)
 - [澳大利亚 ABS 工资与工时](https://www.abs.gov.au/statistics/labour/earnings-and-working-conditions/employee-earnings-and-hours-australia/may-2025)
@@ -86,6 +92,14 @@ BLS 官方数据表：[OEWS Tables](https://www.bls.gov/oes/tables.htm)。May 20
 可填写国籍、年龄、学历、语言、迁移预算和职业，并筛选个人资料字段是否齐全。该筛选不判断法律资格、路线适用性或获批可能；资料仅保存在本机浏览器。
 
 页面按目的地国家和五个阶段筛选政府移民入口：短期探路、短居/青年流动、合法工作、长期/永久居留和入籍。初始覆盖美国、加拿大、澳大利亚、英国、新加坡、日本、韩国和中国。入口清单不判定某人的国籍、年龄或资历是否符合条件，也不替代最新法规核验；具体路线的细节和边界见 [出海路径说明](docs/MOBILITY_PATHWAYS.md)。
+
+### 中国工资与生活参照
+
+首页的中国数据区提供 9 个视图：全国及宏观区域工资、全国行业均值、规模以上企业宽岗位组、省市单位平均工资、江苏行业均值、重庆岗位大类、深圳职业分位数，以及居民收入/消费背景。官方快照分文件保存：`data/china_nbs_2025.json`、`data/china_local_wages_2025.json`、`data/shenzhen_market_wages_2024.json` 和 `data/china_wage_structure_2025.json`。查看[中国数据口径与职业决策指南](docs/CHINA_DATA_GUIDE.md)。
+
+深圳市人社部门的 2025 工资价位报告于 2026 年发布，调查参考期为 2024 年；当前挑选了 22 个职位类别的 P10/P25/P50/P75/P90 年工资价位。报告称调查覆盖 4,794 家企业，公开表仅保留企业样本量至少 20 家、员工样本量至少 100 人的数据。它比全国宽职业均值更贴近岗位，但不是全国工资，也不是 2025 年招聘 offer。岗位分位数用于建立合理谈薪区间：先核对职位、行业、年限和薪酬构成，再把保证现金与浮动奖金分开比较，不要只根据 P90 做预期。
+
+省市和行业平均工资是单位调查的税前均值；年薪除以 12 只是月等值。宏观区域不是省市，行业均值不是具体职位报价；北京全口径平均工资用于社保缴费基数核定，不能与其他城市同口径排名。居民收入与消费是住户调查的人均背景，不是个人可支配工资或基本生活成本。各类官方工资都没有匹配个人工时、加班、通勤、税后到手额或生活成本，因此不会据此推算实际时薪或个人推荐分。
 
 ### 澳大利亚工资数据
 

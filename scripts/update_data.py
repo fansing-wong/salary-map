@@ -17,6 +17,8 @@ STATUS_FILE = ROOT / "data" / "status.json"
 TEMP_SOURCE_STATUS = ROOT / "data" / ".csv-status.tmp.json"
 BLS_DATA = ROOT / "data" / "bls_metro_2025.json"
 CHINA_DATA = ROOT / "data" / "china_nbs_2025.json"
+CHINA_LOCAL_DATA = ROOT / "data" / "china_local_wages_2025.json"
+SHENZHEN_MARKET_DATA = ROOT / "data" / "shenzhen_market_wages_2024.json"
 CANADA_DATA = ROOT / "data" / "canada_wages.json"
 AUSTRALIA_DATA = ROOT / "data" / "australia_abs_2025.json"
 UA = "SalaryMapResearchBot/1.0 (+https://github.com; contact repository maintainers)"
@@ -105,7 +107,7 @@ def fetch(source: dict) -> list[dict]:
 def main():
     sources = json.loads(REGISTRY.read_text(encoding="utf-8"))
     rows = []
-    for snapshot in (BLS_DATA, CHINA_DATA, CANADA_DATA, AUSTRALIA_DATA):
+    for snapshot in (BLS_DATA, CHINA_DATA, CHINA_LOCAL_DATA, SHENZHEN_MARKET_DATA, CANADA_DATA, AUSTRALIA_DATA):
         if snapshot.exists():
             rows.extend(json.loads(snapshot.read_text(encoding="utf-8")))
     source_status = {}

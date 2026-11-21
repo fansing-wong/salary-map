@@ -1,0 +1,2042 @@
+{
+  "schema_version": 1,
+  "country": "中国",
+  "currency": "CNY",
+  "reference_period": "2025",
+  "published_at": "2026-05-15",
+  "retrieved_at": "2026-11-21T00:00:00Z",
+  "source_url": "https://www.stats.gov.cn/sj/zxfb/202605/t20260515_1963707.html",
+  "source_name": "国家统计局《2025年城镇单位就业人员年平均工资情况》",
+  "definition": "国家统计局工资为就业人员平均工资（均值），按单位统计口径，不是个人offer或中位数。工资总额属税前口径，包括代扣代缴的个税、社保和住房公积金个人缴纳部分。年薪/12仅为月等值；小时工资不可由此推算。",
+  "regional_averages": [
+    {
+      "population": "城镇非私营单位",
+      "region": "全国",
+      "salary_annual_2025": 129441,
+      "salary_annual_2024": 124110,
+      "nominal_growth_pct": 4.3
+    },
+    {
+      "population": "城镇非私营单位",
+      "region": "东部地区",
+      "salary_annual_2025": 149902,
+      "salary_annual_2024": 143712,
+      "nominal_growth_pct": 4.3
+    },
+    {
+      "population": "城镇非私营单位",
+      "region": "中部地区",
+      "salary_annual_2025": 102645,
+      "salary_annual_2024": 98090,
+      "nominal_growth_pct": 4.6
+    },
+    {
+      "population": "城镇非私营单位",
+      "region": "西部地区",
+      "salary_annual_2025": 114989,
+      "salary_annual_2024": 110376,
+      "nominal_growth_pct": 4.2
+    },
+    {
+      "population": "城镇非私营单位",
+      "region": "东北地区",
+      "salary_annual_2025": 103803,
+      "salary_annual_2024": 98889,
+      "nominal_growth_pct": 5.0
+    },
+    {
+      "population": "城镇私营单位",
+      "region": "全国",
+      "salary_annual_2025": 71590,
+      "salary_annual_2024": 69476,
+      "nominal_growth_pct": 3.0
+    },
+    {
+      "population": "城镇私营单位",
+      "region": "东部地区",
+      "salary_annual_2025": 80149,
+      "salary_annual_2024": 77585,
+      "nominal_growth_pct": 3.3
+    },
+    {
+      "population": "城镇私营单位",
+      "region": "中部地区",
+      "salary_annual_2025": 58627,
+      "salary_annual_2024": 57363,
+      "nominal_growth_pct": 2.2
+    },
+    {
+      "population": "城镇私营单位",
+      "region": "西部地区",
+      "salary_annual_2025": 60923,
+      "salary_annual_2024": 60047,
+      "nominal_growth_pct": 1.5
+    },
+    {
+      "population": "城镇私营单位",
+      "region": "东北地区",
+      "salary_annual_2025": 54430,
+      "salary_annual_2024": 53058,
+      "nominal_growth_pct": 2.6
+    },
+    {
+      "population": "规模以上企业",
+      "region": "全国",
+      "salary_annual_2025": 106080,
+      "salary_annual_2024": 102452,
+      "nominal_growth_pct": 3.5
+    },
+    {
+      "population": "规模以上企业",
+      "region": "东部地区",
+      "salary_annual_2025": 117017,
+      "salary_annual_2024": null,
+      "nominal_growth_pct": null
+    },
+    {
+      "population": "规模以上企业",
+      "region": "中部地区",
+      "salary_annual_2025": 83745,
+      "salary_annual_2024": null,
+      "nominal_growth_pct": null
+    },
+    {
+      "population": "规模以上企业",
+      "region": "西部地区",
+      "salary_annual_2025": 95942,
+      "salary_annual_2024": null,
+      "nominal_growth_pct": null
+    },
+    {
+      "population": "规模以上企业",
+      "region": "东北地区",
+      "salary_annual_2025": 91712,
+      "salary_annual_2024": null,
+      "nominal_growth_pct": null
+    }
+  ],
+  "industry_averages": [
+    {
+      "population": "城镇非私营单位",
+      "industry": "农、林、牧、渔业",
+      "salary_annual_2025": 74424,
+      "salary_annual_2024": 67475,
+      "nominal_growth_pct": 10.3
+    },
+    {
+      "population": "城镇非私营单位",
+      "industry": "采矿业",
+      "salary_annual_2025": 143361,
+      "salary_annual_2024": 140706,
+      "nominal_growth_pct": 1.9
+    },
+    {
+      "population": "城镇非私营单位",
+      "industry": "制造业",
+      "salary_annual_2025": 113594,
+      "salary_annual_2024": 107987,
+      "nominal_growth_pct": 5.2
+    },
+    {
+      "population": "城镇非私营单位",
+      "industry": "电力、热力、燃气及水生产和供应业",
+      "salary_annual_2025": 160897,
+      "salary_annual_2024": 150285,
+      "nominal_growth_pct": 7.1
+    },
+    {
+      "population": "城镇非私营单位",
+      "industry": "建筑业",
+      "salary_annual_2025": 92036,
+      "salary_annual_2024": 89519,
+      "nominal_growth_pct": 2.8
+    },
+    {
+      "population": "城镇非私营单位",
+      "industry": "批发和零售业",
+      "salary_annual_2025": 135749,
+      "salary_annual_2024": 129658,
+      "nominal_growth_pct": 4.7
+    },
+    {
+      "population": "城镇非私营单位",
+      "industry": "交通运输、仓储和邮政业",
+      "salary_annual_2025": 133981,
+      "salary_annual_2024": 127889,
+      "nominal_growth_pct": 4.8
+    },
+    {
+      "population": "城镇非私营单位",
+      "industry": "住宿和餐饮业",
+      "salary_annual_2025": 62461,
+      "salary_annual_2024": 60240,
+      "nominal_growth_pct": 3.7
+    },
+    {
+      "population": "城镇非私营单位",
+      "industry": "信息传输、软件和信息技术服务业",
+      "salary_annual_2025": 248752,
+      "salary_annual_2024": 238966,
+      "nominal_growth_pct": 4.1
+    },
+    {
+      "population": "城镇非私营单位",
+      "industry": "金融业",
+      "salary_annual_2025": 211164,
+      "salary_annual_2024": 201883,
+      "nominal_growth_pct": 4.6
+    },
+    {
+      "population": "城镇非私营单位",
+      "industry": "房地产业",
+      "salary_annual_2025": 89679,
+      "salary_annual_2024": 91912,
+      "nominal_growth_pct": -2.4
+    },
+    {
+      "population": "城镇非私营单位",
+      "industry": "租赁和商务服务业",
+      "salary_annual_2025": 110162,
+      "salary_annual_2024": 110353,
+      "nominal_growth_pct": -0.2
+    },
+    {
+      "population": "城镇非私营单位",
+      "industry": "科学研究和技术服务业",
+      "salary_annual_2025": 182064,
+      "salary_annual_2024": 175425,
+      "nominal_growth_pct": 3.8
+    },
+    {
+      "population": "城镇非私营单位",
+      "industry": "水利、环境和公共设施管理业",
+      "salary_annual_2025": 70172,
+      "salary_annual_2024": 68315,
+      "nominal_growth_pct": 2.7
+    },
+    {
+      "population": "城镇非私营单位",
+      "industry": "居民服务、修理和其他服务业",
+      "salary_annual_2025": 70226,
+      "salary_annual_2024": 68159,
+      "nominal_growth_pct": 3.0
+    },
+    {
+      "population": "城镇非私营单位",
+      "industry": "教育",
+      "salary_annual_2025": 133539,
+      "salary_annual_2024": 126185,
+      "nominal_growth_pct": 5.8
+    },
+    {
+      "population": "城镇非私营单位",
+      "industry": "卫生和社会工作",
+      "salary_annual_2025": 146266,
+      "salary_annual_2024": 143173,
+      "nominal_growth_pct": 2.2
+    },
+    {
+      "population": "城镇非私营单位",
+      "industry": "文化、体育和娱乐业",
+      "salary_annual_2025": 129447,
+      "salary_annual_2024": 126040,
+      "nominal_growth_pct": 2.7
+    },
+    {
+      "population": "城镇非私营单位",
+      "industry": "公共管理、社会保障和社会组织",
+      "salary_annual_2025": 119465,
+      "salary_annual_2024": 114840,
+      "nominal_growth_pct": 4.0
+    },
+    {
+      "population": "城镇私营单位",
+      "industry": "农、林、牧、渔业",
+      "salary_annual_2025": 46552,
+      "salary_annual_2024": 46433,
+      "nominal_growth_pct": 0.3
+    },
+    {
+      "population": "城镇私营单位",
+      "industry": "采矿业",
+      "salary_annual_2025": 79169,
+      "salary_annual_2024": 76010,
+      "nominal_growth_pct": 4.2
+    },
+    {
+      "population": "城镇私营单位",
+      "industry": "制造业",
+      "salary_annual_2025": 76055,
+      "salary_annual_2024": 71467,
+      "nominal_growth_pct": 6.4
+    },
+    {
+      "population": "城镇私营单位",
+      "industry": "电力、热力、燃气及水生产和供应业",
+      "salary_annual_2025": 66451,
+      "salary_annual_2024": 63574,
+      "nominal_growth_pct": 4.5
+    },
+    {
+      "population": "城镇私营单位",
+      "industry": "建筑业",
+      "salary_annual_2025": 66275,
+      "salary_annual_2024": 65494,
+      "nominal_growth_pct": 1.2
+    },
+    {
+      "population": "城镇私营单位",
+      "industry": "批发和零售业",
+      "salary_annual_2025": 69622,
+      "salary_annual_2024": 67059,
+      "nominal_growth_pct": 3.8
+    },
+    {
+      "population": "城镇私营单位",
+      "industry": "交通运输、仓储和邮政业",
+      "salary_annual_2025": 73133,
+      "salary_annual_2024": 67973,
+      "nominal_growth_pct": 7.6
+    },
+    {
+      "population": "城镇私营单位",
+      "industry": "住宿和餐饮业",
+      "salary_annual_2025": 55123,
+      "salary_annual_2024": 54042,
+      "nominal_growth_pct": 2.0
+    },
+    {
+      "population": "城镇私营单位",
+      "industry": "信息传输、软件和信息技术服务业",
+      "salary_annual_2025": 128166,
+      "salary_annual_2024": 123193,
+      "nominal_growth_pct": 4.0
+    },
+    {
+      "population": "城镇私营单位",
+      "industry": "金融业",
+      "salary_annual_2025": 140451,
+      "salary_annual_2024": 135339,
+      "nominal_growth_pct": 3.8
+    },
+    {
+      "population": "城镇私营单位",
+      "industry": "房地产业",
+      "salary_annual_2025": 53338,
+      "salary_annual_2024": 55979,
+      "nominal_growth_pct": -4.7
+    },
+    {
+      "population": "城镇私营单位",
+      "industry": "租赁和商务服务业",
+      "salary_annual_2025": 68919,
+      "salary_annual_2024": 69214,
+      "nominal_growth_pct": -0.4
+    },
+    {
+      "population": "城镇私营单位",
+      "industry": "科学研究和技术服务业",
+      "salary_annual_2025": 83560,
+      "salary_annual_2024": 82387,
+      "nominal_growth_pct": 1.4
+    },
+    {
+      "population": "城镇私营单位",
+      "industry": "水利、环境和公共设施管理业",
+      "salary_annual_2025": 49527,
+      "salary_annual_2024": 49007,
+      "nominal_growth_pct": 1.1
+    },
+    {
+      "population": "城镇私营单位",
+      "industry": "居民服务、修理和其他服务业",
+      "salary_annual_2025": 52059,
+      "salary_annual_2024": 52139,
+      "nominal_growth_pct": -0.2
+    },
+    {
+      "population": "城镇私营单位",
+      "industry": "教育",
+      "salary_annual_2025": 63908,
+      "salary_annual_2024": 60719,
+      "nominal_growth_pct": 5.3
+    },
+    {
+      "population": "城镇私营单位",
+      "industry": "卫生和社会工作",
+      "salary_annual_2025": 75631,
+      "salary_annual_2024": 75287,
+      "nominal_growth_pct": 0.5
+    },
+    {
+      "population": "城镇私营单位",
+      "industry": "文化、体育和娱乐业",
+      "salary_annual_2025": 64015,
+      "salary_annual_2024": 61669,
+      "nominal_growth_pct": 3.8
+    }
+  ],
+  "above_scale_positions_by_region": [
+    {
+      "region": "东部地区",
+      "occupation": "全部岗位（规模以上企业）",
+      "occupation_code": "ALL",
+      "salary_annual_2025": 117017
+    },
+    {
+      "region": "东部地区",
+      "occupation": "中层及以上管理人员（规模以上企业）",
+      "occupation_code": "MANAGEMENT",
+      "salary_annual_2025": 244072
+    },
+    {
+      "region": "东部地区",
+      "occupation": "专业技术人员（规模以上企业）",
+      "occupation_code": "PROFESSIONAL_TECHNICAL",
+      "salary_annual_2025": 178144
+    },
+    {
+      "region": "东部地区",
+      "occupation": "办事人员和有关人员（规模以上企业）",
+      "occupation_code": "CLERICAL",
+      "salary_annual_2025": 106554
+    },
+    {
+      "region": "东部地区",
+      "occupation": "社会生产和生活服务人员（规模以上企业）",
+      "occupation_code": "SERVICE",
+      "salary_annual_2025": 87308
+    },
+    {
+      "region": "东部地区",
+      "occupation": "生产制造及有关人员（规模以上企业）",
+      "occupation_code": "PRODUCTION",
+      "salary_annual_2025": 82365
+    },
+    {
+      "region": "中部地区",
+      "occupation": "全部岗位（规模以上企业）",
+      "occupation_code": "ALL",
+      "salary_annual_2025": 83745
+    },
+    {
+      "region": "中部地区",
+      "occupation": "中层及以上管理人员（规模以上企业）",
+      "occupation_code": "MANAGEMENT",
+      "salary_annual_2025": 146120
+    },
+    {
+      "region": "中部地区",
+      "occupation": "专业技术人员（规模以上企业）",
+      "occupation_code": "PROFESSIONAL_TECHNICAL",
+      "salary_annual_2025": 109327
+    },
+    {
+      "region": "中部地区",
+      "occupation": "办事人员和有关人员（规模以上企业）",
+      "occupation_code": "CLERICAL",
+      "salary_annual_2025": 73102
+    },
+    {
+      "region": "中部地区",
+      "occupation": "社会生产和生活服务人员（规模以上企业）",
+      "occupation_code": "SERVICE",
+      "salary_annual_2025": 65613
+    },
+    {
+      "region": "中部地区",
+      "occupation": "生产制造及有关人员（规模以上企业）",
+      "occupation_code": "PRODUCTION",
+      "salary_annual_2025": 72893
+    },
+    {
+      "region": "西部地区",
+      "occupation": "全部岗位（规模以上企业）",
+      "occupation_code": "ALL",
+      "salary_annual_2025": 95942
+    },
+    {
+      "region": "西部地区",
+      "occupation": "中层及以上管理人员（规模以上企业）",
+      "occupation_code": "MANAGEMENT",
+      "salary_annual_2025": 173471
+    },
+    {
+      "region": "西部地区",
+      "occupation": "专业技术人员（规模以上企业）",
+      "occupation_code": "PROFESSIONAL_TECHNICAL",
+      "salary_annual_2025": 127950
+    },
+    {
+      "region": "西部地区",
+      "occupation": "办事人员和有关人员（规模以上企业）",
+      "occupation_code": "CLERICAL",
+      "salary_annual_2025": 82694
+    },
+    {
+      "region": "西部地区",
+      "occupation": "社会生产和生活服务人员（规模以上企业）",
+      "occupation_code": "SERVICE",
+      "salary_annual_2025": 70438
+    },
+    {
+      "region": "西部地区",
+      "occupation": "生产制造及有关人员（规模以上企业）",
+      "occupation_code": "PRODUCTION",
+      "salary_annual_2025": 85044
+    },
+    {
+      "region": "东北地区",
+      "occupation": "全部岗位（规模以上企业）",
+      "occupation_code": "ALL",
+      "salary_annual_2025": 91712
+    },
+    {
+      "region": "东北地区",
+      "occupation": "中层及以上管理人员（规模以上企业）",
+      "occupation_code": "MANAGEMENT",
+      "salary_annual_2025": 169385
+    },
+    {
+      "region": "东北地区",
+      "occupation": "专业技术人员（规模以上企业）",
+      "occupation_code": "PROFESSIONAL_TECHNICAL",
+      "salary_annual_2025": 114053
+    },
+    {
+      "region": "东北地区",
+      "occupation": "办事人员和有关人员（规模以上企业）",
+      "occupation_code": "CLERICAL",
+      "salary_annual_2025": 81503
+    },
+    {
+      "region": "东北地区",
+      "occupation": "社会生产和生活服务人员（规模以上企业）",
+      "occupation_code": "SERVICE",
+      "salary_annual_2025": 74287
+    },
+    {
+      "region": "东北地区",
+      "occupation": "生产制造及有关人员（规模以上企业）",
+      "occupation_code": "PRODUCTION",
+      "salary_annual_2025": 80204
+    }
+  ],
+  "above_scale_positions_by_industry": [
+    {
+      "industry": "采矿业",
+      "occupation": "全部岗位（规模以上企业）",
+      "occupation_code": "ALL",
+      "salary_annual_2025": 134170
+    },
+    {
+      "industry": "采矿业",
+      "occupation": "中层及以上管理人员（规模以上企业）",
+      "occupation_code": "MANAGEMENT",
+      "salary_annual_2025": 247293
+    },
+    {
+      "industry": "采矿业",
+      "occupation": "专业技术人员（规模以上企业）",
+      "occupation_code": "PROFESSIONAL_TECHNICAL",
+      "salary_annual_2025": 173068
+    },
+    {
+      "industry": "采矿业",
+      "occupation": "办事人员和有关人员（规模以上企业）",
+      "occupation_code": "CLERICAL",
+      "salary_annual_2025": 140383
+    },
+    {
+      "industry": "采矿业",
+      "occupation": "社会生产和生活服务人员（规模以上企业）",
+      "occupation_code": "SERVICE",
+      "salary_annual_2025": 88581
+    },
+    {
+      "industry": "采矿业",
+      "occupation": "生产制造及有关人员（规模以上企业）",
+      "occupation_code": "PRODUCTION",
+      "salary_annual_2025": 120339
+    },
+    {
+      "industry": "制造业",
+      "occupation": "全部岗位（规模以上企业）",
+      "occupation_code": "ALL",
+      "salary_annual_2025": 100572
+    },
+    {
+      "industry": "制造业",
+      "occupation": "中层及以上管理人员（规模以上企业）",
+      "occupation_code": "MANAGEMENT",
+      "salary_annual_2025": 203814
+    },
+    {
+      "industry": "制造业",
+      "occupation": "专业技术人员（规模以上企业）",
+      "occupation_code": "PROFESSIONAL_TECHNICAL",
+      "salary_annual_2025": 151997
+    },
+    {
+      "industry": "制造业",
+      "occupation": "办事人员和有关人员（规模以上企业）",
+      "occupation_code": "CLERICAL",
+      "salary_annual_2025": 102667
+    },
+    {
+      "industry": "制造业",
+      "occupation": "社会生产和生活服务人员（规模以上企业）",
+      "occupation_code": "SERVICE",
+      "salary_annual_2025": 101248
+    },
+    {
+      "industry": "制造业",
+      "occupation": "生产制造及有关人员（规模以上企业）",
+      "occupation_code": "PRODUCTION",
+      "salary_annual_2025": 79182
+    },
+    {
+      "industry": "电力、热力、燃气及水生产和供应业",
+      "occupation": "全部岗位（规模以上企业）",
+      "occupation_code": "ALL",
+      "salary_annual_2025": 164371
+    },
+    {
+      "industry": "电力、热力、燃气及水生产和供应业",
+      "occupation": "中层及以上管理人员（规模以上企业）",
+      "occupation_code": "MANAGEMENT",
+      "salary_annual_2025": 267035
+    },
+    {
+      "industry": "电力、热力、燃气及水生产和供应业",
+      "occupation": "专业技术人员（规模以上企业）",
+      "occupation_code": "PROFESSIONAL_TECHNICAL",
+      "salary_annual_2025": 190929
+    },
+    {
+      "industry": "电力、热力、燃气及水生产和供应业",
+      "occupation": "办事人员和有关人员（规模以上企业）",
+      "occupation_code": "CLERICAL",
+      "salary_annual_2025": 137337
+    },
+    {
+      "industry": "电力、热力、燃气及水生产和供应业",
+      "occupation": "社会生产和生活服务人员（规模以上企业）",
+      "occupation_code": "SERVICE",
+      "salary_annual_2025": 117603
+    },
+    {
+      "industry": "电力、热力、燃气及水生产和供应业",
+      "occupation": "生产制造及有关人员（规模以上企业）",
+      "occupation_code": "PRODUCTION",
+      "salary_annual_2025": 149114
+    },
+    {
+      "industry": "建筑业",
+      "occupation": "全部岗位（规模以上企业）",
+      "occupation_code": "ALL",
+      "salary_annual_2025": 79161
+    },
+    {
+      "industry": "建筑业",
+      "occupation": "中层及以上管理人员（规模以上企业）",
+      "occupation_code": "MANAGEMENT",
+      "salary_annual_2025": 133366
+    },
+    {
+      "industry": "建筑业",
+      "occupation": "专业技术人员（规模以上企业）",
+      "occupation_code": "PROFESSIONAL_TECHNICAL",
+      "salary_annual_2025": 94604
+    },
+    {
+      "industry": "建筑业",
+      "occupation": "办事人员和有关人员（规模以上企业）",
+      "occupation_code": "CLERICAL",
+      "salary_annual_2025": 66088
+    },
+    {
+      "industry": "建筑业",
+      "occupation": "社会生产和生活服务人员（规模以上企业）",
+      "occupation_code": "SERVICE",
+      "salary_annual_2025": 61693
+    },
+    {
+      "industry": "建筑业",
+      "occupation": "生产制造及有关人员（规模以上企业）",
+      "occupation_code": "PRODUCTION",
+      "salary_annual_2025": 69081
+    },
+    {
+      "industry": "批发和零售业",
+      "occupation": "全部岗位（规模以上企业）",
+      "occupation_code": "ALL",
+      "salary_annual_2025": 112030
+    },
+    {
+      "industry": "批发和零售业",
+      "occupation": "中层及以上管理人员（规模以上企业）",
+      "occupation_code": "MANAGEMENT",
+      "salary_annual_2025": 206103
+    },
+    {
+      "industry": "批发和零售业",
+      "occupation": "专业技术人员（规模以上企业）",
+      "occupation_code": "PROFESSIONAL_TECHNICAL",
+      "salary_annual_2025": 140999
+    },
+    {
+      "industry": "批发和零售业",
+      "occupation": "办事人员和有关人员（规模以上企业）",
+      "occupation_code": "CLERICAL",
+      "salary_annual_2025": 97096
+    },
+    {
+      "industry": "批发和零售业",
+      "occupation": "社会生产和生活服务人员（规模以上企业）",
+      "occupation_code": "SERVICE",
+      "salary_annual_2025": 84953
+    },
+    {
+      "industry": "批发和零售业",
+      "occupation": "生产制造及有关人员（规模以上企业）",
+      "occupation_code": "PRODUCTION",
+      "salary_annual_2025": 72500
+    },
+    {
+      "industry": "交通运输、仓储和邮政业",
+      "occupation": "全部岗位（规模以上企业）",
+      "occupation_code": "ALL",
+      "salary_annual_2025": 127560
+    },
+    {
+      "industry": "交通运输、仓储和邮政业",
+      "occupation": "中层及以上管理人员（规模以上企业）",
+      "occupation_code": "MANAGEMENT",
+      "salary_annual_2025": 240912
+    },
+    {
+      "industry": "交通运输、仓储和邮政业",
+      "occupation": "专业技术人员（规模以上企业）",
+      "occupation_code": "PROFESSIONAL_TECHNICAL",
+      "salary_annual_2025": 187245
+    },
+    {
+      "industry": "交通运输、仓储和邮政业",
+      "occupation": "办事人员和有关人员（规模以上企业）",
+      "occupation_code": "CLERICAL",
+      "salary_annual_2025": 104189
+    },
+    {
+      "industry": "交通运输、仓储和邮政业",
+      "occupation": "社会生产和生活服务人员（规模以上企业）",
+      "occupation_code": "SERVICE",
+      "salary_annual_2025": 117135
+    },
+    {
+      "industry": "交通运输、仓储和邮政业",
+      "occupation": "生产制造及有关人员（规模以上企业）",
+      "occupation_code": "PRODUCTION",
+      "salary_annual_2025": 100335
+    },
+    {
+      "industry": "住宿和餐饮业",
+      "occupation": "全部岗位（规模以上企业）",
+      "occupation_code": "ALL",
+      "salary_annual_2025": 59785
+    },
+    {
+      "industry": "住宿和餐饮业",
+      "occupation": "中层及以上管理人员（规模以上企业）",
+      "occupation_code": "MANAGEMENT",
+      "salary_annual_2025": 108681
+    },
+    {
+      "industry": "住宿和餐饮业",
+      "occupation": "专业技术人员（规模以上企业）",
+      "occupation_code": "PROFESSIONAL_TECHNICAL",
+      "salary_annual_2025": 70728
+    },
+    {
+      "industry": "住宿和餐饮业",
+      "occupation": "办事人员和有关人员（规模以上企业）",
+      "occupation_code": "CLERICAL",
+      "salary_annual_2025": 56647
+    },
+    {
+      "industry": "住宿和餐饮业",
+      "occupation": "社会生产和生活服务人员（规模以上企业）",
+      "occupation_code": "SERVICE",
+      "salary_annual_2025": 52018
+    },
+    {
+      "industry": "住宿和餐饮业",
+      "occupation": "生产制造及有关人员（规模以上企业）",
+      "occupation_code": "PRODUCTION",
+      "salary_annual_2025": 52096
+    },
+    {
+      "industry": "信息传输、软件和信息技术服务业",
+      "occupation": "全部岗位（规模以上企业）",
+      "occupation_code": "ALL",
+      "salary_annual_2025": 242019
+    },
+    {
+      "industry": "信息传输、软件和信息技术服务业",
+      "occupation": "中层及以上管理人员（规模以上企业）",
+      "occupation_code": "MANAGEMENT",
+      "salary_annual_2025": 472496
+    },
+    {
+      "industry": "信息传输、软件和信息技术服务业",
+      "occupation": "专业技术人员（规模以上企业）",
+      "occupation_code": "PROFESSIONAL_TECHNICAL",
+      "salary_annual_2025": 275504
+    },
+    {
+      "industry": "信息传输、软件和信息技术服务业",
+      "occupation": "办事人员和有关人员（规模以上企业）",
+      "occupation_code": "CLERICAL",
+      "salary_annual_2025": 158664
+    },
+    {
+      "industry": "信息传输、软件和信息技术服务业",
+      "occupation": "社会生产和生活服务人员（规模以上企业）",
+      "occupation_code": "SERVICE",
+      "salary_annual_2025": 167086
+    },
+    {
+      "industry": "信息传输、软件和信息技术服务业",
+      "occupation": "生产制造及有关人员（规模以上企业）",
+      "occupation_code": "PRODUCTION",
+      "salary_annual_2025": 111480
+    },
+    {
+      "industry": "房地产业",
+      "occupation": "全部岗位（规模以上企业）",
+      "occupation_code": "ALL",
+      "salary_annual_2025": 84100
+    },
+    {
+      "industry": "房地产业",
+      "occupation": "中层及以上管理人员（规模以上企业）",
+      "occupation_code": "MANAGEMENT",
+      "salary_annual_2025": 189001
+    },
+    {
+      "industry": "房地产业",
+      "occupation": "专业技术人员（规模以上企业）",
+      "occupation_code": "PROFESSIONAL_TECHNICAL",
+      "salary_annual_2025": 115210
+    },
+    {
+      "industry": "房地产业",
+      "occupation": "办事人员和有关人员（规模以上企业）",
+      "occupation_code": "CLERICAL",
+      "salary_annual_2025": 80163
+    },
+    {
+      "industry": "房地产业",
+      "occupation": "社会生产和生活服务人员（规模以上企业）",
+      "occupation_code": "SERVICE",
+      "salary_annual_2025": 55224
+    },
+    {
+      "industry": "房地产业",
+      "occupation": "生产制造及有关人员（规模以上企业）",
+      "occupation_code": "PRODUCTION",
+      "salary_annual_2025": 62145
+    },
+    {
+      "industry": "租赁和商务服务业",
+      "occupation": "全部岗位（规模以上企业）",
+      "occupation_code": "ALL",
+      "salary_annual_2025": 92849
+    },
+    {
+      "industry": "租赁和商务服务业",
+      "occupation": "中层及以上管理人员（规模以上企业）",
+      "occupation_code": "MANAGEMENT",
+      "salary_annual_2025": 269264
+    },
+    {
+      "industry": "租赁和商务服务业",
+      "occupation": "专业技术人员（规模以上企业）",
+      "occupation_code": "PROFESSIONAL_TECHNICAL",
+      "salary_annual_2025": 149542
+    },
+    {
+      "industry": "租赁和商务服务业",
+      "occupation": "办事人员和有关人员（规模以上企业）",
+      "occupation_code": "CLERICAL",
+      "salary_annual_2025": 88460
+    },
+    {
+      "industry": "租赁和商务服务业",
+      "occupation": "社会生产和生活服务人员（规模以上企业）",
+      "occupation_code": "SERVICE",
+      "salary_annual_2025": 67001
+    },
+    {
+      "industry": "租赁和商务服务业",
+      "occupation": "生产制造及有关人员（规模以上企业）",
+      "occupation_code": "PRODUCTION",
+      "salary_annual_2025": 74342
+    },
+    {
+      "industry": "科学研究和技术服务业",
+      "occupation": "全部岗位（规模以上企业）",
+      "occupation_code": "ALL",
+      "salary_annual_2025": 173855
+    },
+    {
+      "industry": "科学研究和技术服务业",
+      "occupation": "中层及以上管理人员（规模以上企业）",
+      "occupation_code": "MANAGEMENT",
+      "salary_annual_2025": 324177
+    },
+    {
+      "industry": "科学研究和技术服务业",
+      "occupation": "专业技术人员（规模以上企业）",
+      "occupation_code": "PROFESSIONAL_TECHNICAL",
+      "salary_annual_2025": 172877
+    },
+    {
+      "industry": "科学研究和技术服务业",
+      "occupation": "办事人员和有关人员（规模以上企业）",
+      "occupation_code": "CLERICAL",
+      "salary_annual_2025": 122883
+    },
+    {
+      "industry": "科学研究和技术服务业",
+      "occupation": "社会生产和生活服务人员（规模以上企业）",
+      "occupation_code": "SERVICE",
+      "salary_annual_2025": 115308
+    },
+    {
+      "industry": "科学研究和技术服务业",
+      "occupation": "生产制造及有关人员（规模以上企业）",
+      "occupation_code": "PRODUCTION",
+      "salary_annual_2025": 110201
+    },
+    {
+      "industry": "水利、环境和公共设施管理业",
+      "occupation": "全部岗位（规模以上企业）",
+      "occupation_code": "ALL",
+      "salary_annual_2025": 57188
+    },
+    {
+      "industry": "水利、环境和公共设施管理业",
+      "occupation": "中层及以上管理人员（规模以上企业）",
+      "occupation_code": "MANAGEMENT",
+      "salary_annual_2025": 181214
+    },
+    {
+      "industry": "水利、环境和公共设施管理业",
+      "occupation": "专业技术人员（规模以上企业）",
+      "occupation_code": "PROFESSIONAL_TECHNICAL",
+      "salary_annual_2025": 117836
+    },
+    {
+      "industry": "水利、环境和公共设施管理业",
+      "occupation": "办事人员和有关人员（规模以上企业）",
+      "occupation_code": "CLERICAL",
+      "salary_annual_2025": 71171
+    },
+    {
+      "industry": "水利、环境和公共设施管理业",
+      "occupation": "社会生产和生活服务人员（规模以上企业）",
+      "occupation_code": "SERVICE",
+      "salary_annual_2025": 41127
+    },
+    {
+      "industry": "水利、环境和公共设施管理业",
+      "occupation": "生产制造及有关人员（规模以上企业）",
+      "occupation_code": "PRODUCTION",
+      "salary_annual_2025": 57840
+    },
+    {
+      "industry": "居民服务、修理和其他服务业",
+      "occupation": "全部岗位（规模以上企业）",
+      "occupation_code": "ALL",
+      "salary_annual_2025": 58838
+    },
+    {
+      "industry": "居民服务、修理和其他服务业",
+      "occupation": "中层及以上管理人员（规模以上企业）",
+      "occupation_code": "MANAGEMENT",
+      "salary_annual_2025": 126434
+    },
+    {
+      "industry": "居民服务、修理和其他服务业",
+      "occupation": "专业技术人员（规模以上企业）",
+      "occupation_code": "PROFESSIONAL_TECHNICAL",
+      "salary_annual_2025": 94534
+    },
+    {
+      "industry": "居民服务、修理和其他服务业",
+      "occupation": "办事人员和有关人员（规模以上企业）",
+      "occupation_code": "CLERICAL",
+      "salary_annual_2025": 68600
+    },
+    {
+      "industry": "居民服务、修理和其他服务业",
+      "occupation": "社会生产和生活服务人员（规模以上企业）",
+      "occupation_code": "SERVICE",
+      "salary_annual_2025": 48013
+    },
+    {
+      "industry": "居民服务、修理和其他服务业",
+      "occupation": "生产制造及有关人员（规模以上企业）",
+      "occupation_code": "PRODUCTION",
+      "salary_annual_2025": 57148
+    },
+    {
+      "industry": "教育",
+      "occupation": "全部岗位（规模以上企业）",
+      "occupation_code": "ALL",
+      "salary_annual_2025": 114167
+    },
+    {
+      "industry": "教育",
+      "occupation": "中层及以上管理人员（规模以上企业）",
+      "occupation_code": "MANAGEMENT",
+      "salary_annual_2025": 202745
+    },
+    {
+      "industry": "教育",
+      "occupation": "专业技术人员（规模以上企业）",
+      "occupation_code": "PROFESSIONAL_TECHNICAL",
+      "salary_annual_2025": 120055
+    },
+    {
+      "industry": "教育",
+      "occupation": "办事人员和有关人员（规模以上企业）",
+      "occupation_code": "CLERICAL",
+      "salary_annual_2025": 96077
+    },
+    {
+      "industry": "教育",
+      "occupation": "社会生产和生活服务人员（规模以上企业）",
+      "occupation_code": "SERVICE",
+      "salary_annual_2025": 95429
+    },
+    {
+      "industry": "教育",
+      "occupation": "生产制造及有关人员（规模以上企业）",
+      "occupation_code": "PRODUCTION",
+      "salary_annual_2025": 71019
+    },
+    {
+      "industry": "卫生和社会工作",
+      "occupation": "全部岗位（规模以上企业）",
+      "occupation_code": "ALL",
+      "salary_annual_2025": 108309
+    },
+    {
+      "industry": "卫生和社会工作",
+      "occupation": "中层及以上管理人员（规模以上企业）",
+      "occupation_code": "MANAGEMENT",
+      "salary_annual_2025": 194715
+    },
+    {
+      "industry": "卫生和社会工作",
+      "occupation": "专业技术人员（规模以上企业）",
+      "occupation_code": "PROFESSIONAL_TECHNICAL",
+      "salary_annual_2025": 110500
+    },
+    {
+      "industry": "卫生和社会工作",
+      "occupation": "办事人员和有关人员（规模以上企业）",
+      "occupation_code": "CLERICAL",
+      "salary_annual_2025": 84721
+    },
+    {
+      "industry": "卫生和社会工作",
+      "occupation": "社会生产和生活服务人员（规模以上企业）",
+      "occupation_code": "SERVICE",
+      "salary_annual_2025": 68143
+    },
+    {
+      "industry": "卫生和社会工作",
+      "occupation": "生产制造及有关人员（规模以上企业）",
+      "occupation_code": "PRODUCTION",
+      "salary_annual_2025": 74802
+    },
+    {
+      "industry": "文化、体育和娱乐业",
+      "occupation": "全部岗位（规模以上企业）",
+      "occupation_code": "ALL",
+      "salary_annual_2025": 127925
+    },
+    {
+      "industry": "文化、体育和娱乐业",
+      "occupation": "中层及以上管理人员（规模以上企业）",
+      "occupation_code": "MANAGEMENT",
+      "salary_annual_2025": 232417
+    },
+    {
+      "industry": "文化、体育和娱乐业",
+      "occupation": "专业技术人员（规模以上企业）",
+      "occupation_code": "PROFESSIONAL_TECHNICAL",
+      "salary_annual_2025": 185851
+    },
+    {
+      "industry": "文化、体育和娱乐业",
+      "occupation": "办事人员和有关人员（规模以上企业）",
+      "occupation_code": "CLERICAL",
+      "salary_annual_2025": 97323
+    },
+    {
+      "industry": "文化、体育和娱乐业",
+      "occupation": "社会生产和生活服务人员（规模以上企业）",
+      "occupation_code": "SERVICE",
+      "salary_annual_2025": 72557
+    },
+    {
+      "industry": "文化、体育和娱乐业",
+      "occupation": "生产制造及有关人员（规模以上企业）",
+      "occupation_code": "PRODUCTION",
+      "salary_annual_2025": 66103
+    }
+  ],
+  "notes": [
+    "城镇非私营单位、城镇私营单位与规模以上企业是不同统计总体，不可视为同样本的工资差距。",
+    "东部/中部/西部/东北是国家统计局宏观区域组，不能下推到省份或城市。",
+    "城镇单位统计不等于全体劳动者统计；不涵盖所有个体工商户、自由职业者或平台劳动者。",
+    "规模以上企业岗位为宽分类，行业×岗位表只对该样本范围成立；不得直接对应具体职业报价。",
+    "名义增长率不等于实际购买力增长；页面不以该增长率推算个人薪酬。",
+    "地方单位平均工资只能说明本地总体，不等同于岗位薪酬；应与城市级 offer 和预算交叉核验。",
+    "居民人均收入与消费来自住户调查；包含非劳动收入，且人均消费不是个人生活成本预算，不能直接用于评分或推荐。",
+    "深圳工资价位是企业薪酬调查分位数，调查期2024年、2026年发布；不属于国家统计局2025年平均工资序列。"
+  ],
+  "city_averages": [
+    {
+      "location": "江苏省",
+      "admin1": "江苏省",
+      "population": "城镇非私营单位",
+      "salary_annual_2025": 134969,
+      "salary_annual_2024": null,
+      "nominal_growth_pct": null,
+      "source_url": "https://tj.jiangsu.gov.cn/art/2026/6/24/art_87595_11794085.html",
+      "source_note": "江苏省统计局2026-06-24发布。税前单位人均均值；省级统计，不是南京、苏州等城市工资。"
+    },
+    {
+      "location": "江苏省",
+      "admin1": "江苏省",
+      "population": "城镇私营单位",
+      "salary_annual_2025": 79868,
+      "salary_annual_2024": null,
+      "nominal_growth_pct": null,
+      "source_url": "https://tj.jiangsu.gov.cn/art/2026/6/24/art_87595_11794085.html",
+      "source_note": "江苏省统计局2026-06-24发布。税前单位人均均值；省级统计，不是南京、苏州等城市工资。"
+    },
+    {
+      "location": "重庆市",
+      "admin1": "重庆市",
+      "population": "城镇非私营单位",
+      "salary_annual_2025": 121162,
+      "salary_annual_2024": 117546,
+      "nominal_growth_pct": 3.1,
+      "source_url": "https://tjj.cq.gov.cn/zwgk_233/fdzdgknr/tjxx/sjzl_55471/tjgb_55472/202606/t20260618_15762815.html",
+      "source_note": "重庆市统计局2026-06-18发布。税前单位人均均值；不等于个人offer。"
+    },
+    {
+      "location": "重庆市",
+      "admin1": "重庆市",
+      "population": "城镇私营单位",
+      "salary_annual_2025": 66197,
+      "salary_annual_2024": 65098,
+      "nominal_growth_pct": 1.7,
+      "source_url": "https://tjj.cq.gov.cn/zwgk_233/fdzdgknr/tjxx/sjzl_55471/tjgb_55472/202606/t20260618_15762815.html",
+      "source_note": "重庆市统计局2026-06-18发布。税前单位人均均值；不等于个人offer。"
+    },
+    {
+      "location": "重庆市",
+      "admin1": "重庆市",
+      "population": "规模以上企业",
+      "salary_annual_2025": 88505,
+      "salary_annual_2024": 85999,
+      "nominal_growth_pct": 2.9,
+      "source_url": "https://tjj.cq.gov.cn/zwgk_233/fdzdgknr/tjxx/sjzl_55471/tjgb_55472/202606/t20260618_15762815.html",
+      "source_note": "重庆市统计局2026-06-18发布；规模以上企业统计总体。"
+    },
+    {
+      "location": "广州市",
+      "admin1": "广东省",
+      "population": "城镇非私营单位",
+      "salary_annual_2025": 166790,
+      "salary_annual_2024": null,
+      "nominal_growth_pct": null,
+      "source_url": "https://tjj.gz.gov.cn/stats_newtjyw/tjsj/tjgb/qtgb/content/post_10894378.html",
+      "source_note": "广州市统计局2026-07-09发布。税前单位人均均值；不等于个人offer。"
+    },
+    {
+      "location": "广州市",
+      "admin1": "广东省",
+      "population": "城镇私营单位",
+      "salary_annual_2025": 86259,
+      "salary_annual_2024": null,
+      "nominal_growth_pct": null,
+      "source_url": "https://tjj.gz.gov.cn/stats_newtjyw/tjsj/tjgb/qtgb/content/post_10894378.html",
+      "source_note": "广州市统计局2026-07-09发布。税前单位人均均值；不等于个人offer。"
+    },
+    {
+      "location": "深圳市",
+      "admin1": "广东省",
+      "population": "城镇非私营单位",
+      "salary_annual_2025": 191367,
+      "salary_annual_2024": null,
+      "nominal_growth_pct": null,
+      "source_url": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/tjsj/tjgb/content/mpost_12907800.html",
+      "source_note": "深圳市统计局2026-07-24发布。税前单位人均均值；不等于个人offer。"
+    },
+    {
+      "location": "深圳市",
+      "admin1": "广东省",
+      "population": "城镇私营单位",
+      "salary_annual_2025": 99220,
+      "salary_annual_2024": null,
+      "nominal_growth_pct": null,
+      "source_url": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/tjsj/tjgb/content/mpost_12907800.html",
+      "source_note": "深圳市统计局2026-07-24发布。税前单位人均均值；不等于个人offer。"
+    },
+    {
+      "location": "北京市",
+      "admin1": "北京市",
+      "population": "全口径城镇单位（社保缴费基数口径）",
+      "salary_annual_2025": 145391,
+      "salary_annual_2024": 143244,
+      "nominal_growth_pct": null,
+      "source_url": "https://rsj.beijing.gov.cn/bm/ywml/202007/t20200717_1950961.html",
+      "source_note": "北京市人社局说明，该全口径平均工资由非私营与私营单位加权计算，用于核定社保缴费基数上下限；与直接工资调查总体不同，不应与其他城市非私营/私营均值直接排名。"
+    }
+  ],
+  "city_above_scale_positions": [
+    {
+      "location": "重庆市",
+      "occupation": "中层及以上管理人员",
+      "salary_annual_2025": 173092,
+      "source_url": "https://tjj.cq.gov.cn/zwgk_233/fdzdgknr/tjxx/sjzl_55471/tjgb_55472/202606/t20260618_15762815.html",
+      "source_note": "重庆市2025年规模以上企业就业人员职业大类平均工资；不是全国职业均值。"
+    },
+    {
+      "location": "重庆市",
+      "occupation": "专业技术人员",
+      "salary_annual_2025": 124019,
+      "source_url": "https://tjj.cq.gov.cn/zwgk_233/fdzdgknr/tjxx/sjzl_55471/tjgb_55472/202606/t20260618_15762815.html",
+      "source_note": "重庆市2025年规模以上企业就业人员职业大类平均工资；不是全国职业均值。"
+    },
+    {
+      "location": "重庆市",
+      "occupation": "办事人员和有关人员",
+      "salary_annual_2025": 80016,
+      "source_url": "https://tjj.cq.gov.cn/zwgk_233/fdzdgknr/tjxx/sjzl_55471/tjgb_55472/202606/t20260618_15762815.html",
+      "source_note": "重庆市2025年规模以上企业就业人员职业大类平均工资；不是全国职业均值。"
+    },
+    {
+      "location": "重庆市",
+      "occupation": "社会生产服务和生活服务人员",
+      "salary_annual_2025": 63844,
+      "source_url": "https://tjj.cq.gov.cn/zwgk_233/fdzdgknr/tjxx/sjzl_55471/tjgb_55472/202606/t20260618_15762815.html",
+      "source_note": "重庆市2025年规模以上企业就业人员职业大类平均工资；不是全国职业均值。"
+    },
+    {
+      "location": "重庆市",
+      "occupation": "生产制造及有关人员",
+      "salary_annual_2025": 73660,
+      "source_url": "https://tjj.cq.gov.cn/zwgk_233/fdzdgknr/tjxx/sjzl_55471/tjgb_55472/202606/t20260618_15762815.html",
+      "source_note": "重庆市2025年规模以上企业就业人员职业大类平均工资；不是全国职业均值。"
+    }
+  ],
+  "local_industry_averages": [
+    {
+      "location": "江苏省",
+      "industry": "农、林、牧、渔业",
+      "population": "城镇非私营单位",
+      "salary_annual_2025": 84671,
+      "source_url": "https://tj.jiangsu.gov.cn/art/2026/6/24/art_87595_11794085.html",
+      "source_note": "江苏省城镇单位行业平均工资，税前均值；没有具体职业或城市细分。"
+    },
+    {
+      "location": "江苏省",
+      "industry": "农、林、牧、渔业",
+      "population": "城镇私营单位",
+      "salary_annual_2025": 54151,
+      "source_url": "https://tj.jiangsu.gov.cn/art/2026/6/24/art_87595_11794085.html",
+      "source_note": "江苏省城镇单位行业平均工资，税前均值；没有具体职业或城市细分。"
+    },
+    {
+      "location": "江苏省",
+      "industry": "采矿业",
+      "population": "城镇非私营单位",
+      "salary_annual_2025": 151443,
+      "source_url": "https://tj.jiangsu.gov.cn/art/2026/6/24/art_87595_11794085.html",
+      "source_note": "江苏省城镇单位行业平均工资，税前均值；没有具体职业或城市细分。"
+    },
+    {
+      "location": "江苏省",
+      "industry": "采矿业",
+      "population": "城镇私营单位",
+      "salary_annual_2025": 91281,
+      "source_url": "https://tj.jiangsu.gov.cn/art/2026/6/24/art_87595_11794085.html",
+      "source_note": "江苏省城镇单位行业平均工资，税前均值；没有具体职业或城市细分。"
+    },
+    {
+      "location": "江苏省",
+      "industry": "制造业",
+      "population": "城镇非私营单位",
+      "salary_annual_2025": 122804,
+      "source_url": "https://tj.jiangsu.gov.cn/art/2026/6/24/art_87595_11794085.html",
+      "source_note": "江苏省城镇单位行业平均工资，税前均值；没有具体职业或城市细分。"
+    },
+    {
+      "location": "江苏省",
+      "industry": "制造业",
+      "population": "城镇私营单位",
+      "salary_annual_2025": 88135,
+      "source_url": "https://tj.jiangsu.gov.cn/art/2026/6/24/art_87595_11794085.html",
+      "source_note": "江苏省城镇单位行业平均工资，税前均值；没有具体职业或城市细分。"
+    },
+    {
+      "location": "江苏省",
+      "industry": "电力、热力、燃气及水生产和供应业",
+      "population": "城镇非私营单位",
+      "salary_annual_2025": 182909,
+      "source_url": "https://tj.jiangsu.gov.cn/art/2026/6/24/art_87595_11794085.html",
+      "source_note": "江苏省城镇单位行业平均工资，税前均值；没有具体职业或城市细分。"
+    },
+    {
+      "location": "江苏省",
+      "industry": "电力、热力、燃气及水生产和供应业",
+      "population": "城镇私营单位",
+      "salary_annual_2025": 92917,
+      "source_url": "https://tj.jiangsu.gov.cn/art/2026/6/24/art_87595_11794085.html",
+      "source_note": "江苏省城镇单位行业平均工资，税前均值；没有具体职业或城市细分。"
+    },
+    {
+      "location": "江苏省",
+      "industry": "建筑业",
+      "population": "城镇非私营单位",
+      "salary_annual_2025": 93267,
+      "source_url": "https://tj.jiangsu.gov.cn/art/2026/6/24/art_87595_11794085.html",
+      "source_note": "江苏省城镇单位行业平均工资，税前均值；没有具体职业或城市细分。"
+    },
+    {
+      "location": "江苏省",
+      "industry": "建筑业",
+      "population": "城镇私营单位",
+      "salary_annual_2025": 73370,
+      "source_url": "https://tj.jiangsu.gov.cn/art/2026/6/24/art_87595_11794085.html",
+      "source_note": "江苏省城镇单位行业平均工资，税前均值；没有具体职业或城市细分。"
+    },
+    {
+      "location": "江苏省",
+      "industry": "批发和零售业",
+      "population": "城镇非私营单位",
+      "salary_annual_2025": 125370,
+      "source_url": "https://tj.jiangsu.gov.cn/art/2026/6/24/art_87595_11794085.html",
+      "source_note": "江苏省城镇单位行业平均工资，税前均值；没有具体职业或城市细分。"
+    },
+    {
+      "location": "江苏省",
+      "industry": "批发和零售业",
+      "population": "城镇私营单位",
+      "salary_annual_2025": 78218,
+      "source_url": "https://tj.jiangsu.gov.cn/art/2026/6/24/art_87595_11794085.html",
+      "source_note": "江苏省城镇单位行业平均工资，税前均值；没有具体职业或城市细分。"
+    },
+    {
+      "location": "江苏省",
+      "industry": "交通运输、仓储和邮政业",
+      "population": "城镇非私营单位",
+      "salary_annual_2025": 126613,
+      "source_url": "https://tj.jiangsu.gov.cn/art/2026/6/24/art_87595_11794085.html",
+      "source_note": "江苏省城镇单位行业平均工资，税前均值；没有具体职业或城市细分。"
+    },
+    {
+      "location": "江苏省",
+      "industry": "交通运输、仓储和邮政业",
+      "population": "城镇私营单位",
+      "salary_annual_2025": 79815,
+      "source_url": "https://tj.jiangsu.gov.cn/art/2026/6/24/art_87595_11794085.html",
+      "source_note": "江苏省城镇单位行业平均工资，税前均值；没有具体职业或城市细分。"
+    },
+    {
+      "location": "江苏省",
+      "industry": "住宿和餐饮业",
+      "population": "城镇非私营单位",
+      "salary_annual_2025": 65632,
+      "source_url": "https://tj.jiangsu.gov.cn/art/2026/6/24/art_87595_11794085.html",
+      "source_note": "江苏省城镇单位行业平均工资，税前均值；没有具体职业或城市细分。"
+    },
+    {
+      "location": "江苏省",
+      "industry": "住宿和餐饮业",
+      "population": "城镇私营单位",
+      "salary_annual_2025": 59806,
+      "source_url": "https://tj.jiangsu.gov.cn/art/2026/6/24/art_87595_11794085.html",
+      "source_note": "江苏省城镇单位行业平均工资，税前均值；没有具体职业或城市细分。"
+    },
+    {
+      "location": "江苏省",
+      "industry": "信息传输、软件和信息技术服务业",
+      "population": "城镇非私营单位",
+      "salary_annual_2025": 193855,
+      "source_url": "https://tj.jiangsu.gov.cn/art/2026/6/24/art_87595_11794085.html",
+      "source_note": "江苏省城镇单位行业平均工资，税前均值；没有具体职业或城市细分。"
+    },
+    {
+      "location": "江苏省",
+      "industry": "信息传输、软件和信息技术服务业",
+      "population": "城镇私营单位",
+      "salary_annual_2025": 117368,
+      "source_url": "https://tj.jiangsu.gov.cn/art/2026/6/24/art_87595_11794085.html",
+      "source_note": "江苏省城镇单位行业平均工资，税前均值；没有具体职业或城市细分。"
+    },
+    {
+      "location": "江苏省",
+      "industry": "金融业",
+      "population": "城镇非私营单位",
+      "salary_annual_2025": 228255,
+      "source_url": "https://tj.jiangsu.gov.cn/art/2026/6/24/art_87595_11794085.html",
+      "source_note": "江苏省城镇单位行业平均工资，税前均值；没有具体职业或城市细分。"
+    },
+    {
+      "location": "江苏省",
+      "industry": "金融业",
+      "population": "城镇私营单位",
+      "salary_annual_2025": 128433,
+      "source_url": "https://tj.jiangsu.gov.cn/art/2026/6/24/art_87595_11794085.html",
+      "source_note": "江苏省城镇单位行业平均工资，税前均值；没有具体职业或城市细分。"
+    },
+    {
+      "location": "江苏省",
+      "industry": "房地产业",
+      "population": "城镇非私营单位",
+      "salary_annual_2025": 89844,
+      "source_url": "https://tj.jiangsu.gov.cn/art/2026/6/24/art_87595_11794085.html",
+      "source_note": "江苏省城镇单位行业平均工资，税前均值；没有具体职业或城市细分。"
+    },
+    {
+      "location": "江苏省",
+      "industry": "房地产业",
+      "population": "城镇私营单位",
+      "salary_annual_2025": 54235,
+      "source_url": "https://tj.jiangsu.gov.cn/art/2026/6/24/art_87595_11794085.html",
+      "source_note": "江苏省城镇单位行业平均工资，税前均值；没有具体职业或城市细分。"
+    },
+    {
+      "location": "江苏省",
+      "industry": "租赁和商务服务业",
+      "population": "城镇非私营单位",
+      "salary_annual_2025": 95724,
+      "source_url": "https://tj.jiangsu.gov.cn/art/2026/6/24/art_87595_11794085.html",
+      "source_note": "江苏省城镇单位行业平均工资，税前均值；没有具体职业或城市细分。"
+    },
+    {
+      "location": "江苏省",
+      "industry": "租赁和商务服务业",
+      "population": "城镇私营单位",
+      "salary_annual_2025": 69548,
+      "source_url": "https://tj.jiangsu.gov.cn/art/2026/6/24/art_87595_11794085.html",
+      "source_note": "江苏省城镇单位行业平均工资，税前均值；没有具体职业或城市细分。"
+    },
+    {
+      "location": "江苏省",
+      "industry": "科学研究和技术服务业",
+      "population": "城镇非私营单位",
+      "salary_annual_2025": 183053,
+      "source_url": "https://tj.jiangsu.gov.cn/art/2026/6/24/art_87595_11794085.html",
+      "source_note": "江苏省城镇单位行业平均工资，税前均值；没有具体职业或城市细分。"
+    },
+    {
+      "location": "江苏省",
+      "industry": "科学研究和技术服务业",
+      "population": "城镇私营单位",
+      "salary_annual_2025": 92006,
+      "source_url": "https://tj.jiangsu.gov.cn/art/2026/6/24/art_87595_11794085.html",
+      "source_note": "江苏省城镇单位行业平均工资，税前均值；没有具体职业或城市细分。"
+    },
+    {
+      "location": "江苏省",
+      "industry": "水利、环境和公共设施管理业",
+      "population": "城镇非私营单位",
+      "salary_annual_2025": 93182,
+      "source_url": "https://tj.jiangsu.gov.cn/art/2026/6/24/art_87595_11794085.html",
+      "source_note": "江苏省城镇单位行业平均工资，税前均值；没有具体职业或城市细分。"
+    },
+    {
+      "location": "江苏省",
+      "industry": "水利、环境和公共设施管理业",
+      "population": "城镇私营单位",
+      "salary_annual_2025": 53300,
+      "source_url": "https://tj.jiangsu.gov.cn/art/2026/6/24/art_87595_11794085.html",
+      "source_note": "江苏省城镇单位行业平均工资，税前均值；没有具体职业或城市细分。"
+    },
+    {
+      "location": "江苏省",
+      "industry": "居民服务、修理和其他服务业",
+      "population": "城镇非私营单位",
+      "salary_annual_2025": 93563,
+      "source_url": "https://tj.jiangsu.gov.cn/art/2026/6/24/art_87595_11794085.html",
+      "source_note": "江苏省城镇单位行业平均工资，税前均值；没有具体职业或城市细分。"
+    },
+    {
+      "location": "江苏省",
+      "industry": "居民服务、修理和其他服务业",
+      "population": "城镇私营单位",
+      "salary_annual_2025": 53764,
+      "source_url": "https://tj.jiangsu.gov.cn/art/2026/6/24/art_87595_11794085.html",
+      "source_note": "江苏省城镇单位行业平均工资，税前均值；没有具体职业或城市细分。"
+    },
+    {
+      "location": "江苏省",
+      "industry": "教育",
+      "population": "城镇非私营单位",
+      "salary_annual_2025": 160991,
+      "source_url": "https://tj.jiangsu.gov.cn/art/2026/6/24/art_87595_11794085.html",
+      "source_note": "江苏省城镇单位行业平均工资，税前均值；没有具体职业或城市细分。"
+    },
+    {
+      "location": "江苏省",
+      "industry": "教育",
+      "population": "城镇私营单位",
+      "salary_annual_2025": 79031,
+      "source_url": "https://tj.jiangsu.gov.cn/art/2026/6/24/art_87595_11794085.html",
+      "source_note": "江苏省城镇单位行业平均工资，税前均值；没有具体职业或城市细分。"
+    },
+    {
+      "location": "江苏省",
+      "industry": "卫生和社会工作",
+      "population": "城镇非私营单位",
+      "salary_annual_2025": 168687,
+      "source_url": "https://tj.jiangsu.gov.cn/art/2026/6/24/art_87595_11794085.html",
+      "source_note": "江苏省城镇单位行业平均工资，税前均值；没有具体职业或城市细分。"
+    },
+    {
+      "location": "江苏省",
+      "industry": "卫生和社会工作",
+      "population": "城镇私营单位",
+      "salary_annual_2025": 85765,
+      "source_url": "https://tj.jiangsu.gov.cn/art/2026/6/24/art_87595_11794085.html",
+      "source_note": "江苏省城镇单位行业平均工资，税前均值；没有具体职业或城市细分。"
+    },
+    {
+      "location": "江苏省",
+      "industry": "文化、体育和娱乐业",
+      "population": "城镇非私营单位",
+      "salary_annual_2025": 133949,
+      "source_url": "https://tj.jiangsu.gov.cn/art/2026/6/24/art_87595_11794085.html",
+      "source_note": "江苏省城镇单位行业平均工资，税前均值；没有具体职业或城市细分。"
+    },
+    {
+      "location": "江苏省",
+      "industry": "文化、体育和娱乐业",
+      "population": "城镇私营单位",
+      "salary_annual_2025": 70471,
+      "source_url": "https://tj.jiangsu.gov.cn/art/2026/6/24/art_87595_11794085.html",
+      "source_note": "江苏省城镇单位行业平均工资，税前均值；没有具体职业或城市细分。"
+    },
+    {
+      "location": "江苏省",
+      "industry": "公共管理、社会保障和社会组织",
+      "population": "城镇非私营单位",
+      "salary_annual_2025": 160733,
+      "source_url": "https://tj.jiangsu.gov.cn/art/2026/6/24/art_87595_11794085.html",
+      "source_note": "江苏省城镇单位行业平均工资，税前均值；没有具体职业或城市细分。"
+    }
+  ],
+  "resident_benchmarks": [
+    {
+      "location": "全国",
+      "sample": "全体居民",
+      "per_capita_disposable_income_annual": 43377,
+      "per_capita_consumption_annual": 29476,
+      "income_growth_pct": 5.0,
+      "consumption_growth_pct": 4.4,
+      "source_url": "https://www.stats.gov.cn/sj/zxfb/202601/t20260119_1962321.html",
+      "source_note": "住户抽样调查的人均收入与人均消费，分母包括有收入和无收入居民；不是个人工资报价或单身个人生活成本预算。"
+    },
+    {
+      "location": "全国",
+      "sample": "城镇居民",
+      "per_capita_disposable_income_annual": 56502,
+      "per_capita_consumption_annual": 35869,
+      "income_growth_pct": 4.3,
+      "consumption_growth_pct": 3.8,
+      "source_url": "https://www.stats.gov.cn/sj/zxfb/202601/t20260119_1962321.html",
+      "source_note": "住户抽样调查的人均收入与人均消费，分母包括有收入和无收入居民；不是个人工资报价或单身个人生活成本预算。"
+    },
+    {
+      "location": "北京市",
+      "sample": "全体居民",
+      "per_capita_disposable_income_annual": 89090,
+      "per_capita_consumption_annual": 50667,
+      "income_growth_pct": 4.3,
+      "consumption_growth_pct": 1.8,
+      "source_url": "https://tjj.beijing.gov.cn/tjsj_31433/tjgb_31445/ndgb_31446/202603/t20260326_4566469.html",
+      "source_note": "住户抽样调查的人均收入与人均消费，分母包括有收入和无收入居民；不是个人工资报价或单身个人生活成本预算。"
+    },
+    {
+      "location": "北京市",
+      "sample": "城镇居民",
+      "per_capita_disposable_income_annual": 96292,
+      "per_capita_consumption_annual": 54122,
+      "income_growth_pct": 4.1,
+      "consumption_growth_pct": 1.7,
+      "source_url": "https://tjj.beijing.gov.cn/tjsj_31433/tjgb_31445/ndgb_31446/202603/t20260326_4566469.html",
+      "source_note": "住户抽样调查的人均收入与人均消费，分母包括有收入和无收入居民；不是个人工资报价或单身个人生活成本预算。"
+    },
+    {
+      "location": "上海市",
+      "sample": "全体居民",
+      "per_capita_disposable_income_annual": 91987,
+      "per_capita_consumption_annual": 54765,
+      "income_growth_pct": 4.1,
+      "consumption_growth_pct": 3.9,
+      "source_url": "https://tjj.sh.gov.cn/ydsj71/20260120/39ae4cd58421478d897b739d83f39c10.html",
+      "source_note": "住户抽样调查的人均收入与人均消费，分母包括有收入和无收入居民；不是个人工资报价或单身个人生活成本预算。"
+    },
+    {
+      "location": "上海市",
+      "sample": "城镇居民",
+      "per_capita_disposable_income_annual": 96842,
+      "per_capita_consumption_annual": 57076,
+      "income_growth_pct": 4.0,
+      "consumption_growth_pct": 3.8,
+      "source_url": "https://tjj.sh.gov.cn/ydsj71/20260120/39ae4cd58421478d897b739d83f39c10.html",
+      "source_note": "住户抽样调查的人均收入与人均消费，分母包括有收入和无收入居民；不是个人工资报价或单身个人生活成本预算。"
+    },
+    {
+      "location": "广州市",
+      "sample": "全体居民",
+      "per_capita_disposable_income_annual": 80591,
+      "per_capita_consumption_annual": 49177,
+      "income_growth_pct": 3.6,
+      "consumption_growth_pct": 3.1,
+      "source_url": "https://tjj.gz.gov.cn/gkmlpt/content/10/10800/post_10800227.html",
+      "source_note": "住户抽样调查的人均收入与人均消费，分母包括有收入和无收入居民；不是个人工资报价或单身个人生活成本预算。"
+    },
+    {
+      "location": "广州市",
+      "sample": "城镇居民",
+      "per_capita_disposable_income_annual": 86069,
+      "per_capita_consumption_annual": 51860,
+      "income_growth_pct": 3.2,
+      "consumption_growth_pct": 2.7,
+      "source_url": "https://tjj.gz.gov.cn/gkmlpt/content/10/10800/post_10800227.html",
+      "source_note": "住户抽样调查的人均收入与人均消费，分母包括有收入和无收入居民；不是个人工资报价或单身个人生活成本预算。"
+    },
+    {
+      "location": "深圳市",
+      "sample": "全体居民",
+      "per_capita_disposable_income_annual": 84945,
+      "per_capita_consumption_annual": 53548,
+      "income_growth_pct": 4.7,
+      "consumption_growth_pct": 4.2,
+      "source_url": "https://www.sz.gov.cn/zfgb/2026/gb1416/content/post_12848555.html",
+      "source_note": "住户抽样调查的人均收入与人均消费，分母包括有收入和无收入居民；不是个人工资报价或单身个人生活成本预算。"
+    },
+    {
+      "location": "重庆市",
+      "sample": "全体居民",
+      "per_capita_disposable_income_annual": 41580,
+      "per_capita_consumption_annual": 28046,
+      "income_growth_pct": 4.7,
+      "consumption_growth_pct": 2.2,
+      "source_url": "https://tjj.cq.gov.cn/zwgk_233/fdzdgknr/tjxx/sjjd_55469/202603/t20260326_15568538.html",
+      "source_note": "住户抽样调查的人均收入与人均消费，分母包括有收入和无收入居民；不是个人工资报价或单身个人生活成本预算。"
+    },
+    {
+      "location": "重庆市",
+      "sample": "城镇居民",
+      "per_capita_disposable_income_annual": 51854,
+      "per_capita_consumption_annual": 32764,
+      "income_growth_pct": 4.2,
+      "consumption_growth_pct": 1.2,
+      "source_url": "https://tjj.cq.gov.cn/zwgk_233/fdzdgknr/tjxx/sjjd_55469/202603/t20260326_15568538.html",
+      "source_note": "住户抽样调查的人均收入与人均消费，分母包括有收入和无收入居民；不是个人工资报价或单身个人生活成本预算。"
+    },
+    {
+      "location": "江苏省",
+      "sample": "全体居民",
+      "per_capita_disposable_income_annual": 57971,
+      "per_capita_consumption_annual": 38975,
+      "income_growth_pct": 4.6,
+      "consumption_growth_pct": 4.4,
+      "source_url": "https://tj.jiangsu.gov.cn/art/2026/3/19/art_85764_11744302.html",
+      "source_note": "住户抽样调查的人均收入与人均消费，分母包括有收入和无收入居民；不是个人工资报价或单身个人生活成本预算。"
+    },
+    {
+      "location": "江苏省",
+      "sample": "城镇居民",
+      "per_capita_disposable_income_annual": 68956,
+      "per_capita_consumption_annual": 43917,
+      "income_growth_pct": 4.2,
+      "consumption_growth_pct": 4.1,
+      "source_url": "https://tj.jiangsu.gov.cn/art/2026/3/19/art_85764_11744302.html",
+      "source_note": "住户抽样调查的人均收入与人均消费，分母包括有收入和无收入居民；不是个人工资报价或单身个人生活成本预算。"
+    }
+  ],
+  "shenzhen_occupation_wages": [
+    {
+      "occupation": "专业技术人员",
+      "category": "专业技术人员",
+      "p10_annual": 69420,
+      "p25_annual": 87334,
+      "p50_annual": 120000,
+      "p75_annual": 180000,
+      "p90_annual": 265559,
+      "source_url": "https://www.sz.gov.cn/attachment/1/1703/1703629/12735140.pdf",
+      "source_name": "深圳市2025年人力资源市场工资价位及行业人工成本信息",
+      "reference_period": "2024",
+      "published_at": "2026-04-14",
+      "source_note": "深圳市人力资源和社会保障局企业薪酬调查。工资分位数反映市场价位范围，含基本工资、绩效、津补贴、加班工资等；不是月薪、招聘报价或全国水平。"
+    },
+    {
+      "occupation": "工程技术人员",
+      "category": "专业技术人员",
+      "p10_annual": 71000,
+      "p25_annual": 90000,
+      "p50_annual": 124067,
+      "p75_annual": 188000,
+      "p90_annual": 270840,
+      "source_url": "https://www.sz.gov.cn/attachment/1/1703/1703629/12735140.pdf",
+      "source_name": "深圳市2025年人力资源市场工资价位及行业人工成本信息",
+      "reference_period": "2024",
+      "published_at": "2026-04-14",
+      "source_note": "深圳市人力资源和社会保障局企业薪酬调查。工资分位数反映市场价位范围，含基本工资、绩效、津补贴、加班工资等；不是月薪、招聘报价或全国水平。"
+    },
+    {
+      "occupation": "计算机软件工程技术人员",
+      "category": "专业技术人员",
+      "p10_annual": 96000,
+      "p25_annual": 132000,
+      "p50_annual": 184648,
+      "p75_annual": 266342,
+      "p90_annual": 366246,
+      "source_url": "https://www.sz.gov.cn/attachment/1/1703/1703629/12735140.pdf",
+      "source_name": "深圳市2025年人力资源市场工资价位及行业人工成本信息",
+      "reference_period": "2024",
+      "published_at": "2026-04-14",
+      "source_note": "深圳市人力资源和社会保障局企业薪酬调查。工资分位数反映市场价位范围，含基本工资、绩效、津补贴、加班工资等；不是月薪、招聘报价或全国水平。"
+    },
+    {
+      "occupation": "计算机网络工程技术人员",
+      "category": "专业技术人员",
+      "p10_annual": 85200,
+      "p25_annual": 103338,
+      "p50_annual": 143494,
+      "p75_annual": 195144,
+      "p90_annual": 271000,
+      "source_url": "https://www.sz.gov.cn/attachment/1/1703/1703629/12735140.pdf",
+      "source_name": "深圳市2025年人力资源市场工资价位及行业人工成本信息",
+      "reference_period": "2024",
+      "published_at": "2026-04-14",
+      "source_note": "深圳市人力资源和社会保障局企业薪酬调查。工资分位数反映市场价位范围，含基本工资、绩效、津补贴、加班工资等；不是月薪、招聘报价或全国水平。"
+    },
+    {
+      "occupation": "嵌入式系统设计工程技术人员",
+      "category": "专业技术人员",
+      "p10_annual": 96000,
+      "p25_annual": 124077,
+      "p50_annual": 161926,
+      "p75_annual": 239602,
+      "p90_annual": 320829,
+      "source_url": "https://www.sz.gov.cn/attachment/1/1703/1703629/12735140.pdf",
+      "source_name": "深圳市2025年人力资源市场工资价位及行业人工成本信息",
+      "reference_period": "2024",
+      "published_at": "2026-04-14",
+      "source_note": "深圳市人力资源和社会保障局企业薪酬调查。工资分位数反映市场价位范围，含基本工资、绩效、津补贴、加班工资等；不是月薪、招聘报价或全国水平。"
+    },
+    {
+      "occupation": "信息系统运行维护工程技术人员",
+      "category": "专业技术人员",
+      "p10_annual": 69600,
+      "p25_annual": 84058,
+      "p50_annual": 108000,
+      "p75_annual": 145200,
+      "p90_annual": 183779,
+      "source_url": "https://www.sz.gov.cn/attachment/1/1703/1703629/12735140.pdf",
+      "source_name": "深圳市2025年人力资源市场工资价位及行业人工成本信息",
+      "reference_period": "2024",
+      "published_at": "2026-04-14",
+      "source_note": "深圳市人力资源和社会保障局企业薪酬调查。工资分位数反映市场价位范围，含基本工资、绩效、津补贴、加班工资等；不是月薪、招聘报价或全国水平。"
+    },
+    {
+      "occupation": "计算机程序设计员",
+      "category": "专业技术人员",
+      "p10_annual": 102600,
+      "p25_annual": 145561,
+      "p50_annual": 215730,
+      "p75_annual": 292163,
+      "p90_annual": 375744,
+      "source_url": "https://www.sz.gov.cn/attachment/1/1703/1703629/12735140.pdf",
+      "source_name": "深圳市2025年人力资源市场工资价位及行业人工成本信息",
+      "reference_period": "2024",
+      "published_at": "2026-04-14",
+      "source_note": "深圳市人力资源和社会保障局企业薪酬调查。工资分位数反映市场价位范围，含基本工资、绩效、津补贴、加班工资等；不是月薪、招聘报价或全国水平。"
+    },
+    {
+      "occupation": "计算机软件测试员",
+      "category": "专业技术人员",
+      "p10_annual": 76780,
+      "p25_annual": 96022,
+      "p50_annual": 142023,
+      "p75_annual": 192000,
+      "p90_annual": 283137,
+      "source_url": "https://www.sz.gov.cn/attachment/1/1703/1703629/12735140.pdf",
+      "source_name": "深圳市2025年人力资源市场工资价位及行业人工成本信息",
+      "reference_period": "2024",
+      "published_at": "2026-04-14",
+      "source_note": "深圳市人力资源和社会保障局企业薪酬调查。工资分位数反映市场价位范围，含基本工资、绩效、津补贴、加班工资等；不是月薪、招聘报价或全国水平。"
+    },
+    {
+      "occupation": "会计专业人员",
+      "category": "专业技术人员",
+      "p10_annual": 71581,
+      "p25_annual": 85232,
+      "p50_annual": 105600,
+      "p75_annual": 140014,
+      "p90_annual": 191497,
+      "source_url": "https://www.sz.gov.cn/attachment/1/1703/1703629/12735140.pdf",
+      "source_name": "深圳市2025年人力资源市场工资价位及行业人工成本信息",
+      "reference_period": "2024",
+      "published_at": "2026-04-14",
+      "source_note": "深圳市人力资源和社会保障局企业薪酬调查。工资分位数反映市场价位范围，含基本工资、绩效、津补贴、加班工资等；不是月薪、招聘报价或全国水平。"
+    },
+    {
+      "occupation": "审计专业人员",
+      "category": "专业技术人员",
+      "p10_annual": 71664,
+      "p25_annual": 96000,
+      "p50_annual": 141955,
+      "p75_annual": 214195,
+      "p90_annual": 305374,
+      "source_url": "https://www.sz.gov.cn/attachment/1/1703/1703629/12735140.pdf",
+      "source_name": "深圳市2025年人力资源市场工资价位及行业人工成本信息",
+      "reference_period": "2024",
+      "published_at": "2026-04-14",
+      "source_note": "深圳市人力资源和社会保障局企业薪酬调查。工资分位数反映市场价位范围，含基本工资、绩效、津补贴、加班工资等；不是月薪、招聘报价或全国水平。"
+    },
+    {
+      "occupation": "市场营销专业人员",
+      "category": "专业技术人员",
+      "p10_annual": 64213,
+      "p25_annual": 83264,
+      "p50_annual": 120000,
+      "p75_annual": 180000,
+      "p90_annual": 262415,
+      "source_url": "https://www.sz.gov.cn/attachment/1/1703/1703629/12735140.pdf",
+      "source_name": "深圳市2025年人力资源市场工资价位及行业人工成本信息",
+      "reference_period": "2024",
+      "published_at": "2026-04-14",
+      "source_note": "深圳市人力资源和社会保障局企业薪酬调查。工资分位数反映市场价位范围，含基本工资、绩效、津补贴、加班工资等；不是月薪、招聘报价或全国水平。"
+    },
+    {
+      "occupation": "人力资源专业人员",
+      "category": "专业技术人员",
+      "p10_annual": 66659,
+      "p25_annual": 87028,
+      "p50_annual": 112197,
+      "p75_annual": 156200,
+      "p90_annual": 228855,
+      "source_url": "https://www.sz.gov.cn/attachment/1/1703/1703629/12735140.pdf",
+      "source_name": "深圳市2025年人力资源市场工资价位及行业人工成本信息",
+      "reference_period": "2024",
+      "published_at": "2026-04-14",
+      "source_note": "深圳市人力资源和社会保障局企业薪酬调查。工资分位数反映市场价位范围，含基本工资、绩效、津补贴、加班工资等；不是月薪、招聘报价或全国水平。"
+    },
+    {
+      "occupation": "临床和口腔医师",
+      "category": "专业技术人员",
+      "p10_annual": 84800,
+      "p25_annual": 110258,
+      "p50_annual": 158952,
+      "p75_annual": 219415,
+      "p90_annual": 330638,
+      "source_url": "https://www.sz.gov.cn/attachment/1/1703/1703629/12735140.pdf",
+      "source_name": "深圳市2025年人力资源市场工资价位及行业人工成本信息",
+      "reference_period": "2024",
+      "published_at": "2026-04-14",
+      "source_note": "深圳市人力资源和社会保障局企业薪酬调查。工资分位数反映市场价位范围，含基本工资、绩效、津补贴、加班工资等；不是月薪、招聘报价或全国水平。"
+    },
+    {
+      "occupation": "护理人员",
+      "category": "专业技术人员",
+      "p10_annual": 71600,
+      "p25_annual": 81400,
+      "p50_annual": 96000,
+      "p75_annual": 125500,
+      "p90_annual": 154642,
+      "source_url": "https://www.sz.gov.cn/attachment/1/1703/1703629/12735140.pdf",
+      "source_name": "深圳市2025年人力资源市场工资价位及行业人工成本信息",
+      "reference_period": "2024",
+      "published_at": "2026-04-14",
+      "source_note": "深圳市人力资源和社会保障局企业薪酬调查。工资分位数反映市场价位范围，含基本工资、绩效、津补贴、加班工资等；不是月薪、招聘报价或全国水平。"
+    },
+    {
+      "occupation": "销售和营销部门经理",
+      "category": "单位负责人",
+      "p10_annual": 71400,
+      "p25_annual": 96001,
+      "p50_annual": 149737,
+      "p75_annual": 240819,
+      "p90_annual": 362716,
+      "source_url": "https://www.sz.gov.cn/attachment/1/1703/1703629/12735140.pdf",
+      "source_name": "深圳市2025年人力资源市场工资价位及行业人工成本信息",
+      "reference_period": "2024",
+      "published_at": "2026-04-14",
+      "source_note": "深圳市人力资源和社会保障局企业薪酬调查。工资分位数反映市场价位范围，含基本工资、绩效、津补贴、加班工资等；不是月薪、招聘报价或全国水平。"
+    },
+    {
+      "occupation": "计算机服务部门经理",
+      "category": "单位负责人",
+      "p10_annual": 102000,
+      "p25_annual": 154118,
+      "p50_annual": 242684,
+      "p75_annual": 340546,
+      "p90_annual": 475497,
+      "source_url": "https://www.sz.gov.cn/attachment/1/1703/1703629/12735140.pdf",
+      "source_name": "深圳市2025年人力资源市场工资价位及行业人工成本信息",
+      "reference_period": "2024",
+      "published_at": "2026-04-14",
+      "source_note": "深圳市人力资源和社会保障局企业薪酬调查。工资分位数反映市场价位范围，含基本工资、绩效、津补贴、加班工资等；不是月薪、招聘报价或全国水平。"
+    },
+    {
+      "occupation": "研究和开发部门经理",
+      "category": "单位负责人",
+      "p10_annual": 101834,
+      "p25_annual": 153360,
+      "p50_annual": 234960,
+      "p75_annual": 355000,
+      "p90_annual": 481200,
+      "source_url": "https://www.sz.gov.cn/attachment/1/1703/1703629/12735140.pdf",
+      "source_name": "深圳市2025年人力资源市场工资价位及行业人工成本信息",
+      "reference_period": "2024",
+      "published_at": "2026-04-14",
+      "source_note": "深圳市人力资源和社会保障局企业薪酬调查。工资分位数反映市场价位范围，含基本工资、绩效、津补贴、加班工资等；不是月薪、招聘报价或全国水平。"
+    },
+    {
+      "occupation": "中式烹调师",
+      "category": "社会生产服务和生活服务人员",
+      "p10_annual": 47734,
+      "p25_annual": 55329,
+      "p50_annual": 69456,
+      "p75_annual": 88800,
+      "p90_annual": 105869,
+      "source_url": "https://www.sz.gov.cn/attachment/1/1703/1703629/12735140.pdf",
+      "source_name": "深圳市2025年人力资源市场工资价位及行业人工成本信息",
+      "reference_period": "2024",
+      "published_at": "2026-04-14",
+      "source_note": "深圳市人力资源和社会保障局企业薪酬调查。工资分位数反映市场价位范围，含基本工资、绩效、津补贴、加班工资等；不是月薪、招聘报价或全国水平。"
+    },
+    {
+      "occupation": "电工",
+      "category": "生产制造及有关人员",
+      "p10_annual": 54500,
+      "p25_annual": 65400,
+      "p50_annual": 81016,
+      "p75_annual": 100011,
+      "p90_annual": 122108,
+      "source_url": "https://www.sz.gov.cn/attachment/1/1703/1703629/12735140.pdf",
+      "source_name": "深圳市2025年人力资源市场工资价位及行业人工成本信息",
+      "reference_period": "2024",
+      "published_at": "2026-04-14",
+      "source_note": "深圳市人力资源和社会保障局企业薪酬调查。工资分位数反映市场价位范围，含基本工资、绩效、津补贴、加班工资等；不是月薪、招聘报价或全国水平。"
+    },
+    {
+      "occupation": "焊工",
+      "category": "生产制造及有关人员",
+      "p10_annual": 59115,
+      "p25_annual": 68400,
+      "p50_annual": 87604,
+      "p75_annual": 109906,
+      "p90_annual": 129567,
+      "source_url": "https://www.sz.gov.cn/attachment/1/1703/1703629/12735140.pdf",
+      "source_name": "深圳市2025年人力资源市场工资价位及行业人工成本信息",
+      "reference_period": "2024",
+      "published_at": "2026-04-14",
+      "source_note": "深圳市人力资源和社会保障局企业薪酬调查。工资分位数反映市场价位范围，含基本工资、绩效、津补贴、加班工资等；不是月薪、招聘报价或全国水平。"
+    },
+    {
+      "occupation": "建筑施工人员",
+      "category": "生产制造及有关人员",
+      "p10_annual": 48360,
+      "p25_annual": 58245,
+      "p50_annual": 72000,
+      "p75_annual": 96000,
+      "p90_annual": 129244,
+      "source_url": "https://www.sz.gov.cn/attachment/1/1703/1703629/12735140.pdf",
+      "source_name": "深圳市2025年人力资源市场工资价位及行业人工成本信息",
+      "reference_period": "2024",
+      "published_at": "2026-04-14",
+      "source_note": "深圳市人力资源和社会保障局企业薪酬调查。工资分位数反映市场价位范围，含基本工资、绩效、津补贴、加班工资等；不是月薪、招聘报价或全国水平。"
+    },
+    {
+      "occupation": "生产制造及有关人员",
+      "category": "生产制造及有关人员",
+      "p10_annual": 50419,
+      "p25_annual": 60000,
+      "p50_annual": 72662,
+      "p75_annual": 91300,
+      "p90_annual": 120000,
+      "source_url": "https://www.sz.gov.cn/attachment/1/1703/1703629/12735140.pdf",
+      "source_name": "深圳市2025年人力资源市场工资价位及行业人工成本信息",
+      "reference_period": "2024",
+      "published_at": "2026-04-14",
+      "source_note": "深圳市人力资源和社会保障局企业薪酬调查。工资分位数反映市场价位范围，含基本工资、绩效、津补贴、加班工资等；不是月薪、招聘报价或全国水平。"
+    }
+  ],
+  "sources": [
+    {
+      "name": "国家统计局 2025 城镇单位就业人员年平均工资",
+      "url": "https://www.stats.gov.cn/sj/zxfb/202605/t20260515_1963707.html",
+      "published_at": "2026-05-15",
+      "reference_period": "2025"
+    },
+    {
+      "name": "深圳市人力资源和社会保障局 2025 工资价位调查（调查期2024）",
+      "url": "https://www.sz.gov.cn/attachment/1/1703/1703629/12735140.pdf",
+      "published_at": "2026-04-14",
+      "reference_period": "2024"
+    },
+    {
+      "name": "国家统计局 2025 居民收入和消费支出",
+      "url": "https://www.stats.gov.cn/sj/zxfb/202601/t20260119_1962321.html",
+      "published_at": "2026-01-19",
+      "reference_period": "2025"
+    },
+    {
+      "name": "江苏省统计局 2025 城镇单位平均工资",
+      "url": "https://tj.jiangsu.gov.cn/art/2026/6/24/art_87595_11794085.html",
+      "published_at": "2026-06-24",
+      "reference_period": "2025"
+    },
+    {
+      "name": "重庆市统计局 2025 城镇单位平均工资",
+      "url": "https://tjj.cq.gov.cn/zwgk_233/fdzdgknr/tjxx/sjzl_55471/tjgb_55472/202606/t20260618_15762815.html",
+      "published_at": "2026-06-18",
+      "reference_period": "2025"
+    },
+    {
+      "name": "广州市统计局 2025 城镇单位平均工资",
+      "url": "https://tjj.gz.gov.cn/stats_newtjyw/tjsj/tjgb/qtgb/content/post_10894378.html",
+      "published_at": "2026-07-09",
+      "reference_period": "2025"
+    },
+    {
+      "name": "深圳市统计局 2025 城镇单位平均工资",
+      "url": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/tjsj/tjgb/content/mpost_12907800.html",
+      "published_at": "2026-07-24",
+      "reference_period": "2025"
+    },
+    {
+      "name": "北京市人社局 历年全口径工资（社保基数口径）",
+      "url": "https://rsj.beijing.gov.cn/bm/ywml/202007/t20200717_1950961.html",
+      "published_at": "2026-08-21",
+      "reference_period": "2025"
+    }
+  ]
+}
