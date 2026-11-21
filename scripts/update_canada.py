@@ -27,7 +27,7 @@ OCCUPATIONS = [
 
 def get_bytes(url: str, accept: str) -> bytes:
     request = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": accept})
-    with urllib.request.urlopen(request, timeout=90) as response:
+    with urllib.request.urlopen(request, timeout=30) as response:
         return response.read()
 
 
@@ -69,60 +69,62 @@ def parse_table(payload: bytes) -> list[dict]:
         csv_names = [name for name in archive.namelist() if name.lower().endswith(".csv") and "meta" not in name.lower()]
         if not csv_names:
             raise RuntimeError("Statistics Canada archive did not contain a data CSV")
-        text = archive.read(csv_names[0]).decode("utf-8-sig", "replace")
+        stream = io.TextIOWrapper(archive.open(csv_names[0]), encoding="utf-8-sig", errors="replace", newline="")
+        reader = csv.reader(stream)
+        headers = None
+        for candidate in reader:
+            if {cell.strip().upper() for cell in candidate}.issuperset({"REF_DATE", "GEO", "VALUE"}):
+                headers = [cell.strip() for cell in candidate]
+                break
+        if headers is None:
+            raise RuntimeError("Cannot find the expected REF_DATE/GEO/VALUE columns in the Statistics Canada CSV")
+        columns = {key: find_column(headers, key) for key in ("ref_date", "geo", "occupation", "wages", "type of work", "gender", "age group", "value", "status")}
+        required = ("ref_date", "geo", "occupation", "wages", "value")
+        missing = [key for key in required if not columns[key]]
+        if missing:
+            raise RuntimeError(f"Statistics Canada table is missing expected fields: {missing}")
 
-    records = list(csv.reader(io.StringIO(text)))
-    header_index = next((i for i, row in enumerate(records) if {cell.strip().upper() for cell in row}.issuperset({"REF_DATE", "GEO", "VALUE"})), None)
-    if header_index is None:
-        raise RuntimeError("Cannot find the expected REF_DATE/GEO/VALUE columns in the Statistics Canada CSV")
-    headers = [cell.strip() for cell in records[header_index]]
-    columns = {key: find_column(headers, key) for key in ("ref_date", "geo", "occupation", "wages", "type of work", "gender", "age group", "value", "status")}
-    required = ("ref_date", "geo", "occupation", "wages", "value")
-    missing = [key for key in required if not columns[key]]
-    if missing:
-        raise RuntimeError(f"Statistics Canada table is missing expected fields: {missing}")
-
-    candidates: dict[tuple[str, str], list[dict]] = {}
-    work_types: set[str] = set()
-    for raw in records[header_index + 1:]:
-        if len(raw) < len(headers):
-            continue
-        row = dict(zip(headers, raw))
-        wage_label = row.get(columns["wages"], "").strip().lower()
-        if "average weekly wage rate" not in wage_label:
-            continue
-        if columns["gender"] and row.get(columns["gender"], "").strip().lower() not in {"both sexes", "total - gender", "total"}:
-            continue
-        if columns["age group"] and row.get(columns["age group"], "").strip().lower() not in {"15 years and over", "15 years and older", "total - age group"}:
-            continue
-        occupation_text = row.get(columns["occupation"], "").strip()
-        match = next((item for item in OCCUPATIONS if item[2].search(occupation_text)), None)
-        if not match:
-            continue
-        geo = row.get(columns["geo"], "").strip()
-        if not geo:
-            continue
-        work_type = row.get(columns["type of work"], "").strip() if columns["type of work"] else ""
-        if work_type:
-            work_types.add(work_type)
-        raw_value = row.get(columns["value"], "").strip().replace(",", "")
-        try:
-            weekly_wage = float(raw_value)
-        except ValueError:
-            continue
-        if weekly_wage <= 0:
-            continue
-        status = row.get(columns["status"], "").strip().lower() if columns["status"] else ""
-        if status and status not in {"a", "e"}:
-            continue
-        candidates.setdefault((geo, match[0]), []).append({
-            "date": row.get(columns["ref_date"], "").strip(),
-            "geo": geo,
-            "role": match[0],
-            "code": match[1],
-            "weekly_wage": weekly_wage,
-            "work_type": work_type,
-        })
+        candidates: dict[tuple[str, str], list[dict]] = {}
+        work_types: set[str] = set()
+        for raw in reader:
+            if len(raw) < len(headers):
+                continue
+            row = dict(zip(headers, raw))
+            wage_label = row.get(columns["wages"], "").strip().lower()
+            if "average weekly wage rate" not in wage_label:
+                continue
+            if columns["gender"] and row.get(columns["gender"], "").strip().lower() not in {"both sexes", "total - gender", "total"}:
+                continue
+            if columns["age group"] and row.get(columns["age group"], "").strip().lower() not in {"15 years and over", "15 years and older", "total - age group"}:
+                continue
+            occupation_text = row.get(columns["occupation"], "").strip()
+            match = next((item for item in OCCUPATIONS if item[2].search(occupation_text)), None)
+            if not match:
+                continue
+            geo = row.get(columns["geo"], "").strip()
+            if not geo:
+                continue
+            work_type = row.get(columns["type of work"], "").strip() if columns["type of work"] else ""
+            if work_type:
+                work_types.add(work_type)
+            raw_value = row.get(columns["value"], "").strip().replace(",", "")
+            try:
+                weekly_wage = float(raw_value)
+            except ValueError:
+                continue
+            if weekly_wage <= 0:
+                continue
+            status = row.get(columns["status"], "").strip().lower() if columns["status"] else ""
+            if status and status not in {"a", "e"}:
+                continue
+            candidates.setdefault((geo, match[0]), []).append({
+                "date": row.get(columns["ref_date"], "").strip(),
+                "geo": geo,
+                "role": match[0],
+                "code": match[1],
+                "weekly_wage": weekly_wage,
+                "work_type": work_type,
+            })
 
     selected_type = choose_work_type(work_types)
     if work_types and selected_type is None:

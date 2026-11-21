@@ -106,8 +106,8 @@ def main() -> int:
             print(f"{label}: success")
         elif key == "bls" and result.returncode == 3:
             blocked = True
-            state.update({"status": "blocked", "message": "Robots policy disallows this dataset; the previous snapshot was retained."})
-            print(f"::warning title={label}::Robots policy disallows this dataset; the previous snapshot was retained.")
+            state.update({"status": "blocked", "message": "Robots/access policy prevents confirming permission; the previous snapshot was retained."})
+            print(f"::warning title={label}::Robots/access policy prevents confirming permission; the previous snapshot was retained.")
         else:
             failed = True
             state.update({"status": "failed", "message": "Refresh failed; see the GitHub Actions run log."})
