@@ -7,7 +7,7 @@
 | 中国 | 国家统计局城镇单位工资；当前已入库 2025 年规模以上企业工资 | 当前为 5 个宽岗位组；年薪换算月薪，均值 | 当前全国；城市职业数据需逐省/市来源 | 固定源快照 + 页面解析/下载校验；探索各地统计年鉴 |
 | 日本 | 厚生劳动省工资结构基本调查、Hello Work 求职招聘工资 | 调查可细至职业类别 | 都道府县、地域块；Hello Work 职业工资按地域块 | 优先采用可下载的官方 Excel；保留固定工资与招聘工资口径差异 |
 | 韩国 | 雇佣劳动部雇佣形态别劳动实态调查 / KOSIS | 职业大类、小时工资和工时 | 公开表按表而异，当前不承诺城市职业交叉粒度 | 先接官方表格/API，再扩展地区维度 |
-| 澳大利亚 | ABS Employee Earnings and Hours (EEH) | ANZSCO 职业组；TableBuilder 可提供更细交叉表 | 公布表覆盖州/领地与职业分别或有限交叉；更细需 TableBuilder | 下载 ABS 数据立方体；公开表优先，微观数据服务不做自动采集 |
+| 澳大利亚 | ABS EEH May 2025 全体员工职业大类平均周总现金收入 | 已载入 8 个 ANZSCO 一位数大类及全部职业 | 当前快照仅国家级 | 以 52/12 折算月等值；没有对应工时、税后或地区成本，不生成时薪/推荐分；后续接入可核验的数据立方体 |
 | 加拿大 | Statistics Canada 月度职业工资表 14-10-0426-01；导入器按 NOC 2021 选取职业及全国/省区记录 | NOC 职业；平均周工资按 52/12 折算月等值 | 全国、省/地区；暂不细化到城市 | WDS 元数据 + 最新期坐标接口；按表中可用的 NOC 汇总职业组提取，保留平均周工资原口径与换算说明 |
 | 美国 | BLS OEWS | SOC 职业 | 全国、州、都会区 | 现有 BLS 适配器 |
 | 新加坡 | MOM Occupational Wages | 职业类别 | 全国为主 | MOM 官方下载数据 |
@@ -34,6 +34,8 @@
 - [美国 BLS OEWS](https://www.bls.gov/oes/tables.htm)
 - [新加坡 MOM 职业工资](https://stats.mom.gov.sg/statistics/income/occupational-wages/)
 - [英国 ONS 工资和工时](https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours)
+
+澳大利亚 ABS EEH 快照写入 `data/australia_abs_2025.json`，当前参考期为 May 2025；它是版本化快照，尚未设置自动抓取。
 
 加拿大自动导入器写入 `data/canada_wages.json` 并由刷新任务并入 `data/latest.json`；上线前的首轮成功状态由 GitHub Actions 验证。
 
