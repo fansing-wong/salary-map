@@ -11,8 +11,8 @@
   };
   const componentLabel = (component, label) => {
     if (!component) return `${label}状态未知`;
-    if (component.status === 'failed') return `${label}刷新失败，沿用上次成功数据`;
-    if (component.status === 'blocked') return `${label}受 robots.txt 限制，沿用上次成功数据`;
+    if (component.status === 'failed') return `${label}刷新失败，沿用${timeLabel(component.last_success)}的数据`;
+    if (component.status === 'blocked') return `${label}受 robots.txt 限制，沿用${timeLabel(component.last_success)}的数据`;
     if (component.status === 'not_configured') return `${label}尚未配置来源`;
     if (component.status === 'success') return `${label}最近刷新成功：${timeLabel(component.last_success)}`;
     return `${label}尚无成功刷新记录`;

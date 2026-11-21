@@ -25,6 +25,16 @@ def read_previous_status() -> dict:
         return {}
 
 
+def latest_retrieval(path: Path) -> str | None:
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        rows = payload if isinstance(payload, list) else [payload]
+        dates = [str(row["retrieved_at"]) for row in rows if isinstance(row, dict) and row.get("retrieved_at")]
+        return max(dates, key=lambda value: datetime.fromisoformat(value.replace("Z", "+00:00"))) if dates else None
+    except (OSError, json.JSONDecodeError, TypeError, ValueError, KeyError):
+        return None
+
+
 def write_status(value: dict) -> None:
     temp_file = STATUS_FILE.with_suffix(".json.tmp")
     temp_file.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -43,6 +53,16 @@ def main() -> int:
     components = previous.get("components", {})
     if not isinstance(components, dict):
         components = {}
+    for key, snapshot in {
+        "bls": ROOT / "data" / "bls_metro_2025.json",
+        "macro": ROOT / "data" / "macro.json",
+    }.items():
+        component = components.get(key)
+        if not isinstance(component, dict):
+            component = {}
+            components[key] = component
+        if not component.get("last_success"):
+            component["last_success"] = latest_retrieval(snapshot)
 
     try:
         configured_sources = json.loads(SOURCE_REGISTRY.read_text(encoding="utf-8"))
