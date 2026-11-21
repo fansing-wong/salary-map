@@ -1,6 +1,6 @@
 (() => {
   const countries = [
-    { iso3: 'CHN', name: '中国', source: '国家统计局及地方统计局2025工资；深圳企业工资价位调查', url: 'https://www.stats.gov.cn/sj/zxfb/202605/t20260515_1963707.html', target: '全国/宏观区域；江苏省行业、重庆/广州/深圳市单位均值；深圳职业分位数；城市覆盖仍不完整' },
+    { iso3: 'CHN', name: '中国', source: '国家统计局及地方统计局2025工资；深圳企业工资价位调查', url: 'https://www.stats.gov.cn/sj/zxfb/202605/t20260515_1963707.html', target: '全国/宏观区域；江浙沪皖闽粤省级工资与居民收支、五省行业对照、安徽16地级市、江浙皖重点十一市、广东四大片区、重庆/广州/深圳单位均值及深圳岗位分位数；仍非完整城市岗位报价' },
     { iso3: 'USA', name: '美国', source: 'BLS OEWS', url: 'https://www.bls.gov/oes/tables.htm', target: '全国、州、都会区；当前抓取受 robots 限制' },
     { iso3: 'JPN', name: '日本', source: '厚生劳动省工资结构调查 / Hello Work', url: 'https://www.mhlw.go.jp/www2/info/toukei/english/surveys.htm', target: '都道府县、地域块；待接入官方表' },
     { iso3: 'KOR', name: '韩国', source: '雇佣劳动部 / KOSIS', url: 'https://stathtml.moel.go.kr/statHtml/statHtml.do?conn_path=I2&language=en&orgId=118&tblId=DT_118N_LCE0001', target: '按官方表格可用层级；待接入' },

@@ -29,7 +29,7 @@ jobs:
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add data/latest.json data/macro.json data/status.json data/china_nbs_2025.json data/china_local_wages_2025.json data/shenzhen_market_wages_2024.json data/china_wage_structure_2025.json data/australia_abs_2025.json
+          git add data/latest.json data/macro.json data/status.json data/china_nbs_2025.json data/china_local_wages_2025.json data/shenzhen_market_wages_2024.json data/china_wage_structure_2025.json data/china_east_regions_2025.json data/australia_abs_2025.json
           if [ -f data/canada_wages.json ]; then git add data/canada_wages.json; fi
           if [ -f data/bls_metro_2025.json ]; then git add data/bls_metro_2025.json; fi
           git diff --cached --quiet || (git commit -m "Refresh salary data" && git push)

@@ -4,7 +4,7 @@
 
 | 国家/地区 | 官方工资基线 | 职业粒度 | 地理粒度 | 下一步接入方式 |
 |---|---|---|---|---|
-| 中国 | 国家统计局及地方统计局 2025 年单位工资；深圳人社局工资价位调查（调查期2024） | 全国/宏观区域宽岗位组；江苏行业均值；重庆规模以上企业岗位组；深圳精选职业 P10/P25/P50/P75/P90 | 全国、东/中/西/东北宏观区域、江苏省、重庆/广州/深圳市；不是完整省市名录 | 分源版本化快照；税前均值与薪酬调查分位数分开；不推算缺失的城市成本、工时或时薪 |
+| 中国 | 国家统计局及地方统计局2025年单位工资；深圳人社局工资价位调查（调查期2024） | 全国/宏观区域宽岗位组；江苏、浙江、安徽、福建、广东行业大类；重庆规模以上企业岗位组；深圳精选职业 P10/P25/P50/P75/P90 | 江浙沪皖闽粤省级指标；安徽16个地级市非私营均值；安徽重点六市与江苏重点五市对照；广东珠三角/粤东/粤西/粤北片区；重庆/广州/深圳市；仍不是完整城市岗位名录 | 分源版本化快照；税前均值与薪酬调查分位数分开；上海全口径工资单列；居民收支只作人均背景；标出镇江转载来源与缺失城市收支，不推算城市岗位报价、租金、工时或时薪 |
 | 日本 | 厚生劳动省工资结构基本调查、Hello Work 求职招聘工资 | 调查可细至职业类别 | 都道府县、地域块；Hello Work 职业工资按地域块 | 优先采用可下载的官方 Excel；保留固定工资与招聘工资口径差异 |
 | 韩国 | 雇佣劳动部雇佣形态别劳动实态调查 / KOSIS | 职业大类、小时工资和工时 | 公开表按表而异，当前不承诺城市职业交叉粒度 | 先接官方表格/API，再扩展地区维度 |
 | 澳大利亚 | ABS EEH May 2025 全体员工职业大类平均周总现金收入 | 已载入 8 个 ANZSCO 一位数大类及全部职业 | 当前快照仅国家级 | 以 52/12 折算月等值；没有对应工时、税后或地区成本，不生成时薪/推荐分；后续接入可核验的数据立方体 |
@@ -25,6 +25,15 @@
 ## 官方入口
 
 - [中国国家统计局：2025 年城镇单位平均工资](https://www.stats.gov.cn/sj/zxfb/202605/t20260515_1963707.html)
+- [浙江省统计局：2025 年单位工资公报](https://tjj.zj.gov.cn/col/col1229129205/art/2026/art_d56c2fc8a9d2478b9913488b8e5d1eb8.html)
+- [安徽省统计局：2025 年分地级市和行业工资表](https://tjj.huainan.gov.cn/public/118319859/1261028126.html)
+- [南京市统计局：2025 年南京市工资与收入](https://tjj.nanjing.gov.cn/bmfw/njsj/202606/t20260625_5866021.html)
+- [苏州市统计局：2025 年苏州城镇单位平均工资问答](https://tjj.suzhou.gov.cn/sztjj/tjsj/tjsj.shtml)
+- [无锡市统计局：2025 年城镇单位就业人员平均工资](https://tj.wuxi.gov.cn/doc/2026/07/08/4801556.shtml)
+- [常州市统计局：2025 年城镇单位就业人员平均工资](https://tjj.changzhou.gov.cn/html/tjj/2026/OPOEMFCL_0709/29110.html)
+- [福建省统计局：2025 年单位工资](https://tjj.fujian.gov.cn/xxgk/tjxx/gzqk/202606/t20260617_7164491.htm)
+- [广东省统计局：2025 年单位工资及四大区域工资](https://stats.gd.gov.cn/tjkx185/content/post_4917310.html)
+- [上海市统计局：2025 年经济社会统计公报](https://tjj.sh.gov.cn/tjgb/20260330/e0772941e8e041eaaad2df850b44ef98.html)
 - [日本厚生劳动省：劳动工资统计清单](https://www.mhlw.go.jp/www2/info/toukei/english/surveys.htm)
 - [日本厚生劳动省：Hello Work 地区/职业招聘与工资](https://www.mhlw.go.jp/roudou-navi/data/01/)
 - [韩国雇佣劳动部：工资与工时统计表](https://stathtml.moel.go.kr/statHtml/statHtml.do?conn_path=I2&language=en&orgId=118&tblId=DT_118N_LCE0001)
@@ -35,7 +44,7 @@
 - [新加坡 MOM 职业工资](https://stats.mom.gov.sg/statistics/income/occupational-wages/)
 - [英国 ONS 工资和工时](https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours)
 
-中国国家统计局结构数据写入 `data/china_wage_structure_2025.json`；主比较器岗位记录来自 `data/china_nbs_2025.json`。两者为版本化快照，发布更新需核对来源表格、口径和参考期。
+中国国家统计局结构数据写入 `data/china_wage_structure_2025.json`；江浙沪皖闽粤省级工资、跨省行业、安徽城市、广东片区和居民收支参照写入 `data/china_east_regions_2025.json`；主比较器岗位记录来自 `data/china_nbs_2025.json`。这些均为版本化快照，发布更新需核对来源表格、口径和参考期。
 
 澳大利亚 ABS EEH 快照写入 `data/australia_abs_2025.json`，当前参考期为 May 2025；它是版本化快照，尚未设置自动抓取。
 

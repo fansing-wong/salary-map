@@ -19,6 +19,7 @@ BLS_DATA = ROOT / "data" / "bls_metro_2025.json"
 CHINA_DATA = ROOT / "data" / "china_nbs_2025.json"
 CHINA_LOCAL_DATA = ROOT / "data" / "china_local_wages_2025.json"
 SHENZHEN_MARKET_DATA = ROOT / "data" / "shenzhen_market_wages_2024.json"
+CHINA_EAST_DATA = ROOT / "data" / "china_east_regions_2025.json"
 CANADA_DATA = ROOT / "data" / "canada_wages.json"
 AUSTRALIA_DATA = ROOT / "data" / "australia_abs_2025.json"
 UA = "SalaryMapResearchBot/1.0 (+https://github.com; contact repository maintainers)"
@@ -104,12 +105,89 @@ def fetch(source: dict) -> list[dict]:
     cache_file.write_text(json.dumps(cache, ensure_ascii=False, indent=2), encoding="utf-8")
     return out
 
+def china_east_rows() -> list[dict]:
+    """Normalize East China region, city and industry wage snapshots for latest.json."""
+    if not CHINA_EAST_DATA.exists():
+        return []
+    data = json.loads(CHINA_EAST_DATA.read_text(encoding="utf-8"))
+    rows = []
+    existing_headline = set()
+    if CHINA_LOCAL_DATA.exists():
+        try:
+            local_rows = json.loads(CHINA_LOCAL_DATA.read_text(encoding="utf-8"))
+            existing_headline = {
+                (row.get("city"), row.get("role")) for row in local_rows
+                if isinstance(row, dict) and str(row.get("role", "")).startswith("所有行业单位平均工资（")
+            }
+        except (OSError, json.JSONDecodeError, TypeError):
+            pass
+
+    def append_wage(location: str, admin1: str | None, geo_level: str, population: str,
+                    annual: int, source_url: str, source_name: str, source_note: str,
+                    role_prefix: str = "所有行业单位平均工资") -> None:
+        code = {
+            "城镇非私营单位": "URBAN_NON_PRIVATE",
+            "城镇私营单位": "URBAN_PRIVATE",
+            "全口径城镇单位（社保缴费基数口径）": "FULL_COVERAGE_SOCIAL_INSURANCE_BASE",
+        }.get(population, "")
+        rows.append({
+            "country": "中国", "city": location, "admin1": admin1, "geo_level": geo_level,
+            "role": f"{role_prefix}（{population}）", "currency": "CNY",
+            "salary_monthly": round(annual / 12, 2), "salary_annual": annual,
+            "cost_monthly": None, "contract_hours_weekly": None,
+            "overtime_hours_weekly": None, "commute_hours_weekly": None, "intensity": None,
+            "iso3": "CHN", "occupation_code": code or "INDUSTRY_AVERAGE",
+            "occupation_taxonomy": "中国国家统计局劳动工资统计分类",
+            "source_url": source_url, "source_name": source_name,
+            "source_note": source_note + " 月等值为年工资/12，不是个人到手月薪或实际时薪。",
+            "reference_period": str(data.get("reference_period", "2025")),
+            "retrieved_at": data.get("retrieved_at"), "data_type": "official_statistic",
+            "statistic": "mean", "gross_net": "gross",
+        })
+
+    for item in data.get("headline_wages", []):
+        role = f"所有行业单位平均工资（{item['population']}）"
+        if (item["location"], role) in existing_headline:
+            continue
+        append_wage(item["location"], item["location"], item.get("geo_level", "admin1"),
+                    item["population"], int(item["salary_annual_2025"]), item["source_url"],
+                    item["source_name"], item.get("source_note", ""))
+    for item in data.get("anhui_city_wages", []):
+        append_wage(item["location"], "安徽省", "city", "城镇非私营单位",
+                    int(item["salary_annual_2025"]),
+                    "https://tjj.huainan.gov.cn/public/118319859/1261028126.html",
+                    "安徽省统计局《2025年安徽省城镇非私营单位就业人员年平均工资》",
+                    "地级市城镇非私营单位税前人均均值；不代表具体岗位。")
+    for item in data.get("jiangsu_focus_city_wages", []):
+        append_wage(item["location"], item.get("admin1", "江苏省"), "city", item["population"],
+                    int(item["salary_annual_2025"]), item["source_url"], item["source_name"],
+                    item.get("source_note", "江苏重点城市单位工资税前均值；不代表具体岗位。"))
+    for item in data.get("guangdong_subregions", []):
+        append_wage(item["location"], "广东省", "macroregion", item["salary_population"],
+                    int(item["salary_annual_2025"]),
+                    "https://stats.gd.gov.cn/tjkx185/content/post_4917310.html",
+                    "广东省统计局《2025年广东城镇单位就业人员年平均工资情况》",
+                    "片区为多市合并的统计区域，税前人均均值；不代表片区内任一城市或岗位。")
+    for table in data.get("industry_tables", []):
+        for industry, groups in table.get("values", {}).items():
+            for population, annual in groups.items():
+                if annual is None:
+                    continue
+                append_wage(table["location"], table["location"], "admin1", population,
+                            int(annual), table["source_url"], table["source_name"],
+                            f"{table['location']} {industry}行业税前人均均值；按行业门类统计，不等于具体职业offer。",
+                            role_prefix=industry)
+    return rows
+
 def main():
     sources = json.loads(REGISTRY.read_text(encoding="utf-8"))
     rows = []
-    for snapshot in (BLS_DATA, CHINA_DATA, CHINA_LOCAL_DATA, SHENZHEN_MARKET_DATA, CANADA_DATA, AUSTRALIA_DATA):
+    for snapshot in (BLS_DATA, CHINA_DATA, CHINA_LOCAL_DATA, SHENZHEN_MARKET_DATA, CHINA_EAST_DATA, CANADA_DATA, AUSTRALIA_DATA):
         if snapshot.exists():
-            rows.extend(json.loads(snapshot.read_text(encoding="utf-8")))
+            if snapshot == CHINA_EAST_DATA:
+                rows.extend(china_east_rows())
+            else:
+                rows.extend(json.loads(snapshot.read_text(encoding="utf-8")))
     source_status = {}
     previous_sources = prior_source_status()
     any_failed = False
