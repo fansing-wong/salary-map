@@ -1,29 +1,36 @@
 {
   "schema_version": 1,
-  "checked_at": "2026-11-21T02:26:08.533896+00:00",
+  "checked_at": "2026-11-21T03:13:06.954686+00:00",
   "last_successful_run": null,
-  "run_status": "completed_with_warnings",
+  "run_status": "partial_failure",
   "components": {
     "bls": {
-      "status": "blocked",
-      "last_attempt": "2026-11-21T02:26:08.533896+00:00",
+      "status": "failed",
+      "last_attempt": "2026-11-21T03:13:06.954686+00:00",
       "last_success": null,
-      "checked_at": "2026-11-21T02:26:08.533896+00:00",
-      "message": "Robots policy disallows this dataset; the previous snapshot was retained."
+      "checked_at": "2026-11-21T03:13:06.954686+00:00",
+      "message": "Refresh failed; see the GitHub Actions run log."
     },
     "salary_csv": {
-      "status": "not_configured",
-      "last_attempt": null,
-      "last_success": null,
-      "checked_at": "2026-11-21T02:26:08.533896+00:00",
-      "message": "No public CSV sources are configured."
+      "status": "success",
+      "last_attempt": "2026-11-21T03:13:06.954686+00:00",
+      "last_success": "2026-11-21T03:13:06.954686+00:00",
+      "checked_at": "2026-11-21T03:13:06.954686+00:00",
+      "message": "Refresh completed."
     },
     "macro": {
       "status": "success",
-      "last_attempt": "2026-11-21T02:26:08.533896+00:00",
-      "last_success": "2026-11-21T02:26:08.533896+00:00",
-      "checked_at": "2026-11-21T02:26:08.533896+00:00",
+      "last_attempt": "2026-11-21T03:13:06.954686+00:00",
+      "last_success": "2026-11-21T03:13:06.954686+00:00",
+      "checked_at": "2026-11-21T03:13:06.954686+00:00",
       "message": "Refresh completed."
+    },
+    "canada": {
+      "last_success": null,
+      "checked_at": "2026-11-21T03:13:06.954686+00:00",
+      "last_attempt": "2026-11-21T03:13:06.954686+00:00",
+      "status": "failed",
+      "message": "Refresh failed; see the GitHub Actions run log."
     }
   },
   "csv_sources": {}
