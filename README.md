@@ -86,4 +86,4 @@ BLS 官方数据表：[OEWS Tables](https://www.bls.gov/oes/tables.htm)。May 20
 
 ### 加拿大工资数据
 
-项目接入 Statistics Canada 月度表 14-10-0426-01（全国、省/地区、NOC 职业）。平均周工资乘以 52/12 得到月等值，页面和记录保留周工资来源口径；统计未提供的工时、生活成本及强度仍留空。首次采集需以 GitHub Actions 成功刷新和 `data/status.json` 状态为准。
+项目接入 Statistics Canada 月度表 14-10-0426-01（全国、省/地区、NOC 汇总职业组）。平均周工资乘以 52/12 得到月等值，页面和记录保留周工资来源口径，并标明该表不支持细分职业时不会把汇总组伪装成单一岗位；统计未提供的工时、生活成本及强度仍留空。首次采集需以 GitHub Actions 成功刷新和 `data/status.json` 状态为准。

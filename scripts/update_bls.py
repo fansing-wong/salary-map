@@ -34,7 +34,7 @@ def main():
     try:
         payload=download()
     except RuntimeError as exc:
-        if "robots.txt disallows this dataset" in str(exc):
+        if "robots.txt disallows" in str(exc):
             print("BLS refresh skipped: robots.txt disallows this dataset; preserving the last snapshot.")
             return 3
         raise
