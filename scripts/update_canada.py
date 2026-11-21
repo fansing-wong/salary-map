@@ -16,7 +16,7 @@ UA = "SalaryMapResearchBot/1.0 (+https://github.com/fansing-wong/salary-map)"
 GEO_NAMES = {
     "canada", "newfoundland and labrador", "prince edward island", "nova scotia",
     "new brunswick", "quebec", "ontario", "manitoba", "saskatchewan", "alberta",
-    "british columbia", "yukon", "northwest territories", "nunavut",
+    "british columbia",
 }
 
 
