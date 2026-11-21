@@ -17,3 +17,37 @@
 .civil-profile{display:grid;grid-template-columns:repeat(3,minmax(140px,1fr));gap:10px;padding:12px;margin:10px 0;background:#f7f9f5;border:1px solid var(--line);border-radius:9px}.civil-profile label{display:grid;gap:5px;font-size:11px;color:var(--muted)}.civil-profile input{width:100%;min-width:0}.file-button{display:inline-flex;align-items:center;padding:8px 11px;border:1px solid var(--line);border-radius:7px;cursor:pointer;font-size:12px}.civil-table{min-width:950px}.civil-table td{vertical-align:top}.civil-match{font-weight:700;color:#176b50}.civil-review{font-weight:700;color:#a66a19}.civil-miss{font-weight:700;color:#a64932}@media(max-width:700px){.civil-profile{grid-template-columns:1fr 1fr}}@media(max-width:460px){.civil-profile{grid-template-columns:1fr}}
 .civil-profile{display:grid;grid-template-columns:repeat(3,minmax(150px,1fr));gap:10px;padding:12px;margin:10px 0;background:#f7f9f5;border:1px solid var(--line);border-radius:9px}.civil-profile label{display:grid;gap:5px;font-size:11px;color:var(--muted)}.civil-profile input,.civil-profile select{width:100%;min-width:0}.civil-results-head{display:flex;gap:12px;align-items:center;justify-content:space-between;margin:12px 0}.civil-table{min-width:1450px}.civil-table td{vertical-align:top;max-width:320px;white-space:normal}.civil-table small{display:block;color:var(--muted);margin-top:4px}.civil-table details{min-width:190px}.civil-table summary{cursor:pointer}.civil-match{font-weight:700;color:#176b50}.civil-review{font-weight:700;color:#a66a19}@media(max-width:700px){.civil-profile{grid-template-columns:1fr 1fr}.civil-results-head{align-items:flex-start;flex-direction:column}}@media(max-width:460px){.civil-profile{grid-template-columns:1fr}}
 .civil-profile{display:grid;grid-template-columns:repeat(3,minmax(140px,1fr));gap:10px;padding:12px;margin:10px 0;background:#f7f9f5;border:1px solid var(--line);border-radius:9px}.civil-profile label{display:grid;gap:5px;font-size:11px;color:var(--muted)}.civil-profile input,.civil-profile select{width:100%;min-width:0}.civil-sourcebar{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:10px 0;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:#f7f9f5;font-size:11px}.civil-sourcebar span{flex:1 1 100%;color:var(--muted)}.civil-sourcebar a{color:var(--green)}.civil-results-head{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;margin:12px 0}.civil-results-head strong{max-width:100%;font-size:12px}.civil-table{min-width:1150px}.civil-table td{vertical-align:top}.civil-match{font-weight:700;color:#176b50}.civil-review{font-weight:700;color:#a66a19}.civil-miss{font-weight:700;color:#a64932}.civil-neutral{font-weight:700;color:var(--muted)}.civil-table .sub{display:block;max-width:230px;margin-top:4px;white-space:normal;font-size:10px;line-height:1.5}.civil-table details{min-width:180px;max-width:320px}.civil-table details p{white-space:pre-wrap;overflow-wrap:anywhere}.civil-table small{display:inline-block;max-width:300px;white-space:normal;color:var(--muted);margin-top:4px}.civil-results-head button:disabled{opacity:.45;cursor:not-allowed}@media(max-width:700px){.civil-profile{grid-template-columns:1fr 1fr}.civil-results-head{align-items:flex-start}.civil-results-head strong{line-height:1.6}}@media(max-width:460px){.civil-profile{grid-template-columns:1fr}}
+
+.city-budget-panel .section-head{align-items:flex-start}
+.city-budget-panel .section-head p{margin:5px 0}
+.city-budget-role{display:grid;grid-template-columns:minmax(240px,330px) 1fr;gap:16px;align-items:end;padding:12px;margin:12px 0;background:#f7f9f5;border:1px solid var(--line);border-radius:9px}
+.city-budget-role label{display:grid;gap:5px;font-size:11px;color:var(--muted)}
+.city-budget-role input{width:100%;border:1px solid var(--line);border-radius:7px;padding:9px;background:#fff;color:var(--ink)}
+.city-budget-role p{margin:0}
+.city-budget-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:12px 0}
+.city-budget-metric{display:grid;gap:3px;padding:11px 13px;background:#f7f9f5;border:1px solid var(--line);border-radius:8px}
+.city-budget-metric span,.city-budget-metric small{font-size:10px;color:var(--muted)}
+.city-budget-metric strong{font-size:17px}
+.city-budget-wrap{max-height:72vh;border:1px solid var(--line);border-radius:8px}
+.city-budget-table{min-width:2190px}
+.city-budget-table th,.city-budget-table td{text-align:left;vertical-align:top;white-space:normal}
+.city-budget-table th{min-width:118px;background:#f7f9f5}
+.city-budget-table th:first-child{min-width:110px}
+.city-budget-table td{min-width:120px}
+.city-budget-table td:first-child{min-width:110px;background:#fff}
+.city-budget-table .city-name{position:sticky;left:0;z-index:1}
+.city-budget-table thead th:first-child{position:sticky;left:0;z-index:3}
+.city-budget-table input{width:100%;min-width:112px;height:36px;border:1px solid var(--line);border-radius:6px;padding:6px 8px;background:#fff;color:var(--ink);font:inherit;font-size:12px}
+.city-budget-table td small{display:block;margin-top:4px;font-size:10px;line-height:1.45;color:var(--muted)}
+.city-budget-table td a{color:var(--green);text-decoration:none}
+.city-budget-table td a:hover{text-decoration:underline}
+.city-data-badge{display:inline-block;padding:2px 6px;border-radius:12px;background:#e7f2e9;color:#176b50;font-size:9px}
+.city-data-review{background:#fff0e9;color:#a64932}
+.city-unavailable{font-weight:700;color:#a64932}
+.city-result strong{display:block;color:var(--green);font-size:13px;white-space:nowrap}
+.city-result .city-negative{color:#a64932}
+.city-budget-status{margin:8px 0}
+.city-budget-notes{margin-top:10px;padding:10px 12px;background:#f7f9f5;border:1px solid var(--line);border-radius:8px;font-size:11px}
+.city-budget-notes summary{font-weight:700;cursor:pointer}
+.city-budget-notes ul{padding-left:18px;color:var(--muted);line-height:1.7}
+@media(max-width:720px){.city-budget-panel .section-head{display:block}.city-budget-panel .section-head>button{margin-top:8px}.city-budget-role{grid-template-columns:1fr}.city-budget-summary{grid-template-columns:1fr}}.city-budget-table select{width:100%;min-width:125px;height:36px;border:1px solid var(--line);border-radius:6px;padding:6px 8px;background:#fff;color:var(--ink);font:inherit;font-size:11px}
