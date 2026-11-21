@@ -7,7 +7,7 @@
   };
   const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (char) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
   const money = (value) => value == null || !Number.isFinite(value) ? '待补资料' : new Intl.NumberFormat('zh-CN', {maximumFractionDigits:0}).format(value);
-  const inputs = ['careerCurrency','careerCurrentIncome','careerCurrentCost','careerInterimIncome','careerTargetCost','careerSavings','careerUpfront','careerMonthlyTraining','careerStudyHours','careerTransitionMonths','careerQualification','careerQualificationStatus','careerIncomeLow','careerIncomeBase','careerIncomeHigh'];
+  const inputs = ['careerCurrentRole','careerTargetRole','careerAdvantageTrend','careerPathPreference','careerCurrency','careerCurrentIncome','careerCurrentCost','careerInterimIncome','careerTargetCost','careerSavings','careerUpfront','careerMonthlyTraining','careerStudyHours','careerTransitionMonths','careerQualification','careerQualificationStatus','careerIncomeLow','careerIncomeBase','careerIncomeHigh'];
   const readState = () => { try { return JSON.parse(localStorage.getItem(KEY) || '{}'); } catch { return {}; } };
   let state = readState();
   inputs.forEach((id) => { if (state.inputs?.[id] != null) $(`#${id}`).value = state.inputs[id]; });
@@ -47,6 +47,17 @@
     const weightTotal=validSkills.reduce((sum,s)=>sum+Number(s.weight),0);
     const skillGap=weightTotal?100*validSkills.reduce((sum,s)=>sum+Number(s.weight)*Math.max(Number(s.target)-Number(s.current),0)/5,0)/weightTotal:null;
     const validRisks=(state.risks||[]).filter((r)=>r.name.trim()!==''&&r.impact!==''&&r.likelihood!=='').map((r)=>({...r,score:Number(r.impact)*Number(r.likelihood)})).sort((a,b)=>b.score-a.score);
+    const trend=$('#careerAdvantageTrend').value,preference=$('#careerPathPreference').value;
+    const paths=[
+      {id:'reinforce',title:'强化当前职业优势',desc:'保留已有经验与收入基础，补齐最接近岗位要求的技能；适合先验证当前优势是否仍有市场证据。',risk:'通常更易保留已有积累；若岗位优势正在减弱，应同时建立备份。'},
+      {id:'adjacent',title:'转向相邻职业',desc:'优先寻找复用当前技能、行业知识或作品证据的目标岗位，逐个对照职位要求。',risk:'技能迁移程度取决于目标岗位的真实任务与雇主要求。'},
+      {id:'crossfield',title:'跨领域转型',desc:'先通过小项目、课程作业或短期任务验证目标领域，再扩大投入和收入假设。',risk:'通常需要更多新技能、资格和市场验证；请重点检查现金跑道。'},
+      {id:'backup',title:'建立防守备份路线',desc:'保留主业或可转回的岗位选项，列出可在较短准备期内申请的替代岗位。',risk:'备份路线的收入、岗位需求和可逆性仍需用当地招聘证据核对。'},
+    ];
+    const transitionCash=interimIncome==null||targetCost==null||training==null?null:interimIncome-targetCost-training;
+    const runwayShort=expectedMonths!=null&&transitionCash<0&&savings!=null&&upfront!=null&&(savings-upfront)/(-transitionCash)<expectedMonths;
+    const preferredOrder=preference==='auto'?(runwayShort?['backup','reinforce','adjacent','crossfield']:trend==='weakening'?['adjacent','backup','reinforce','crossfield']:skillGap!=null&&skillGap>=60?['reinforce','adjacent','backup','crossfield']:trend==='growing'||trend==='stable'?['reinforce','adjacent','backup','crossfield']:['reinforce','adjacent','crossfield','backup']):[preference,...paths.map((p)=>p.id).filter((id)=>id!==preference)];
+    const pathCards=preferredOrder.map((id,index)=>{const path=paths.find((item)=>item.id===id);const rationale=preference!=='auto'&&index===0?'你手动设为优先核对':trend==='weakening'&&['adjacent','backup'].includes(id)?'当前优势趋势为减弱，先核验可迁移技能和备份选项':trend==='unknown'?'优势趋势尚不确定，先收集岗位需求和个人作品证据':index===0?'按当前填写资料作为起点，需用目标岗位证据复核':'可作为并行备选，按投入和可逆性继续比较';return `<article class="path-card ${index===0?'path-priority':''}"><span class="sub">${index===0?'优先核对':'备选路线'} · ${rationale}</span><h4>${path.title}</h4><p>${path.desc}</p><small>${path.risk}</small></article>`}).join('');
     const evidenceCount=validSkills.filter((s)=>s.evidence==='strong').length;
     const currency=escapeHtml($('#careerCurrency').value.trim()||'所填币种');
     const scenarioCards=scenarios.map(([label,income])=>{
@@ -82,6 +93,7 @@
     if (!notes.length) notes.push('先补齐关键收支、技能与风险证据，再对照悲观情景是否满足你的最低生活和储备要求。');
     const noteCard=`<div class="career-result career-notes"><b>下一步核对</b><ul>${notes.map((item)=>`<li>${item}</li>`).join('')}<li>当前结余 ${currentBalance==null?'待补当前收入和支出':money(currentBalance)+' '+currency+' / 月'}；回本期使用“前置成本 ÷ 每月结余改善”，若改善不为正则不输出正数。</li></ul></div>`;
     $('#careerResults').innerHTML=scenarioCards+skillCard+riskCard+noteCard;
+    $('#careerPathResults').innerHTML=`<p class="sub">${escapeHtml($('#careerCurrentRole').value||'当前职业未填写')} → ${escapeHtml($('#careerTargetRole').value||'目标职业未填写')} · 依据你选择的优势趋势和优先项排序；不代表岗位需求预测或成功率。</p>${pathCards}`;
   }
 
   renderRows();

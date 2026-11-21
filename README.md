@@ -26,7 +26,7 @@
 
 - [新加坡人力部 MOM 职业工资](https://stats.mom.gov.sg/statistics/income/occupational-wages/)
 - [美国劳工统计局 BLS OEWS 职业工资表](https://www.bls.gov/oes/tables.htm)
-- [加拿大 Statistics Canada 年度职业工资表](https://www150.statcan.gc.ca/n1/en/catalogue/1410041701)
+- [加拿大 Statistics Canada 月度职业工资表](https://www150.statcan.gc.ca/n1/en/catalogue/1410042601)
 - [英国 ONS 工资与工时统计](https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours)
 - [中国国家统计局城镇工资（2025）](https://www.stats.gov.cn/english/PressRelease/202605/t20260518_1963740.html)
 - [日本厚生劳动省工资统计](https://www.mhlw.go.jp/www2/info/toukei/english/surveys.htm)
@@ -47,7 +47,7 @@ MIT，见 [LICENSE](LICENSE)。
 
 ## 自动更新数据
 
-刷新入口为 `scripts/refresh_data.py`，分别更新 BLS 工资数据、获准的公开 CSV 来源和宏观指标。把获得授权且可再分发的 CSV 来源加入 `scripts/sources.json` 后，可本地运行 `python scripts/refresh_data.py`。GitHub Actions 每周一 UTC 04:17 自动运行，也可在 Actions 页面手动触发；数据写入 `data/latest.json` 和 `data/macro.json`，运行状态记录在 `data/status.json` 并显示于仪表盘。首次上线时 CSV 来源列表为空，因此不会自动抓取网站。
+刷新入口为 `scripts/refresh_data.py`，分别更新 BLS 工资数据、Statistics Canada 月度职业工资、获准的公开 CSV 来源和宏观指标。把获得授权且可再分发的 CSV 来源加入 `scripts/sources.json` 后，可本地运行 `python scripts/refresh_data.py`。GitHub Actions 每周一 UTC 04:17 自动运行，也可在 Actions 页面手动触发；数据写入 `data/latest.json` 和 `data/macro.json`，运行状态记录在 `data/status.json` 并显示于仪表盘。首次上线时 CSV 来源列表为空，因此不会自动抓取网站。
 
 各数据文件在校验完整后才原子替换。单一来源失败不会阻断其他刷新；状态文件记录本轮结果和上次成功时间，真实数据/网络错误会让 Actions 运行标记为失败，同时继续提供上次成功快照。若 robots.txt 明确禁止某来源，系统将其标为“受限”，保留旧快照并发出警告，不会绕过限制。仪表盘在工资统计参考期超过 2 年、汇率日期超过 7 天或 PPP 参考年超过 3 年时提示复核；这些是项目提醒阈值，不代表来源机构的官方有效期。
 
@@ -80,4 +80,10 @@ BLS 官方数据表：[OEWS Tables](https://www.bls.gov/oes/tables.htm)。May 20
 
 ## 出海路径浏览器
 
+可填写国籍、年龄、学历、语言、迁移预算和职业，并筛选个人资料字段是否齐全。该筛选不判断法律资格、路线适用性或获批可能；资料仅保存在本机浏览器。
+
 页面按目的地国家和五个阶段筛选政府移民入口：短期探路、短居/青年流动、合法工作、长期/永久居留和入籍。初始覆盖美国、加拿大、澳大利亚、英国、新加坡、日本、韩国和中国。入口清单不判定某人的国籍、年龄或资历是否符合条件，也不替代最新法规核验；具体路线的细节和边界见 [出海路径说明](docs/MOBILITY_PATHWAYS.md)。
+
+### 加拿大工资数据
+
+项目接入 Statistics Canada 月度表 14-10-0426-01（全国、省/地区、NOC 职业）。平均周工资乘以 52/12 得到月等值，页面和记录保留周工资来源口径；统计未提供的工时、生活成本及强度仍留空。首次采集需以 GitHub Actions 成功刷新和 `data/status.json` 状态为准。

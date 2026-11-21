@@ -9,7 +9,6 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 STATUS_FILE = ROOT / "data" / "status.json"
-SOURCE_REGISTRY = ROOT / "scripts" / "sources.json"
 TEMP_SOURCE_STATUS = ROOT / "data" / ".csv-status.tmp.json"
 
 
@@ -56,6 +55,7 @@ def main() -> int:
     for key, snapshot in {
         "bls": ROOT / "data" / "bls_metro_2025.json",
         "macro": ROOT / "data" / "macro.json",
+        "canada": ROOT / "data" / "canada_wages.json",
     }.items():
         component = components.get(key)
         if not isinstance(component, dict):
@@ -64,15 +64,10 @@ def main() -> int:
         if not component.get("last_success"):
             component["last_success"] = latest_retrieval(snapshot)
 
-    try:
-        configured_sources = json.loads(SOURCE_REGISTRY.read_text(encoding="utf-8"))
-        csv_configured = bool(configured_sources)
-    except (OSError, json.JSONDecodeError):
-        csv_configured = True  # Let update_data report the registry error.
-
     jobs = [
         ("bls", "Refresh U.S. BLS salary snapshot", "scripts/update_bls.py", True),
-        ("salary_csv", "Refresh configured public salary sources", "scripts/update_data.py", csv_configured),
+        ("canada", "Refresh Statistics Canada occupation wages", "scripts/update_canada.py", True),
+        ("salary_csv", "Merge official salary snapshots and refresh configured public CSV sources", "scripts/update_data.py", True),
         ("macro", "Refresh FX and purchasing power data", "scripts/update_macro.py", True),
     ]
     failed = False

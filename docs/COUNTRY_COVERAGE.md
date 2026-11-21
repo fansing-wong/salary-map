@@ -8,7 +8,7 @@
 | 日本 | 厚生劳动省工资结构基本调查、Hello Work 求职招聘工资 | 调查可细至职业类别 | 都道府县、地域块；Hello Work 职业工资按地域块 | 优先采用可下载的官方 Excel；保留固定工资与招聘工资口径差异 |
 | 韩国 | 雇佣劳动部雇佣形态别劳动实态调查 / KOSIS | 职业大类、小时工资和工时 | 公开表按表而异，当前不承诺城市职业交叉粒度 | 先接官方表格/API，再扩展地区维度 |
 | 澳大利亚 | ABS Employee Earnings and Hours (EEH) | ANZSCO 职业组；TableBuilder 可提供更细交叉表 | 公布表覆盖州/领地与职业分别或有限交叉；更细需 TableBuilder | 下载 ABS 数据立方体；公开表优先，微观数据服务不做自动采集 |
-| 加拿大 | Statistics Canada 与政府 Job Bank 工资 | NOC 职业及小时工资/区间 | 省、地区及经济区；具体表格覆盖不一致 | 先接政府公开表/下载接口，记录 NOC 版本和工资区间定义 |
+| 加拿大 | Statistics Canada 月度职业工资表 14-10-0426-01；导入器按 NOC 2021 选取职业及全国/省区记录 | NOC 职业；平均周工资按 52/12 折算月等值 | 全国、省/地区；暂不细化到城市 | WDS 官方下载 CSV ZIP，保留平均周工资原口径、参考月与换算说明 |
 | 美国 | BLS OEWS | SOC 职业 | 全国、州、都会区 | 现有 BLS 适配器 |
 | 新加坡 | MOM Occupational Wages | 职业类别 | 全国为主 | MOM 官方下载数据 |
 | 英国 | ONS ASHE | SOC 职业 | UK、国家构成国及可用地区 | ONS 官方数据表 |
@@ -29,13 +29,15 @@
 - [日本厚生劳动省：Hello Work 地区/职业招聘与工资](https://www.mhlw.go.jp/roudou-navi/data/01/)
 - [韩国雇佣劳动部：工资与工时统计表](https://stathtml.moel.go.kr/statHtml/statHtml.do?conn_path=I2&language=en&orgId=118&tblId=DT_118N_LCE0001)
 - [澳大利亚 ABS：EEH 2025 数据立方体](https://www.abs.gov.au/statistics/labour/earnings-and-working-conditions/employee-earnings-and-hours-australia/may-2025)
-- [加拿大 Statistics Canada：职业年度工资](https://www150.statcan.gc.ca/n1/en/catalogue/1410041701)
+- [加拿大 Statistics Canada：月度职业工资（14-10-0426-01）](https://www150.statcan.gc.ca/n1/en/catalogue/1410042601)
 - [加拿大政府 Job Bank：工资搜索](https://www.jobbank.gc.ca/trend-analysis/search-wages)
 - [美国 BLS OEWS](https://www.bls.gov/oes/tables.htm)
 - [新加坡 MOM 职业工资](https://stats.mom.gov.sg/statistics/income/occupational-wages/)
 - [英国 ONS 工资和工时](https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours)
 
-数据整理日期：2026-11-20。政府统计发布会修订；每次刷新须保留下载日期和参考期。
+加拿大自动导入器写入 `data/canada_wages.json` 并由刷新任务并入 `data/latest.json`；上线前的首轮成功状态由 GitHub Actions 验证。
+
+数据整理日期：2026-11-21。政府统计发布会修订；每次刷新须保留下载日期和参考期。
 
 ## 仪表盘覆盖矩阵
 

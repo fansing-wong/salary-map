@@ -85,10 +85,10 @@
     const cards = [
       {
         title: '官方工资统计',
-        state: salaryOld || ['failed', 'blocked'].includes(components.bls?.status) || csvSources.some(([, item]) => item.status === 'failed') ? 'status-warning' : officialRows.length ? 'status-ok' : 'status-unknown',
+        state: salaryOld || ['failed', 'blocked'].includes(components.bls?.status) || ['failed', 'blocked'].includes(components.canada?.status) || csvSources.some(([, item]) => item.status === 'failed') ? 'status-warning' : officialRows.length ? 'status-ok' : 'status-unknown',
         value: `${officialRows.length} 条有来源记录`,
         detail: `最新参考期：${latestReferenceYear ?? '未知'} · 最近抓取：${timeLabel(latestRetrieved)}`,
-        extra: `${salaryFreshness} · ${componentLabel(components.bls, 'BLS')} · ${csvSummary}`,
+        extra: `${salaryFreshness} · ${componentLabel(components.bls, 'BLS')} · ${componentLabel(components.canada, '加拿大 Statistics Canada')} · ${csvSummary}`,
       },
       {
         title: '汇率与购买力指标',

@@ -68,15 +68,30 @@
     ]}
   ];
   const countrySelect=document.querySelector('#mobilityCountry'),stageSelect=document.querySelector('#mobilityStage'),cards=document.querySelector('#mobilityCards'),timeline=document.querySelector('#mobilityTimeline');
+  const profileKey='salary-map-mobility-profile';
+  const profileFields=['mobilityNationality','mobilityAge','mobilityEducation','mobilityLanguage','mobilityBudget','mobilityOccupation'];
+  const readProfile=()=>{try{return JSON.parse(localStorage.getItem(profileKey)||'{}')}catch{return {}}};
+  const profile=readProfile();
+  profileFields.forEach((id)=>{const el=document.getElementById(id);if(el&&profile[id]!=null)el.value=profile[id]});
+  const completeOnly=document.querySelector('#mobilityCompleteOnly');
+  if(completeOnly)completeOnly.checked=profile.completeOnly===true;
+  function requiredFor(stage){
+    if(stage==='explore'||stage==='citizenship')return ['mobilityNationality'];
+    if(stage==='short')return ['mobilityNationality','mobilityAge','mobilityBudget'];
+    if(stage==='work')return ['mobilityNationality','mobilityAge','mobilityOccupation','mobilityEducation','mobilityLanguage','mobilityBudget'];
+    return ['mobilityNationality','mobilityAge','mobilityOccupation','mobilityEducation','mobilityLanguage','mobilityBudget'];
+  }
+  function saveProfile(){const next=Object.fromEntries(profileFields.map((id)=>[id,document.getElementById(id)?.value.trim()||'']));next.completeOnly=!!completeOnly?.checked;localStorage.setItem(profileKey,JSON.stringify(next));render()}
   countrySelect.innerHTML=countries.map((c)=>`<option value="${c.name}">${c.name}</option>`).join('');
   function render(){
     const country=countries.find((c)=>c.name===countrySelect.value)||countries[0],stage=stageSelect.value;
     timeline.innerHTML=stages.map(([key,label])=>`<button type="button" class="mobility-stage ${stage===key?'active':''}" data-stage="${key}">${label}<small>${country.routes.filter((r)=>r[0]===key).length} 条入口</small></button>`).join('');
-    const list=country.routes.filter((route)=>stage==='all'||route[0]===stage);
+    const list=country.routes.filter((route)=>stage==='all'||route[0]===stage).map((route)=>({route,missing:requiredFor(route[0]).filter((id)=>!document.getElementById(id)?.value.trim())})).filter((item)=>!completeOnly?.checked||item.missing.length===0);
     document.querySelector('#mobilityScope').textContent=`${country.name} · ${stage==='all'?'全阶段':stages.find((x)=>x[0]===stage)?.[1]} · ${list.length} 条官方路线入口`;
-    cards.innerHTML=list.length?list.map((route)=>`<article class="mobility-card"><div class="eyebrow">${stages.find((x)=>x[0]===route[0])?.[1]}</div><h3>${route[1]}</h3><p>${route[2]}</p><a href="${route[3]}" target="_blank" rel="noreferrer">${route[4]} ↗</a></article>`).join(''):'<p class="empty">该筛选下暂无路线入口，请查看完整路线说明或选择其他阶段。</p>';
+    cards.innerHTML=list.length?list.map(({route,missing})=>`<article class="mobility-card"><div class="eyebrow">${stages.find((x)=>x[0]===route[0])?.[1]}</div><h3>${route[1]}</h3><p>${route[2]}</p><p class="profile-match">${missing.length===0?'筛选资料已填写齐全，仍需逐项核验官方资格':'还缺 '+missing.length+' 项筛选资料：'+missing.map((id)=>({'mobilityNationality':'国籍','mobilityAge':'年龄','mobilityOccupation':'职业','mobilityEducation':'学历','mobilityLanguage':'语言','mobilityBudget':'预算'}[id])).join('、')}</p><a href="${route[3]}" target="_blank" rel="noreferrer">${route[4]} ↗</a></article>`).join(''):'<p class="empty">没有符合“筛选资料完整度”条件的路线入口；关闭完整资料筛选或补充个人资料。</p>';
   }
   countrySelect.addEventListener('change',render);stageSelect.addEventListener('change',render);
+  profileFields.forEach((id)=>{const el=document.getElementById(id);el?.addEventListener('input',saveProfile);el?.addEventListener('change',saveProfile)});completeOnly?.addEventListener('change',saveProfile);
   timeline.addEventListener('click',(event)=>{const button=event.target.closest('[data-stage]');if(!button)return;stageSelect.value=button.dataset.stage;render();});
   render();
 })();
