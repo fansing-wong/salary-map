@@ -87,7 +87,7 @@ def coordinates(metadata: dict) -> list[dict]:
     if len(geo_members) != len(GEO_NAMES):
         raise RuntimeError(f"Statistics Canada geography metadata coverage changed; expected {len(GEO_NAMES)}, found {len(geo_members)}")
     wage_member = choose_member(wages.get("member", []), exact="Average weekly wage rate")
-    work_member = choose_member(work.get("member", []), patterns=(r"^total employees, all wages$", r"^total employees.*all wages"))
+    work_member = choose_member(work.get("member", []), patterns=(r"^both full- and part-time employees$", r"^total employees, all wages$", r"^total employees.*all wages"))
     gender_member = choose_member(gender.get("member", []), patterns=(r"^both sexes$", r"^total\s*-?\s*gender$", r"^total$"))
     age_member = choose_member(age.get("member", []), patterns=(r"^15 years and over$", r"^15 years and older$", r"^total\s*-?\s*age group$"))
     occupations = occupation_members(occupation)
