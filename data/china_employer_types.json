@@ -1,0 +1,196 @@
+{
+  "schema_version": 1,
+  "title": "China employer-type wage references",
+  "reference_period": "2025 with city-level detailed 2024 records where available",
+  "categories": [
+    {
+      "id": "private",
+      "label": "私营单位",
+      "definition": "国家统计局城镇私营单位就业人员年平均工资；地方记录只在官方单独公布时纳入。",
+      "coverage": "国家与部分省、市已覆盖；安徽重点城市暂缺私营单位均值。"
+    },
+    {
+      "id": "foreign",
+      "label": "外商投资单位",
+      "definition": "按统计登记注册类别，不等同于所有有外资背景的企业或外企岗位。",
+      "coverage": "国家 2025 年与南京 2024 年有官方均值；其他重点城市未单列。"
+    },
+    {
+      "id": "hmt",
+      "label": "港澳台投资单位",
+      "definition": "按统计登记注册类别单列，保留为独立参照。",
+      "coverage": "国家 2025 年与南京 2024 年有官方均值。"
+    },
+    {
+      "id": "agency",
+      "label": "机关单位（公务员非专属）",
+      "definition": "机构类型为机关的全部单位就业人员；不等于公务员群体，也不等于个人职级、津补贴或到手收入。",
+      "coverage": "南京 2024 年有官方城市均值，其他目标城市没有同口径公开值。"
+    },
+    {
+      "id": "institution",
+      "label": "事业单位",
+      "definition": "按机构类型为事业的单位就业人员。若“事业部”指企业内部事业部，它不是可直接对齐的统计单位类型。",
+      "coverage": "南京 2024 年有官方城市均值，其他目标城市没有同口径公开值。"
+    },
+    {
+      "id": "nonprivate_enterprise",
+      "label": "非私营单位内企业",
+      "definition": "南京非私营单位中按机构类型分组的企业，不代表所有企业，也未按央企、地方国企或外企所有权进一步拆分。",
+      "coverage": "南京 2024 年有官方城市均值。"
+    },
+    {
+      "id": "domestic_nonprivate",
+      "label": "非私营内资单位（不等于国企）",
+      "definition": "按登记注册统计类别的非私营内资单位；包含多种机构类型与所有制，不能作为央企或国企工资代理。",
+      "coverage": "国家 2025 年与南京 2024 年有官方均值。"
+    },
+    {
+      "id": "nonprivate_mixed",
+      "label": "非私营综合（混合总体）",
+      "definition": "城镇非私营单位总体，混合机关、事业单位、非私营企业及外商/港澳台投资单位等。",
+      "coverage": "国家、部分省级地区和城市可查；不代表任一单独单位类型。"
+    },
+    {
+      "id": "state_owned",
+      "label": "央企 / 国企（暂无可比工资均值）",
+      "definition": "目前已接入的同口径工资统计没有把央企、地方国企按所有制和城市同时拆分。",
+      "coverage": "不填估算值；“内资”“非私营”都不能直接替代国企分类。"
+    }
+  ],
+  "records": [
+    {
+      "location": "全国",
+      "geo_level": "national",
+      "category_id": "private",
+      "reference_period": "2025",
+      "salary_annual": 71590,
+      "population": "城镇私营单位就业人员",
+      "source_url": "https://www.stats.gov.cn/sj/zxfbhjd/202605/t20260515_1963707.html",
+      "source_name": "国家统计局《2025年城镇单位就业人员年平均工资情况》",
+      "source_note": "税前年均工资；不代表岗位中位数、个人到手收入或具体 offer。"
+    },
+    {
+      "location": "全国",
+      "geo_level": "national",
+      "category_id": "foreign",
+      "reference_period": "2025",
+      "salary_annual": 164956,
+      "population": "城镇非私营单位·外商投资单位",
+      "source_url": "https://www.stats.gov.cn/sj/zxfbhjd/202605/t20260515_1963707.html",
+      "source_name": "国家统计局《2025年城镇单位就业人员年平均工资情况》",
+      "source_note": "按登记注册统计类别；全国均值，不代表任一城市或特定外企岗位。"
+    },
+    {
+      "location": "全国",
+      "geo_level": "national",
+      "category_id": "hmt",
+      "reference_period": "2025",
+      "salary_annual": 146701,
+      "population": "城镇非私营单位·港澳台投资单位",
+      "source_url": "https://www.stats.gov.cn/sj/zxfbhjd/202605/t20260515_1963707.html",
+      "source_name": "国家统计局《2025年城镇单位就业人员年平均工资情况》",
+      "source_note": "按登记注册统计类别；全国均值，单独展示，不并入外商投资单位。"
+    },
+    {
+      "location": "全国",
+      "geo_level": "national",
+      "category_id": "domestic_nonprivate",
+      "reference_period": "2025",
+      "salary_annual": 125819,
+      "population": "城镇非私营单位·内资单位",
+      "source_url": "https://www.stats.gov.cn/sj/zxfbhjd/202605/t20260515_1963707.html",
+      "source_name": "国家统计局《2025年城镇单位就业人员年平均工资情况》",
+      "source_note": "登记注册类别中的非私营内资单位，不是国有单位均值。"
+    },
+    {
+      "location": "全国",
+      "geo_level": "national",
+      "category_id": "nonprivate_mixed",
+      "reference_period": "2025",
+      "salary_annual": 129441,
+      "population": "城镇非私营单位就业人员",
+      "source_url": "https://www.stats.gov.cn/sj/zxfbhjd/202605/t20260515_1963707.html",
+      "source_name": "国家统计局《2025年城镇单位就业人员年平均工资情况》",
+      "source_note": "综合总体包含多种登记类型和机构类型，不可解释为机关、事业单位或国企单项工资。"
+    },
+    {
+      "location": "南京市",
+      "geo_level": "city",
+      "category_id": "agency",
+      "reference_period": "2024",
+      "salary_annual": 193522,
+      "average_employee_count": 131205,
+      "population": "城镇非私营单位·机构类型为机关",
+      "source_url": "https://tjj.nanjing.gov.cn/material/njnj_2025/renmin/4-10.html",
+      "source_name": "南京市统计局《南京统计年鉴 2025》表 4-10",
+      "source_note": "从业人员年人均工资；统计的是机关单位全部就业人员，不是公务员个人待遇。"
+    },
+    {
+      "location": "南京市",
+      "geo_level": "city",
+      "category_id": "institution",
+      "reference_period": "2024",
+      "salary_annual": 203433,
+      "average_employee_count": 311096,
+      "population": "城镇非私营单位·机构类型为事业",
+      "source_url": "https://tjj.nanjing.gov.cn/material/njnj_2025/renmin/4-10.html",
+      "source_name": "南京市统计局《南京统计年鉴 2025》表 4-10",
+      "source_note": "从业人员年人均工资；不是某一事业单位或岗位的录用报价。"
+    },
+    {
+      "location": "南京市",
+      "geo_level": "city",
+      "category_id": "nonprivate_enterprise",
+      "reference_period": "2024",
+      "salary_annual": 149837,
+      "average_employee_count": 1651436,
+      "population": "城镇非私营单位·机构类型为企业",
+      "source_url": "https://tjj.nanjing.gov.cn/material/njnj_2025/renmin/4-10.html",
+      "source_name": "南京市统计局《南京统计年鉴 2025》表 4-10",
+      "source_note": "表格总体为城镇非私营单位中的企业机构；未按央企、地方国企或外资进一步拆分。"
+    },
+    {
+      "location": "南京市",
+      "geo_level": "city",
+      "category_id": "domestic_nonprivate",
+      "reference_period": "2024",
+      "salary_annual": 163699,
+      "average_employee_count": 1791000,
+      "population": "城镇非私营单位·内资登记类别",
+      "source_url": "https://tjj.nanjing.gov.cn/material/njnj_2025/renmin/4-10.html",
+      "source_name": "南京市统计局《南京统计年鉴 2025》表 4-10",
+      "source_note": "按登记注册类别；不等于国有单位或央企平均工资。"
+    },
+    {
+      "location": "南京市",
+      "geo_level": "city",
+      "category_id": "foreign",
+      "reference_period": "2024",
+      "salary_annual": 143404,
+      "average_employee_count": 198572,
+      "population": "城镇非私营单位·外商投资登记类别",
+      "source_url": "https://tjj.nanjing.gov.cn/material/njnj_2025/renmin/4-10.html",
+      "source_name": "南京市统计局《南京统计年鉴 2025》表 4-10",
+      "source_note": "按登记注册类别；2024 年城市数据，和全国 2025 年值年份不同。"
+    },
+    {
+      "location": "南京市",
+      "geo_level": "city",
+      "category_id": "hmt",
+      "reference_period": "2024",
+      "salary_annual": 141340,
+      "average_employee_count": 133710,
+      "population": "城镇非私营单位·港澳台投资登记类别",
+      "source_url": "https://tjj.nanjing.gov.cn/material/njnj_2025/renmin/4-10.html",
+      "source_name": "南京市统计局《南京统计年鉴 2025》表 4-10",
+      "source_note": "按登记注册类别；2024 年城市数据，和全国 2025 年值年份不同。"
+    }
+  ],
+  "notes": [
+    "机关和事业单位数据取自南京统计年鉴 2025 的 2024 年从业人员工资表 4-10；该表明确列出机构类型和登记注册类别。",
+    "全国数据取自国家统计局 2025 年城镇单位就业人员年平均工资发布。",
+    "统计类别不是求职者岗位级薪酬；城市缺少细分发布时不从全国均值或非私营均值推算。",
+    "记录是税前年人均工资，不代表税后到手、总包中位数、实际时薪、福利或工作强度。"
+  ]
+}
