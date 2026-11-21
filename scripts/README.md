@@ -4,4 +4,6 @@ The project accepts openly published CSV datasets only. Each source entry must i
 
 For social networks, use only a documented API with the required app approval and data scope. LinkedIn's Posts API, for example, restricts read permissions for member content to approved users; this project does not scrape logged-in feeds. Social posts can be treated as dated job-posting observations only, never as representative salary averages. Aggregate and label them separately.
 
-`python scripts/update_data.py` reads `sources.json` and writes `data/latest.json`. The current source registry is intentionally empty until maintainers add a source whose access and redistribution terms they have checked.
+`python scripts/refresh_data.py` runs the BLS importer, configured CSV collector, and macro refresh independently. It atomically writes `data/status.json` with each component's most recent attempt and last successful run; failed components keep their prior output and cause the GitHub Actions job to fail after the status report is committed. The dashboard reads that report and shows data reference periods, retrieval times, and stale-data warnings.
+
+`python scripts/update_data.py` can still be run by itself to refresh configured CSV sources and `data/latest.json`. The current source registry is intentionally empty until maintainers add a source whose access and redistribution terms they have checked. Refresh outputs are written to a temporary file and atomically replaced only after validation succeeds.

@@ -1,3 +1,5 @@
 .DS_Store
 Thumbs.db
 .http-cache.json
+data/.csv-status.tmp.json
+data/*.json.tmp

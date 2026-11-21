@@ -10,6 +10,11 @@ URL="https://www.bls.gov/oes/special.requests/oesm25ma.zip"
 UA="SalaryMapResearchBot/1.0 (public labor statistics; https://github.com/fansing-wong/salary-map)"
 SOC={"15-1252":"软件开发人员","29-1141":"注册护士","15-2051":"数据科学家","41-2031":"零售销售员"}
 
+def write_json_atomic(path: Path, value: object) -> None:
+    temp_path = path.with_suffix(path.suffix + ".tmp")
+    temp_path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    temp_path.replace(path)
+
 def download():
     rp=urllib.robotparser.RobotFileParser("https://www.bls.gov/robots.txt")
     rp.read()
@@ -57,7 +62,7 @@ def main():
             prior=old_by_key.get((row["city"],row["occupation_code"]))
             if prior and prior.get("salary_monthly")==row["salary_monthly"]:
                 row["retrieved_at"]=prior.get("retrieved_at",now)
-    path.write_text(json.dumps(output,ensure_ascii=False,indent=2),encoding="utf-8")
+    write_json_atomic(path, output)
     print(f"Imported {len(output)} BLS metro occupation rows")
 
 if __name__=="__main__": main()

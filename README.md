@@ -45,7 +45,9 @@ MIT，见 [LICENSE](LICENSE)。
 
 ## 自动更新数据
 
-采集器位于 `scripts/update_data.py`。把获得授权且可再分发的公开 CSV 来源加入 `scripts/sources.json` 后，可本地运行 `python scripts/update_data.py`。GitHub Actions 每周一 UTC 04:17 自动运行，也可在 Actions 页面手动触发；数据会写入 `data/latest.json` 并由仪表盘加载。首次上线时来源列表为空，因此不会自动抓取网站。
+刷新入口为 `scripts/refresh_data.py`，分别更新 BLS 工资数据、获准的公开 CSV 来源和宏观指标。把获得授权且可再分发的 CSV 来源加入 `scripts/sources.json` 后，可本地运行 `python scripts/refresh_data.py`。GitHub Actions 每周一 UTC 04:17 自动运行，也可在 Actions 页面手动触发；数据写入 `data/latest.json` 和 `data/macro.json`，运行状态记录在 `data/status.json` 并显示于仪表盘。首次上线时 CSV 来源列表为空，因此不会自动抓取网站。
+
+各数据文件在校验完整后才原子替换。单一来源失败不会阻断其他刷新；状态文件记录本轮结果和上次成功时间，失败任务会让 Actions 运行标记为失败，同时继续提供上次成功快照。仪表盘在工资统计参考期超过 2 年、汇率日期超过 7 天或 PPP 参考年超过 3 年时提示复核；这些是项目提醒阈值，不代表来源机构的官方有效期。
 
 采集器会检查 robots.txt、发送带说明的 User-Agent、使用条件请求并限制请求频率。来源应提供规范 CSV，字段映射和口径需在来源注册表中声明。当前脚手架不是通用网页解析器，也不会抓取需登录内容。
 

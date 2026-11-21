@@ -13,12 +13,43 @@ from urllib.request import Request, urlopen
 ROOT = Path(__file__).resolve().parents[1]
 REGISTRY = ROOT / "scripts" / "sources.json"
 OUTPUT = ROOT / "data" / "latest.json"
+STATUS_FILE = ROOT / "data" / "status.json"
+TEMP_SOURCE_STATUS = ROOT / "data" / ".csv-status.tmp.json"
 BLS_DATA = ROOT / "data" / "bls_metro_2025.json"
 CHINA_DATA = ROOT / "data" / "china_nbs_2025.json"
 UA = "SalaryMapResearchBot/1.0 (+https://github.com; contact repository maintainers)"
 REQUIRED = {"country", "city", "role", "currency", "salary_monthly", "cost_monthly", "contract_hours_weekly", "overtime_hours_weekly", "commute_hours_weekly", "intensity"}
 OPTIONAL = {"iso3", "admin1", "geo_level", "occupation_code", "occupation_taxonomy", "source_note"}
 TEXT_FIELDS = {"country", "city", "role", "currency", "iso3", "admin1", "geo_level", "occupation_code", "occupation_taxonomy", "source_note"}
+
+def write_json_atomic(path: Path, value: object) -> None:
+    temp_path = path.with_suffix(path.suffix + ".tmp")
+    temp_path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    temp_path.replace(path)
+
+def cached_rows(url: str) -> list[dict]:
+    cache_file = ROOT / "data" / ".http-cache.json"
+    try:
+        cache = json.loads(cache_file.read_text(encoding="utf-8"))
+        rows = cache.get(url, {}).get("rows", [])
+        return rows if isinstance(rows, list) else []
+    except (OSError, json.JSONDecodeError, AttributeError):
+        return []
+
+def previously_published_rows(url: str) -> list[dict]:
+    try:
+        published = json.loads(OUTPUT.read_text(encoding="utf-8"))
+        return [row for row in published if isinstance(row, dict) and row.get("source_url") == url]
+    except (OSError, json.JSONDecodeError, TypeError):
+        return []
+
+def prior_source_status() -> dict:
+    try:
+        status = json.loads(STATUS_FILE.read_text(encoding="utf-8"))
+        sources = status.get("csv_sources", {})
+        return sources if isinstance(sources, dict) else {}
+    except (OSError, json.JSONDecodeError, AttributeError):
+        return {}
 
 def can_fetch(url: str) -> bool:
     parts = urlparse(url)
@@ -75,12 +106,34 @@ def main():
     for snapshot in (BLS_DATA, CHINA_DATA):
         if snapshot.exists():
             rows.extend(json.loads(snapshot.read_text(encoding="utf-8")))
+    source_status = {}
+    previous_sources = prior_source_status()
+    any_failed = False
     for source in sources:
-        rows.extend(fetch(source))
+        key = str(source.get("id") or source["name"])
+        prior = previous_sources.get(key, {})
+        checked_at = datetime.now(timezone.utc).isoformat()
+        try:
+            source_rows = fetch(source)
+            if not source_rows:
+                raise RuntimeError("Source produced no valid records; retaining the previous snapshot")
+            rows.extend(source_rows)
+            source_status[key] = {"name": source["name"], "status": "success", "last_attempt": checked_at, "last_success": checked_at, "records": len(source_rows)}
+        except Exception as exc:
+            any_failed = True
+            fallback_rows = cached_rows(source["url"]) or previously_published_rows(source["url"])
+            rows.extend(fallback_rows)
+            source_status[key] = {"name": source["name"], "status": "failed", "last_attempt": checked_at, "last_success": prior.get("last_success"), "records": len(fallback_rows), "message": "Refresh failed; previous cached records were retained."}
+            print(f"Source {source['name']} failed; retained {len(fallback_rows)} cached records: {exc}")
+    TEMP_SOURCE_STATUS.write_text(json.dumps(source_status, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     if not rows and OUTPUT.exists():
         print("No sources returned rows; keeping previous published salary data")
+        if any_failed:
+            raise RuntimeError("One or more configured salary sources failed")
         return
-    OUTPUT.write_text(json.dumps(rows, ensure_ascii=False, indent=2), encoding="utf-8")
+    write_json_atomic(OUTPUT, rows)
     print(f"Wrote {len(rows)} rows to {OUTPUT}")
+    if any_failed:
+        raise RuntimeError("One or more configured salary sources failed")
 
 if __name__ == "__main__": main()

@@ -17,6 +17,11 @@ def get(url):
     with urllib.request.urlopen(req, timeout=30) as response:
         return response.read()
 
+def write_json_atomic(path, value):
+    temp_path = path.with_suffix(path.suffix + ".tmp")
+    temp_path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    temp_path.replace(path)
+
 def main():
     xml = ET.fromstring(get(ECB_URL))
     ns = {"gesmes": "http://www.gesmes.org/xml/2002-08-01", "e": "http://www.ecb.int/vocabulary/2002-08-01/eurofxref"}
@@ -39,7 +44,7 @@ def main():
             price_levels[iso3] = {"value": latest["value"], "year": latest["date"], "source_url": f"https://api.worldbank.org/v2/country/{iso3}/indicator/PA.NUS.PRVT.PLI"}
     if not price_levels:
         raise RuntimeError("World Bank returned no household consumption price levels")
-    OUT.write_text(json.dumps({"retrieved_at": datetime.now(timezone.utc).isoformat(), "fx_date": day.attrib.get("time"), "fx_source": ECB_URL, "fx_to_usd": fx_to_usd, "price_level_base": "USA=100", "price_level_indicator": "PA.NUS.PRVT.PLI", "price_levels": price_levels, "price_level_source": "https://data.worldbank.org/indicator/PA.NUS.PRVT.PLI"}, ensure_ascii=False, indent=2), encoding="utf-8")
+    write_json_atomic(OUT, {"retrieved_at": datetime.now(timezone.utc).isoformat(), "fx_date": day.attrib.get("time"), "fx_source": ECB_URL, "fx_to_usd": fx_to_usd, "price_level_base": "USA=100", "price_level_indicator": "PA.NUS.PRVT.PLI", "price_levels": price_levels, "price_level_source": "https://data.worldbank.org/indicator/PA.NUS.PRVT.PLI"})
     print(f"Wrote macro indicators for {len(price_levels)} countries to {OUT}")
 
 if __name__ == "__main__": main()
