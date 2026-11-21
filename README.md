@@ -69,6 +69,10 @@ MIT，见 [LICENSE](LICENSE)。
 
 社交平台数据应仅通过获准的官方 API 或获得授权的导出数据接入，并单独标注为招聘帖子样本；不能代表岗位平均薪资。LinkedIn 的帖子读取权限有审批限制，见 [LinkedIn API permissions](https://learn.microsoft.com/en-us/linkedin/shared/authentication/getting-access)。未经授权抓取账号内容会因平台规则和技术限制而不稳定。抓取公开站点也要尊重站点规则；`robots.txt` 是抓取偏好机制，不等于许可或法律意见，见 [Google robots.txt guidance](https://developers.google.com/search/docs/crawling-indexing/robots/intro)。
 
+### 社交平台工作体验观察
+
+中国工资区新增“社交平台：工作体验关键词观察”视图，可按数据批次、地域和主题查看工时加班、薪酬、福利、稳定性、工作强度、管理氛围的关键词提及率。当前提供的是获准数据导入与分析管道，不会自动登录或爬取社交平台；未导入授权样本前，视图保持空白。导入命令、字段约定、隐私处理和统计局限见[社交平台观察说明](docs/SOCIAL_OBSERVATIONS.md)。小于 30 条的地域/岗位/月度组会隐藏精确计数与提及率。该阈值只是项目显示规则；帖子自选偏差、搜索词偏差及关键词无法识别语境意味着结果只能作为核验线索，不代表总体比例、情绪或事实，也不会用于薪资推荐分。
+
 后续版本规划见 [产品路线图](docs/PRODUCT_ROADMAP.md)、[国家数据覆盖计划](docs/COUNTRY_COVERAGE.md) 和 [出海工作/居留路径](docs/MOBILITY_PATHWAYS.md) 和 [职业转型情景](docs/CAREER_SCENARIOS.md)。
 
 ## 跨币种购买力

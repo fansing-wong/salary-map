@@ -1,11 +1,14 @@
 (()=>{
  const $=selector=>document.querySelector(selector);
  const view=$("#chinaView"),population=$("#chinaPopulation"),focus=$("#chinaFocus");
- const populationWrap=$("#chinaPopulationWrap"),focusWrap=$("#chinaFocusWrap"),employer=$("#chinaEmployer"),employerWrap=$("#chinaEmployerWrap");
+ const populationWrap=$("#chinaPopulationWrap"),focusWrap=$("#chinaFocusWrap"),employer=$("#chinaEmployer"),employerWrap=$("#chinaEmployerWrap"),socialDataset=$("#chinaSocialDataset"),socialTopic=$("#chinaSocialTopic");
+ const socialDatasetWrap=$("#chinaSocialDatasetWrap"),socialTopicWrap=$("#chinaSocialTopicWrap");
  const fmt=n=>new Intl.NumberFormat("zh-CN",{maximumFractionDigits:0}).format(n);
+ const fmtRate=n=>new Intl.NumberFormat("zh-CN",{maximumFractionDigits:1,minimumFractionDigits:1}).format(n);
  const escapeHtml=value=>String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
- const sourceLink=(url,note="")=>url?'<a href="'+escapeHtml(url)+'" title="'+escapeHtml(note)+'" target="_blank" rel="noreferrer">'+(/转载|待补官方原文|待补原始链接/.test(note)?"来源（转载/待核） ↗":"查看来源 ↗")+'</a>':"—";
- let pack=null,eastPack=null,employerPack=null;
+ const safeExternalUrl=value=>{try{const parsed=new URL(String(value),window.location.href);return parsed.protocol==="https:"?parsed.href:""}catch{return ""}};
+ const sourceLink=(url,note="")=>{const safeUrl=safeExternalUrl(url);return safeUrl?'<a href="'+escapeHtml(safeUrl)+'" title="'+escapeHtml(note)+'" target="_blank" rel="noreferrer">'+(/转载|待补官方原文|待补原始链接/.test(note)?"来源（转载/待核） ↗":"查看来源 ↗")+'</a>':"—"};
+ let pack=null,eastPack=null,employerPack=null,socialPack=null;
 
  function setOptions(select,values,preferred){
   const previous=select.value;
@@ -27,14 +30,46 @@
   let sourceUrl=pack.source_url,chartSuffix="元 / 年",summaryLabel="年工资";
 
   const employerView=key==="employer-types";
+  const socialView=key==="social-experiences";
   const positionView=key.startsWith("positions-");
   const focusView=key==="positions-region"||key==="positions-industry"||key==="shenzhen-occupations";
-  populationWrap.hidden=positionView||key==="chongqing-positions"||employerView;
+  populationWrap.hidden=positionView||key==="chongqing-positions"||employerView||socialView;
   employerWrap.hidden=!employerView;
-  focusWrap.hidden=!(focusView||key==="city-wages"||key==="east-industry"||key==="focus-cities"||employerView);
-  $("#chinaFocusLabel").textContent=employerView?"地域筛选":"筛选范围";
+  focusWrap.hidden=!(focusView||key==="city-wages"||key==="east-industry"||key==="focus-cities"||employerView||socialView);
+  socialDatasetWrap.hidden=!socialView;
+  socialTopicWrap.hidden=!socialView;
+  $("#chinaFocusLabel").textContent=employerView||socialView?"地域筛选":"筛选范围";
 
-  if(key==="regions"||key==="industries"){
+  if(socialView){
+   const datasets=socialPack?.datasets||[];
+   const selectedDataset=socialDataset.value;
+   const datasetChoices=datasets.map(dataset=>({value:dataset.dataset_key,label:[dataset.platform,dataset.query_label,dataset.collected_at?.slice(0,10)].filter(Boolean).join(" · ")}));
+   socialDataset.innerHTML=datasetChoices.map(item=>'<option value="'+escapeHtml(item.value)+'">'+escapeHtml(item.label)+'</option>').join("");
+   socialDataset.value=datasetChoices.some(item=>item.value===selectedDataset)?selectedDataset:(datasetChoices[datasetChoices.length-1]?.value||"");
+   const dataset=datasets.find(item=>item.dataset_key===socialDataset.value);
+   const topics=socialPack?.topics||[];
+   const selectedTopic=socialTopic.value;
+   socialTopic.innerHTML=topics.map(topic=>'<option value="'+escapeHtml(topic.id)+'">'+escapeHtml(topic.label)+'</option>').join("");
+   socialTopic.value=topics.some(item=>item.id===selectedTopic)?selectedTopic:(topics.find(item=>item.id==="work_time")?.id||topics[0]?.id||"");
+   const topic=topics.find(item=>item.id===socialTopic.value)||topics[0];
+   const allGroups=(dataset?.groups||[]).map(row=>({...row,dataset}));
+   const locations=["全部地域",...unique(allGroups.map(row=>row.location))];
+   setOptions(focus,locations,"全部地域");
+   const filtered=allGroups.filter(row=>focus.value==="全部地域"||row.location===focus.value);
+   rows=filtered.map(row=>{
+    const rate=row.suppressed?null:row.topic_rates_pct?.[topic?.id];
+    const mentions=row.suppressed?"隐藏":(row.topic_counts?.[topic?.id]??0);
+    const n=row.suppressed?(row.sample_band||"小样本已隐藏"):fmt(row.sample_size);
+    const source=sourceLink(row.dataset?.source_url,row.dataset?.source_name||"");
+    return {label:row.location,chartLabel:[row.location,row.role,row.period].filter(Boolean).join(" · "),chartValue:rate,
+     cells:[row.location,row.role,row.period,n,mentions,rate==null?"—":rate.toFixed(1)+"%",row.dataset?.platform||"—",row.dataset?.query_label||"—",source]};
+   });
+   headers=["地域","岗位类别","月份","样本量","主题提及数","主题提及率","平台","检索范围","平台/API 说明"];
+   note=dataset?"仅展示所选数据集。提及率=包含该主题关键词的记录数÷本组记录数；关键词命中不识别否定、褒贬或语境，帖子也未经事实核验。小样本组不展示精确计数。社交样本有自选偏差，不代表城市/职业总体。":"尚无获准 API 或授权导入数据；脚本与展示模板已就绪，空模板不会生成体验结论。";
+   emptyNote=dataset?"所选地域没有可展示记录。":"尚无获准 API 或授权导入的数据。请先使用汇总脚本导入合规数据。";
+   sourceUrl=dataset?.source_url||"https://open.weibo.com/cli/quickstart";
+   chartSuffix="%";summaryLabel=topic?.label?topic.label+"提及率":"主题提及率";
+  }else if(key==="regions"||key==="industries"){
    const choices=key==="industries"?["城镇非私营单位","城镇私营单位"]:["城镇非私营单位","城镇私营单位","规模以上企业"];
    setOptions(population,choices,"城镇非私营单位");
    group=population.value;
@@ -210,7 +245,11 @@
    chartSuffix="人均消费 元 / 年";summaryLabel="人均消费";
   }
 
-  rows.sort((a,b)=>(b.chartValue||0)-(a.chartValue||0));
+  rows.sort((a,b)=>{
+   if(a.chartValue==null)return 1;
+   if(b.chartValue==null)return -1;
+   return b.chartValue-a.chartValue;
+  });
   return {key,group,rows,headers,note,sourceUrl,chartSuffix,summaryLabel,emptyNote};
  }
 
@@ -219,9 +258,12 @@
   const context=getContext();
   const {key,rows,headers,note,sourceUrl,chartSuffix,summaryLabel,group}=context;
   $("#chinaViewNote").textContent=note;
+  $("#chinaTitle").textContent=key==="social-experiences"?"中国工作体验关键词观察｜社交平台样本":"中国工资与生活参照｜官方数据";
+  $("#chinaIntro").textContent=key==="social-experiences"?"以下仅为授权来源自报帖子中的关键词提及统计，不代表城市/职业总体，不用于推算工资或推荐分。":"把全国与宏观区域、已发布省市工资、岗位工资分开，并将居民收支作为背景参照。统计均值与调查分位数都不能代替真实 offer；筛选结果不参与首页推荐分。";
+  $("#chinaChart").setAttribute("aria-label",key==="social-experiences"?"社交平台工作体验主题关键词提及率，非代表性样本":"中国工资与居民收支参考图");
   const sourceAnchor=$("#chinaSourceLink");
-  sourceAnchor.href=sourceUrl||pack.source_url;
-  sourceAnchor.textContent=key==="shenzhen-occupations"?"深圳人社局工资价位调查 ↗":key==="residents"?"居民收支原始统计 ↗":key==="city-wages"||key==="focus-cities"||key==="employer-types"||key==="east-region-summary"||key==="east-industry"||key==="jiangsu-industries"||key==="chongqing-positions"?"官方数据来源 ↗":"国家统计局原始发布 ↗";
+  sourceAnchor.href=safeExternalUrl(sourceUrl||pack.source_url)||"#";
+  sourceAnchor.textContent=key==="social-experiences"?"社交平台 / API 来源说明 ↗":key==="shenzhen-occupations"?"深圳人社局工资价位调查 ↗":key==="residents"?"居民收支原始统计 ↗":key==="city-wages"||key==="focus-cities"||key==="employer-types"||key==="east-region-summary"||key==="east-industry"||key==="jiangsu-industries"||key==="chongqing-positions"?"官方数据来源 ↗":"国家统计局原始发布 ↗";
 
   const highest=rows[0],lowest=rows.length?rows[rows.length-1]:null;
   const ratio=rows.length>1&&highest&&lowest&&lowest.chartValue>0?highest.chartValue/lowest.chartValue:null;
@@ -244,15 +286,15 @@
   }else if(key==="city-wages"&&group==="全口径城镇单位（社保缴费基数口径）"){
    baselineLabel="北京统计口径";
   }
-  const firstValue=key==="employer-types"?rows.length+" 条记录":key==="shenzhen-occupations"?"2024 年调查":key==="jiangsu-industries"||key==="east-region-summary"||key==="east-industry"||key==="city-wages"&&group==="全口径城镇单位（社保缴费基数口径）"?"2025 年":baseline!=null?fmt(baseline)+" 元 / 年":highest?fmt(highest.chartValue)+" 元 / 年":"—";
-  const firstSub=key==="employer-types"?group+" · 年份与地域层级见表格":key==="shenzhen-occupations"?"2026 年发布":key==="jiangsu-industries"?"同业全国参照显示在表格中":key==="east-industry"?"全国同业参照显示在表格中":key==="east-region-summary"?"工资总体筛选后提供同口径全国参照":key==="focus-cities"?"国家统计局公布的同统计总体均值":key==="city-wages"&&group==="全口径城镇单位（社保缴费基数口径）"?"社保缴费基数统计口径":baseline!=null?"同统计总体的公开参照":note;
-  const highValue=highest?fmt(highest.chartValue)+" 元 / 年":"—";
-  const highSub=highest?highest.label:"无可用记录";
-  const rangeLabel=key==="residents"?"消费背景范围":key==="shenzhen-occupations"?"岗位中位数差异":key==="east-industry"?"同业区域最高 / 最低":key==="east-region-summary"?"同口径区域最高 / 最低":"最高 / 最低";
+  const firstValue=key==="social-experiences"?rows.length+" 个样本组":key==="employer-types"?rows.length+" 条记录":key==="shenzhen-occupations"?"2024 年调查":key==="jiangsu-industries"||key==="east-region-summary"||key==="east-industry"||key==="city-wages"&&group==="全口径城镇单位（社保缴费基数口径）"?"2025 年":baseline!=null?fmt(baseline)+" 元 / 年":highest?fmt(highest.chartValue)+" 元 / 年":"—";
+  const firstSub=key==="social-experiences"?(socialDataset.selectedOptions[0]?.textContent||"尚无数据集"):key==="employer-types"?group+" · 年份与地域层级见表格":key==="shenzhen-occupations"?"2026 年发布":key==="jiangsu-industries"?"同业全国参照显示在表格中":key==="east-industry"?"全国同业参照显示在表格中":key==="east-region-summary"?"工资总体筛选后提供同口径全国参照":key==="focus-cities"?"国家统计局公布的同统计总体均值":key==="city-wages"&&group==="全口径城镇单位（社保缴费基数口径）"?"社保缴费基数统计口径":baseline!=null?"同统计总体的公开参照":note;
+  const highValue=highest?(key==="social-experiences"?fmtRate(highest.chartValue)+"%":fmt(highest.chartValue)+" 元 / 年"):"—";
+  const highSub=highest?(key==="social-experiences"?highest.chartLabel:highest.label):"无可用记录";
+  const rangeLabel=key==="social-experiences"?"样本解释":key==="residents"?"消费背景范围":key==="shenzhen-occupations"?"岗位中位数差异":key==="east-industry"?"同业区域最高 / 最低":key==="east-region-summary"?"同口径区域最高 / 最低":"最高 / 最低";
   const mixedCityScopes=key==="city-wages"&&focus.value==="全部层级";
   const employerGroupMix=key==="employer-types"&&new Set(rows.map(row=>row.referencePeriod+"|"+row.geoLevel)).size>1;
-  const rangeValue=key==="employer-types"?rows.length>1&&!employerGroupMix&&ratio?ratio.toFixed(2)+" 倍":rows.length>1?"请对齐年份和层级":"—":ratio&&!mixedCityScopes?ratio.toFixed(2)+" 倍":mixedCityScopes?"按层级筛选":"—";
-  const rangeSub=lowest?(key==="employer-types"?"最低："+lowest.label:"低端："+lowest.label):"无可用记录";
+  const rangeValue=key==="social-experiences"?"非代表性样本":key==="employer-types"?rows.length>1&&!employerGroupMix&&ratio?ratio.toFixed(2)+" 倍":rows.length>1?"请对齐年份和层级":"—":ratio&&!mixedCityScopes?ratio.toFixed(2)+" 倍":mixedCityScopes?"按层级筛选":"—";
+  const rangeSub=key==="social-experiences"?"关键词提及率不是满意度或人口比例":lowest?(key==="employer-types"?"最低："+lowest.label:"低端："+lowest.label):"无可用记录";
   $("#chinaStats").innerHTML=[
    [baselineLabel,firstValue,firstSub],
    [summaryLabel+"较高值",highValue,highSub],
@@ -261,7 +303,7 @@
 
   const chartRows=key==="industries"||key==="jiangsu-industries"?rows.slice(0,12):rows;
   const max=Math.max(...chartRows.map(row=>row.chartValue||0),1);
-  $("#chinaChart").innerHTML=chartRows.map(row=>'<div class="china-bar-row"><span class="china-bar-label" title="'+escapeHtml(row.chartLabel)+'">'+escapeHtml(row.chartLabel)+'</span><span class="china-bar-track"><span class="china-bar" style="display:block;width:'+Math.max(1,(row.chartValue||0)/max*100)+'%"></span></span><span class="china-bar-value">'+fmt(row.chartValue)+' '+escapeHtml(chartSuffix)+'</span></div>').join("");
+  $("#chinaChart").innerHTML=chartRows.map(row=>'<div class="china-bar-row"><span class="china-bar-label" title="'+escapeHtml(row.chartLabel)+'">'+escapeHtml(row.chartLabel)+'</span><span class="china-bar-track"><span class="china-bar" style="display:block;width:'+Math.max(1,(row.chartValue||0)/max*100)+'%"></span></span><span class="china-bar-value">'+(row.chartValue==null?"—":(key==="social-experiences"?fmtRate(row.chartValue):fmt(row.chartValue))+" "+escapeHtml(chartSuffix))+'</span></div>').join("");
   $("#chinaHead").innerHTML="<tr>"+headers.map(header=>"<th>"+escapeHtml(header)+"</th>").join("")+"</tr>";
   $("#chinaRows").innerHTML=rows.length?rows.map(row=>"<tr>"+row.cells.map((cell,index)=>"<td class='"+(index===0?"china-first-col":"")+"'>"+(index===row.cells.length-1||key==="employer-types"&&index===7?cell:escapeHtml(cell))+"</td>").join("")+"</tr>").join(""):'<tr><td colspan="'+(headers.length||8)+'" class="china-empty">'+escapeHtml(context.emptyNote||"该筛选没有可用记录。")+'</td></tr>';
  }
@@ -269,7 +311,9 @@
  population.addEventListener("change",render);
  focus.addEventListener("change",render);
  employer.addEventListener("change",render);
- Promise.all(["data/china_wage_structure_2025.json","data/china_east_regions_2025.json","data/china_employer_types.json"].map(url=>fetch(url).then(response=>{if(!response.ok)throw new Error(url+" HTTP "+response.status);return response.json()}))).then(([data,eastData,employerData])=>{pack=data;eastPack=eastData;employerPack=employerData;render()}).catch(error=>{
+ socialDataset.addEventListener("change",render);
+ socialTopic.addEventListener("change",render);
+ Promise.all(["data/china_wage_structure_2025.json","data/china_east_regions_2025.json","data/china_employer_types.json","data/social_observations.json"].map(url=>fetch(url).then(response=>{if(!response.ok)throw new Error(url+" HTTP "+response.status);return response.json()}))).then(([data,eastData,employerData,socialData])=>{pack=data;eastPack=eastData;employerPack=employerData;socialPack=socialData;render()}).catch(error=>{
   $("#chinaRows").innerHTML='<tr><td colspan="8" class="china-empty">中国官方数据文件载入失败，请稍后重试。</td></tr>';
   $("#chinaViewNote").textContent="数据文件：data/china_wage_structure_2025.json、data/china_east_regions_2025.json、data/china_employer_types.json";
   console.warn("China wage data unavailable",error);

@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "data_kind": "social_experience_keyword_aggregate",
+  "generated_at": null,
+  "rule_set_version": "cn-work-experience-keywords-v1",
+  "topics": [
+    {
+      "id": "work_time",
+      "label": "工时与加班",
+      "keywords": ["加班", "996", "007", "大小周", "单休", "双休", "准点下班", "准时下班", "on-call", "on call", "调休"]
+    },
+    {
+      "id": "pay_change",
+      "label": "工资与奖金",
+      "keywords": ["降薪", "涨薪", "调薪", "发薪", "拖欠工资", "欠薪", "年终奖", "奖金", "绩效", "月薪", "薪资", "工资"]
+    },
+    {
+      "id": "benefits",
+      "label": "社保与福利",
+      "keywords": ["五险一金", "公积金", "社保", "年假", "带薪休假", "餐补", "住房补贴", "补贴", "商业保险"]
+    },
+    {
+      "id": "stability",
+      "label": "就业稳定性",
+      "keywords": ["裁员", "优化", "裁撤", "试用期", "转正", "倒闭", "欠薪", "稳定性", "外包转正"]
+    },
+    {
+      "id": "intensity",
+      "label": "工作强度与压力",
+      "keywords": ["强度", "节奏快", "高压", "压力大", "很忙", "太忙", "内卷", "疲惫", "疲劳", "轻松", "burnout"]
+    },
+    {
+      "id": "management",
+      "label": "管理与团队氛围",
+      "keywords": ["管理", "领导", "PUA", "画饼", "团队氛围", "扁平化", "甩锅", "沟通", "内耗"]
+    }
+  ],
+  "datasets": [],
+  "privacy": "公开文件仅保存聚合计数，不含原文、账号、帖子 ID 或单帖链接。",
+  "limitations": [
+    "尚无已接入的获准 API 或授权导入数据。",
+    "帖子为自选样本，关键词提及率不是人口比例、事实核验或情绪分数。",
+    "小样本组隐藏计数与提及率；社交讨论不并入官方工资均值或推荐分。"
+  ]
+}
