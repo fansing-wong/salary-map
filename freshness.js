@@ -12,6 +12,7 @@
   const componentLabel = (component, label) => {
     if (!component) return `${label}状态未知`;
     if (component.status === 'failed') return `${label}刷新失败，沿用上次成功数据`;
+    if (component.status === 'blocked') return `${label}受 robots.txt 限制，沿用上次成功数据`;
     if (component.status === 'not_configured') return `${label}尚未配置来源`;
     if (component.status === 'success') return `${label}最近刷新成功：${timeLabel(component.last_success)}`;
     return `${label}尚无成功刷新记录`;
@@ -51,6 +52,7 @@
     const fxOld = fxAge !== null && fxAge > 7;
     const pppOld = latestPppYear !== null && new Date().getFullYear() - latestPppYear > 3;
     const failed = Object.values(components).some((item) => item?.status === 'failed');
+    const blocked = Object.values(components).some((item) => item?.status === 'blocked');
     const csvSources = status?.csv_sources && typeof status.csv_sources === 'object'
       ? Object.entries(status.csv_sources)
       : [];
@@ -66,11 +68,13 @@
       }).join('；')
       : componentLabel(components.salary_csv, '公开 CSV');
     const runStatus = status?.run_status;
-    summary.className = `status-pill ${failed || fxOld || salaryOld || pppOld ? 'status-warning' : runStatus === 'success' ? 'status-ok' : 'status-unknown'}`;
+    summary.className = `status-pill ${failed || blocked || fxOld || salaryOld || pppOld ? 'status-warning' : runStatus === 'success' ? 'status-ok' : 'status-unknown'}`;
     summary.textContent = !status
       ? '未读取到刷新记录'
       : runStatus === 'partial_failure'
         ? '部分更新失败，保留上次成功快照'
+        : runStatus === 'completed_with_warnings'
+          ? '有来源受限，其他刷新已完成'
         : runStatus === 'success'
           ? '最近一轮刷新完成'
           : '自动刷新尚未运行';
@@ -81,7 +85,7 @@
     const cards = [
       {
         title: '官方工资统计',
-        state: salaryOld || components.bls?.status === 'failed' || csvSources.some(([, item]) => item.status === 'failed') ? 'status-warning' : officialRows.length ? 'status-ok' : 'status-unknown',
+        state: salaryOld || ['failed', 'blocked'].includes(components.bls?.status) || csvSources.some(([, item]) => item.status === 'failed') ? 'status-warning' : officialRows.length ? 'status-ok' : 'status-unknown',
         value: `${officialRows.length} 条有来源记录`,
         detail: `最新参考期：${latestReferenceYear ?? '未知'} · 最近抓取：${timeLabel(latestRetrieved)}`,
         extra: `${salaryFreshness} · ${componentLabel(components.bls, 'BLS')} · ${csvSummary}`,
@@ -95,7 +99,7 @@
       },
       {
         title: '自动刷新流水线',
-        state: failed ? 'status-warning' : runStatus === 'success' ? 'status-ok' : 'status-unknown',
+        state: failed || blocked ? 'status-warning' : runStatus === 'success' ? 'status-ok' : 'status-unknown',
         value: status ? `最近检查：${timeLabel(status.checked_at)}` : '刷新状态文件不可用',
         detail: `最近完整成功：${timeLabel(status?.last_successful_run)}`,
         extra: runStatus === 'partial_failure' ? '本轮失败的数据源会沿用上次成功文件。' : '失败记录保留在 GitHub Actions 日志和状态文件中。',
@@ -111,6 +115,7 @@
 
     const warnings = [];
     if (failed) warnings.push('有数据源刷新失败，页面继续使用最近一次成功的数据。');
+    if (blocked) warnings.push('部分来源的抓取受到 robots.txt 限制，页面继续使用已发布快照；项目不会绕过该限制。');
     if (salaryOld) warnings.push('工资统计参考期超过2年，请优先核对更新后的官方数据。');
     if (fxOld) warnings.push('汇率日期已超过7天，跨币种换算可能偏旧。');
     if (pppOld) warnings.push('PPP价格水平参考年超过3年，购买力换算可能偏旧。');

@@ -23,7 +23,13 @@ def download():
     with urllib.request.urlopen(req,timeout=90) as response: return response.read()
 
 def main():
-    payload=download()
+    try:
+        payload=download()
+    except RuntimeError as exc:
+        if "robots.txt disallows this dataset" in str(exc):
+            print("BLS refresh skipped: robots.txt disallows this dataset; preserving the last snapshot.")
+            return 3
+        raise
     archive=zipfile.ZipFile(io.BytesIO(payload))
     xlsx_name=next((n for n in archive.namelist() if n.lower().endswith(".xlsx")),None)
     if not xlsx_name: raise RuntimeError("BLS archive did not contain an XLSX workbook")
@@ -65,4 +71,4 @@ def main():
     write_json_atomic(path, output)
     print(f"Imported {len(output)} BLS metro occupation rows")
 
-if __name__=="__main__": main()
+if __name__=="__main__": raise SystemExit(main() or 0)

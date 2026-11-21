@@ -56,6 +56,7 @@ def main() -> int:
         ("macro", "Refresh FX and purchasing power data", "scripts/update_macro.py", True),
     ]
     failed = False
+    blocked = False
     csv_sources = {}
     for key, label, script, configured in jobs:
         prior = components.get(key, {}) if isinstance(components.get(key), dict) else {}
@@ -88,6 +89,10 @@ def main() -> int:
         if result.returncode == 0:
             state.update({"status": "success", "last_success": now, "message": "Refresh completed."})
             print(f"{label}: success")
+        elif key == "bls" and result.returncode == 3:
+            blocked = True
+            state.update({"status": "blocked", "message": "Robots policy disallows this dataset; the previous snapshot was retained."})
+            print(f"::warning title={label}::Robots policy disallows this dataset; the previous snapshot was retained.")
         else:
             failed = True
             state.update({"status": "failed", "message": "Refresh failed; see the GitHub Actions run log."})
@@ -105,7 +110,7 @@ def main() -> int:
         "schema_version": 1,
         "checked_at": now,
         "last_successful_run": last_successful_run,
-        "run_status": "partial_failure" if failed else "success",
+        "run_status": "partial_failure" if failed else "completed_with_warnings" if blocked else "success",
         "components": components,
         "csv_sources": csv_sources,
     }
