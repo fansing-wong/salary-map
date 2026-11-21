@@ -98,12 +98,12 @@ def coordinates(metadata: dict) -> list[dict]:
         int(gender["dimensionPositionId"]): gender_member,
         int(age["dimensionPositionId"]): age_member,
     }
-    geo_by_id = {int(geo["dimensionPositionId"]): item for item in geo_members}
+    geo_pos = int(geo["dimensionPositionId"])
     occupation_pos = int(occupation["dimensionPositionId"])
     result = []
-    for geo_id, geo_member in geo_by_id.items():
+    for geo_member in geo_members:
         for occ_member in occupations:
-            values = {**fixed, geo_id: geo_member, occupation_pos: occ_member}
+            values = {**fixed, geo_pos: geo_member, occupation_pos: occ_member}
             coord = ".".join(str(values[position]["memberId"]) if position in values else "0" for position in range(1, 11))
             result.append({
                 "productId": TABLE_ID,
