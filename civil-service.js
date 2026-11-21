@@ -25,9 +25,13 @@
     if(!match)return null;
     const token=match[1];if(/^\d+$/.test(token))return Number(token);
     const digits={零:0,〇:0,一:1,二:2,两:2,三:3,四:4,五:5,六:6,七:7,八:8,九:9};
-    if(token.includes('百')){const p=token.indexOf('百');return (digits[token.slice(0,p)]||1)*100+(token.slice(p+1).includes('十')?10*(digits[token.slice(p+2,p+3)]||1)+(digits[token.slice(p+3)]||0):digits[token.slice(p+1)]||0)}
-    if(token.includes('十')){const p=token.indexOf('十');return (p===0?1:(digits[token.slice(0,p)]||0))*10+(digits[token.slice(p+1)]||0)}
-    return digits[token]??null;
+    let total=0,current=0;
+    for(const char of token){
+      if(Object.prototype.hasOwnProperty.call(digits,char))current=digits[char];
+      else if(char==='十'){total+=(current||1)*10;current=0;}
+      else if(char==='百'){total+=(current||1)*100;current=0;}
+    }
+    return total+current;
   }
   function requirementLevels(text){
     const levels=[];
@@ -50,7 +54,8 @@
     }
     if(/及以上|以上/.test(requirement))return own>=Math.min(...allowed)?'pass':'fail';
     if(allowed.length>1)return allowed.includes(own)?'pass':'fail';
-    return own>=allowed[0]?'pass':'fail';
+    if(own===allowed[0])return 'pass';
+    return own<allowed[0]?'fail':'review';
   }
   function degreeCheck(candidate,requirement){
     if(!candidate)return 'skip';
