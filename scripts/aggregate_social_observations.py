@@ -14,7 +14,22 @@ from urllib.parse import parse_qsl, urlsplit
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_OUTPUT = ROOT / "data" / "social_observations.json"
 MIN_GROUP_SIZE = 30  # Project display heuristic, not a statistical or legal standard.
-RULE_SET_VERSION = "cn-work-experience-keywords-v1"
+RULE_SET_VERSION = "cn-work-experience-keywords-v2"
+
+EMPLOYER_TYPE_ALIASES = {
+    "机关（公务员等）": {"机关", "公务员", "机关单位", "government", "civil servant"},
+    "事业单位": {"事业单位", "公办事业单位", "public institution"},
+    "央企/国企": {"央企", "国企", "中央企业", "国有企业", "state-owned", "soe"},
+    "民营企业": {"民企", "私企", "私营企业", "民营企业", "private company"},
+    "外资/合资企业": {"外企", "外资", "合资企业", "外商投资", "foreign/joint venture"},
+    "个体/自由职业/平台就业": {"个体", "个体户", "自由职业", "平台就业", "灵活就业", "platform work"},
+    "其他组织": {"其他组织", "其他企业", "其他"},
+}
+EMPLOYER_TYPE_LOOKUP = {
+    alias.casefold(): category
+    for category, aliases in EMPLOYER_TYPE_ALIASES.items()
+    for alias in aliases | {category}
+}
 
 TOPICS = {
     "work_time": {
@@ -131,7 +146,7 @@ def atomic_write(path: Path, payload: dict) -> None:
 
 
 def aggregate(posts: list[dict], args: argparse.Namespace) -> dict:
-    groups: dict[tuple[str, str, str], dict] = defaultdict(lambda: {"sample_size": 0, "topic_counts": {key: 0 for key in TOPICS}})
+    groups: dict[tuple[str, str, str, str], dict] = defaultdict(lambda: {"sample_size": 0, "topic_counts": {key: 0 for key in TOPICS}})
     seen: set[str] = set()
     duplicate_count = 0
     empty_count = 0
@@ -148,8 +163,10 @@ def aggregate(posts: list[dict], args: argparse.Namespace) -> dict:
         seen.add(fingerprint)
         city = safe_dimension(read_group_value(post, "city", "location"))
         role = safe_dimension(read_group_value(post, "role", "occupation"))
+        employer_label = read_group_value(post, "employer_type", "organization_type", "workplace_type").casefold()
+        employer_type = EMPLOYER_TYPE_LOOKUP.get(employer_label, "未分类")
         period = month_of(post.get("created_at") or post.get("created"))
-        group = groups[(city, role, period)]
+        group = groups[(city, role, employer_type, period)]
         group["sample_size"] += 1
         for topic_id, topic in TOPICS.items():
             if any(keyword.lower() in text for keyword in topic["keywords"]):
@@ -157,13 +174,14 @@ def aggregate(posts: list[dict], args: argparse.Namespace) -> dict:
 
     result_groups = []
     suppressed = 0
-    for (city, role, period), values in sorted(groups.items()):
+    for (city, role, employer_type, period), values in sorted(groups.items()):
         sample_size = values["sample_size"]
         if sample_size < MIN_GROUP_SIZE:
             suppressed += 1
             result_groups.append({
                 "location": city,
                 "role": role,
+                "employer_type": employer_type,
                 "period": period,
                 "sample_size": None,
                 "sample_band": f"少于 {MIN_GROUP_SIZE} 条",
@@ -176,6 +194,7 @@ def aggregate(posts: list[dict], args: argparse.Namespace) -> dict:
         result_groups.append({
             "location": city,
             "role": role,
+            "employer_type": employer_type,
             "period": period,
             "sample_size": sample_size,
             "sample_band": None,
@@ -218,13 +237,13 @@ def main() -> int:
         datasets = [item for item in existing.get("datasets", []) if item.get("dataset_key") != dataset["dataset_key"]]
         datasets.append(dataset)
         payload = {
-            "schema_version": 1,
+            "schema_version": 2,
             "data_kind": "social_experience_keyword_aggregate",
             "generated_at": datetime.now(timezone.utc).isoformat(),
             "rule_set_version": RULE_SET_VERSION,
             "topics": [{"id": key, "label": value["label"], "keywords": value["keywords"]} for key, value in TOPICS.items()],
             "datasets": datasets,
-            "privacy": "Raw text, author names, handles, post IDs, and per-post URLs are not written to this file.",
+            "privacy": "Raw text, author names, handles, post IDs, company names, and per-post URLs are not written to this file.",
             "limitations": [
                 "Posts are self-selected and keyword-based; mention rates are not population prevalence, verified facts, or sentiment scores.",
                 "City and role are taken only from structured input fields; missing fields are not inferred from post text.",
@@ -236,7 +255,7 @@ def main() -> int:
     except (OSError, json.JSONDecodeError, ValueError) as exc:
         print(f"Social observation aggregation failed: {exc}", file=sys.stderr)
         return 1
-    print(f"Aggregated authorized export into {len(dataset['groups'])} city/role/month groups.")
+    print(f"Aggregated authorized export into {len(dataset['groups'])} city/role/employer-type/month groups.")
     print(f"Suppressed groups below {MIN_GROUP_SIZE} posts: {dataset['suppressed_group_count']}.")
     print(f"Output: {args.output}")
     return 0

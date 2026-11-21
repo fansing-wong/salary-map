@@ -15,10 +15,10 @@ Official references: [Weibo CLI quick start](https://open.weibo.com/cli/quicksta
 Normalize the authorized export to JSON or JSONL records with these fields:
 
 ```json
-{"id":"temporary-source-id","created_at":"2026-10-01T08:00:00+08:00","text":"在杭州做测试经常加班，五险一金正常","city":"杭州市","role":"软件测试"}
+{"id":"temporary-source-id","created_at":"2026-10-01T08:00:00+08:00","text":"在杭州做测试经常加班，五险一金正常","city":"杭州市","role":"软件测试","employer_type":"民营企业"}
 ```
 
-`id` is used only in memory to deduplicate rows. `text` is scanned in memory and is never written to the aggregate. `city` and `role` must be structured, broad categories supplied by the authorized source or your own approved coding process; the script does not infer them from the text. Do not map or export account names, company names, exact addresses, contact details, post URLs, or other identifying labels into these fields. Rows with an empty text are ignored. Duplicate IDs (or duplicate text when IDs are absent) are counted once.
+`id` is used only in memory to deduplicate rows. `text` is scanned in memory and is never written to the aggregate. `city` and `role` must be structured, broad categories supplied by the authorized source or your own approved coding process; the script does not infer them from the text. `employer_type` is optional and accepts only broad whitelisted categories: government/civil service, public institution, state-owned enterprise, private enterprise, foreign/joint venture, individual/freelance/platform work, and other organization. Unrecognized values (including company names) become `未分类`. Do not map or export account names, company names, exact addresses, contact details, post URLs, or other identifying labels into these fields. Rows with an empty text are ignored. Duplicate IDs (or duplicate text when IDs are absent) are counted once.
 
 Run the aggregator locally, replacing the example path and metadata with the source you are permitted to use:
 
@@ -30,11 +30,13 @@ The generated `data/social_observations.json` is an aggregate suitable for revie
 
 ## What is measured
 
-Each post contributes at most one mention to each matching theme, irrespective of how many keywords from that theme appear in the text. Current themes are work time/overtime, pay/bonuses, benefits, job stability, workload/stress, and management/team environment. For each city/role/month group, the dashboard shows:
+Each post contributes at most one mention to each matching theme, irrespective of how many keywords from that theme appear in the text. Current themes are work time/overtime, pay/bonuses, benefits, job stability, workload/stress, and management/team environment. For each city/role/employer-type/month group, the dashboard shows:
 
 `topic mention rate = posts matching at least one theme keyword / non-empty, deduplicated posts in the group`
 
 Groups below 30 posts suppress exact sample size, mention counts, and rates. Thirty is a conservative project display heuristic, not a legal threshold, anonymity guarantee, or statistical confidence bound. The exact corpus total is not published. The script writes only aggregate labels, counts for unsuppressed groups, topic rates, dataset metadata, and caveats.
+
+In the dashboard, choose a batch, topic, role, broad employer type, month, and region. The newest reported month is selected by default when available; use the month selector for an explicit same-period comparison. The batch control shows when the export was collected, while the note reports the newest post month found in the export; collection date and post date are different things.
 
 ## How to read it
 

@@ -1,8 +1,8 @@
 (()=>{
  const $=selector=>document.querySelector(selector);
  const view=$("#chinaView"),population=$("#chinaPopulation"),focus=$("#chinaFocus");
- const populationWrap=$("#chinaPopulationWrap"),focusWrap=$("#chinaFocusWrap"),employer=$("#chinaEmployer"),employerWrap=$("#chinaEmployerWrap"),socialDataset=$("#chinaSocialDataset"),socialTopic=$("#chinaSocialTopic");
- const socialDatasetWrap=$("#chinaSocialDatasetWrap"),socialTopicWrap=$("#chinaSocialTopicWrap");
+ const populationWrap=$("#chinaPopulationWrap"),focusWrap=$("#chinaFocusWrap"),employer=$("#chinaEmployer"),employerWrap=$("#chinaEmployerWrap"),socialDataset=$("#chinaSocialDataset"),socialTopic=$("#chinaSocialTopic"),socialEmployer=$("#chinaSocialEmployer"),socialPeriod=$("#chinaSocialPeriod"),socialRole=$("#chinaSocialRole");
+ const socialDatasetWrap=$("#chinaSocialDatasetWrap"),socialTopicWrap=$("#chinaSocialTopicWrap"),socialEmployerWrap=$("#chinaSocialEmployerWrap"),socialPeriodWrap=$("#chinaSocialPeriodWrap"),socialRoleWrap=$("#chinaSocialRoleWrap");
  const fmt=n=>new Intl.NumberFormat("zh-CN",{maximumFractionDigits:0}).format(n);
  const fmtRate=n=>new Intl.NumberFormat("zh-CN",{maximumFractionDigits:1,minimumFractionDigits:1}).format(n);
  const escapeHtml=value=>String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -38,6 +38,9 @@
   focusWrap.hidden=!(focusView||key==="city-wages"||key==="east-industry"||key==="focus-cities"||employerView||socialView);
   socialDatasetWrap.hidden=!socialView;
   socialTopicWrap.hidden=!socialView;
+  socialEmployerWrap.hidden=!socialView;
+  socialPeriodWrap.hidden=!socialView;
+  socialRoleWrap.hidden=!socialView;
   $("#chinaFocusLabel").textContent=employerView||socialView?"地域筛选":"筛选范围";
 
   if(socialView){
@@ -53,20 +56,31 @@
    socialTopic.value=topics.some(item=>item.id===selectedTopic)?selectedTopic:(topics.find(item=>item.id==="work_time")?.id||topics[0]?.id||"");
    const topic=topics.find(item=>item.id===socialTopic.value)||topics[0];
    const allGroups=(dataset?.groups||[]).map(row=>({...row,dataset}));
+   setOptions(socialRole,["全部岗位",...unique(allGroups.map(row=>row.role||"未分类"))],"全部岗位");
+   setOptions(socialEmployer,["全部单位类型",...unique(allGroups.map(row=>row.employer_type||"未分类"))],"全部单位类型");
+   const periods=unique(allGroups.map(row=>row.period)).sort((a,b)=>{
+    if(a==="日期未提供")return 1;
+    if(b==="日期未提供")return -1;
+    return b.localeCompare(a);
+   });
+   const defaultPeriod=periods.find(period=>/^\d{4}-\d{2}$/.test(period))||"全部月份";
+   setOptions(socialPeriod,["全部月份",...periods],defaultPeriod);
    const locations=["全部地域",...unique(allGroups.map(row=>row.location))];
    setOptions(focus,locations,"全部地域");
-   const filtered=allGroups.filter(row=>focus.value==="全部地域"||row.location===focus.value);
+   const filtered=allGroups.filter(row=>(focus.value==="全部地域"||row.location===focus.value)&&(socialRole.value==="全部岗位"||(row.role||"未分类")===socialRole.value)&&(socialEmployer.value==="全部单位类型"||((row.employer_type||"未分类")===socialEmployer.value))&&(socialPeriod.value==="全部月份"||row.period===socialPeriod.value));
    rows=filtered.map(row=>{
     const rate=row.suppressed?null:row.topic_rates_pct?.[topic?.id];
     const mentions=row.suppressed?"隐藏":(row.topic_counts?.[topic?.id]??0);
     const n=row.suppressed?(row.sample_band||"小样本已隐藏"):fmt(row.sample_size);
     const source=sourceLink(row.dataset?.source_url,row.dataset?.source_name||"");
-    return {label:row.location,chartLabel:[row.location,row.role,row.period].filter(Boolean).join(" · "),chartValue:rate,
-     cells:[row.location,row.role,row.period,n,mentions,rate==null?"—":rate.toFixed(1)+"%",row.dataset?.platform||"—",row.dataset?.query_label||"—",source]};
+    return {label:row.location,chartLabel:[row.location,row.role,row.employer_type||"未分类",row.period].filter(Boolean).join(" · "),chartValue:rate,
+     cells:[row.location,row.role,row.employer_type||"未分类",row.period,n,mentions,rate==null?"—":rate.toFixed(1)+"%",row.dataset?.platform||"—",row.dataset?.query_label||"—",source]};
    });
-   headers=["地域","岗位类别","月份","样本量","主题提及数","主题提及率","平台","检索范围","平台/API 说明"];
-   note=dataset?"仅展示所选数据集。提及率=包含该主题关键词的记录数÷本组记录数；关键词命中不识别否定、褒贬或语境，帖子也未经事实核验。小样本组不展示精确计数。社交样本有自选偏差，不代表城市/职业总体。":"尚无获准 API 或授权导入数据；脚本与展示模板已就绪，空模板不会生成体验结论。";
-   emptyNote=dataset?"所选地域没有可展示记录。":"尚无获准 API 或授权导入的数据。请先使用汇总脚本导入合规数据。";
+   headers=["地域","岗位类别","单位类型","月份","样本量","主题提及数","主题提及率","平台","检索范围","平台/API 说明"];
+   const latestPeriod=periods.find(period=>/^\d{4}-\d{2}$/.test(period));
+   const collectedDate=String(dataset?.collected_at||"").slice(0,10);
+   note=dataset?"本批采集于 "+(collectedDate||"日期未提供")+"；样本月份截至 "+(latestPeriod||"未提供")+"。提及率=包含该主题关键词的记录数÷本组记录数；关键词命中不识别否定、褒贬或语境，帖子也未经事实核验。小样本组不展示精确计数。社交样本有自选偏差，不代表城市/职业总体。":"尚无获准 API 或授权导入数据；脚本与展示模板已就绪，空模板不会生成体验结论。";
+   emptyNote=dataset?"当前筛选条件没有可展示记录。":"尚无获准 API 或授权导入的数据。请先使用汇总脚本导入合规数据。";
    sourceUrl=dataset?.source_url||"https://open.weibo.com/cli/quickstart";
    chartSuffix="%";summaryLabel=topic?.label?topic.label+"提及率":"主题提及率";
   }else if(key==="regions"||key==="industries"){
@@ -313,6 +327,9 @@
  employer.addEventListener("change",render);
  socialDataset.addEventListener("change",render);
  socialTopic.addEventListener("change",render);
+ socialEmployer.addEventListener("change",render);
+ socialPeriod.addEventListener("change",render);
+ socialRole.addEventListener("change",render);
  Promise.all(["data/china_wage_structure_2025.json","data/china_east_regions_2025.json","data/china_employer_types.json","data/social_observations.json"].map(url=>fetch(url).then(response=>{if(!response.ok)throw new Error(url+" HTTP "+response.status);return response.json()}))).then(([data,eastData,employerData,socialData])=>{pack=data;eastPack=eastData;employerPack=employerData;socialPack=socialData;render()}).catch(error=>{
   $("#chinaRows").innerHTML='<tr><td colspan="8" class="china-empty">中国官方数据文件载入失败，请稍后重试。</td></tr>';
   $("#chinaViewNote").textContent="数据文件：data/china_wage_structure_2025.json、data/china_east_regions_2025.json、data/china_employer_types.json";

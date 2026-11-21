@@ -1,8 +1,8 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "data_kind": "social_experience_keyword_aggregate",
   "generated_at": null,
-  "rule_set_version": "cn-work-experience-keywords-v1",
+  "rule_set_version": "cn-work-experience-keywords-v2",
   "topics": [
     {
       "id": "work_time",
@@ -36,10 +36,10 @@
     }
   ],
   "datasets": [],
-  "privacy": "公开文件仅保存聚合计数，不含原文、账号、帖子 ID 或单帖链接。",
+  "privacy": "公开文件仅保存聚合计数，不含原文、账号、公司名称、帖子 ID 或单帖链接。",
   "limitations": [
     "尚无已接入的获准 API 或授权导入数据。",
     "帖子为自选样本，关键词提及率不是人口比例、事实核验或情绪分数。",
-    "小样本组隐藏计数与提及率；社交讨论不并入官方工资均值或推荐分。"
+    "小样本组隐藏计数与提及率；单位类型使用固定类别表，未识别标签归为未分类；社交讨论不并入官方工资均值或推荐分。"
   ]
 }
