@@ -24,8 +24,7 @@ def download():
             rp.parse(response.read().decode("utf-8","replace").splitlines())
     except Exception as exc:
         if getattr(exc,"code",None)==403:
-            print("BLS refresh skipped: robots.txt access is denied; preserving the last snapshot without requesting salary data.")
-            return 3
+            raise RuntimeError("robots.txt disallows confirming permission (HTTP 403); salary data was not requested") from exc
         raise RuntimeError(f"Cannot verify BLS robots.txt within the network timeout: {exc}") from exc
     if not rp.can_fetch(UA,URL): raise RuntimeError("BLS robots.txt disallows this dataset")
     req=urllib.request.Request(URL,headers={"User-Agent":UA,"Accept":"application/zip"})

@@ -86,18 +86,26 @@ def parse_table(payload: bytes) -> list[dict]:
 
         candidates: dict[tuple[str, str], list[dict]] = {}
         work_types: set[str] = set()
+        wage_labels: set[str] = set()
+        occupation_samples: set[str] = set()
+        seen_average = 0
         for raw in reader:
             if len(raw) < len(headers):
                 continue
             row = dict(zip(headers, raw))
             wage_label = row.get(columns["wages"], "").strip().lower()
-            if "average weekly wage rate" not in wage_label:
+            if wage_label:
+                wage_labels.add(wage_label)
+            if "average weekly" not in wage_label or "wage" not in wage_label:
                 continue
+            seen_average += 1
             if columns["gender"] and row.get(columns["gender"], "").strip().lower() not in {"both sexes", "total - gender", "total"}:
                 continue
             if columns["age group"] and row.get(columns["age group"], "").strip().lower() not in {"15 years and over", "15 years and older", "total - age group"}:
                 continue
             occupation_text = row.get(columns["occupation"], "").strip()
+            if occupation_text and len(occupation_samples) < 30 and re.search(r"software|developer|nurs|data scientist|retail sales", occupation_text, re.I):
+                occupation_samples.add(occupation_text)
             match = next((item for item in OCCUPATIONS if item[2].search(occupation_text)), None)
             if not match:
                 continue
@@ -167,7 +175,7 @@ def parse_table(payload: bytes) -> list[dict]:
             "source_note": f"官方平均周工资按 52/12 折算月等值，保留原平均周工资口径；不代表调查直接发布的月薪。筛选口径：{selected_type or '官方表格唯一工作类别'}。",
         })
     if not output:
-        raise RuntimeError("Statistics Canada import produced zero matching records; refusing to replace the last snapshot")
+        raise RuntimeError(f"Statistics Canada import produced zero matching records; average-weekly rows={seen_average}; wage labels={sorted(wage_labels)}; occupation examples={sorted(occupation_samples)}; refusing to replace the last snapshot")
     return output
 
 
