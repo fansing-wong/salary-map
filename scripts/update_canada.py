@@ -104,7 +104,7 @@ def coordinates(metadata: dict) -> list[dict]:
     for geo_id, geo_member in geo_by_id.items():
         for occ_member in occupations:
             values = {**fixed, geo_id: geo_member, occupation_pos: occ_member}
-            coord = ".".join(str(values[position]["memberId"]) for position in range(1, len(dims) + 1))
+            coord = ".".join(str(values[position]["memberId"]) if position in values else "0" for position in range(1, 11))
             result.append({
                 "productId": TABLE_ID,
                 "coordinate": coord,
