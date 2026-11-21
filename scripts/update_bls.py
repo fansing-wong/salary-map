@@ -16,8 +16,14 @@ def write_json_atomic(path: Path, value: object) -> None:
     temp_path.replace(path)
 
 def download():
-    rp=urllib.robotparser.RobotFileParser("https://www.bls.gov/robots.txt")
-    rp.read()
+    robots_url="https://www.bls.gov/robots.txt"
+    rp=urllib.robotparser.RobotFileParser(robots_url)
+    robots_request=urllib.request.Request(robots_url,headers={"User-Agent":UA})
+    try:
+        with urllib.request.urlopen(robots_request,timeout=20) as response:
+            rp.parse(response.read().decode("utf-8","replace").splitlines())
+    except Exception as exc:
+        raise RuntimeError(f"Cannot verify BLS robots.txt within the network timeout: {exc}") from exc
     if not rp.can_fetch(UA,URL): raise RuntimeError("BLS robots.txt disallows this dataset")
     req=urllib.request.Request(URL,headers={"User-Agent":UA,"Accept":"application/zip"})
     with urllib.request.urlopen(req,timeout=90) as response: return response.read()
