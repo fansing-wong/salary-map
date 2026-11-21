@@ -120,7 +120,8 @@ def fetch_latest(series: list[dict]) -> list[dict]:
     result = []
     for offset in range(0, len(series), 50):
         batch = series[offset:offset + 50]
-        response = request_json(f"{WDS}/getDataFromCubePidCoordAndLatestNPeriods", batch)
+        requests = [{"productId": row["productId"], "coordinate": row["coordinate"], "latestN": row["latestN"]} for row in batch]
+        response = request_json(f"{WDS}/getDataFromCubePidCoordAndLatestNPeriods", requests)
         if not isinstance(response, list):
             raise RuntimeError("Statistics Canada WDS returned an unexpected coordinate response")
         for item in response:
